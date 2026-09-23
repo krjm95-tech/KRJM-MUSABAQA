@@ -5,117 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KRJM MSBQ 2026</title>
   
-  <link rel="manifest" href="manifest.json">
+  <!-- App Download & Icon Config (No Chrome Badge) -->
+  <meta name="theme-color" content="#064e3b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
 
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- QR Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
     body { font-family: 'Manjari', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .side-menu-transition { transition: transform 0.25s ease-in-out; }
+    .side-transition { transition: transform 0.25s ease-in-out; }
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
 
   <!-- ================= TOP MAIN HEADER ================= -->
-  <header class="bg-emerald-900 text-white sticky top-0 z-30 shadow-md">
+  <header class="bg-emerald-950 text-white sticky top-0 z-30 shadow-lg border-b border-emerald-800">
     <div class="max-w-5xl mx-auto px-3 py-2 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <button onclick="toggleSideMenu()" class="p-2 text-white hover:bg-emerald-800 rounded-lg">
-          <i class="fa-solid fa-bars text-lg"></i>
+        <button onclick="toggleSidebar()" class="p-2 text-white hover:bg-emerald-800 rounded-lg">
+          <i class="fa-solid fa-bars text-xl"></i>
         </button>
         <div class="flex items-center gap-2">
-          <div class="flex flex-col items-center">
-            <img src="logo.png" alt="KRJM MSBQ" class="h-9 w-auto object-contain bg-white rounded p-0.5" onerror="this.src='https://placehold.co/80x80?text=KRJM'">
-            <span class="text-[8px] font-black text-amber-300 tracking-wider">KRJM MSBQ</span>
+          <!-- Digital Logo SVG Badge -->
+          <div class="w-10 h-10 bg-white rounded-xl p-0.5 flex flex-col items-center justify-center shadow">
+            <img src="logo.png" alt="KRJM" class="max-h-7 max-w-full object-contain" onerror="this.src='https://placehold.co/100x100?text=KRJM'">
+            <span class="text-[7px] font-black text-emerald-900 leading-none">KRJM</span>
           </div>
           <div>
-            <h1 class="text-xs md:text-sm font-black text-amber-300 leading-tight uppercase">
+            <h1 class="text-xs md:text-sm font-black text-amber-300 tracking-wide uppercase">
               KRJM MUSABAQA 2026
             </h1>
-            <p class="text-[9px] md:text-[10px] text-emerald-100 font-bold">SEP-27 STAGE COMPETITION • VENUE: KADIYANGAD</p>
+            <p class="text-[9px] md:text-[10px] text-emerald-200 font-bold">SEP-27 STAGE COMPETITION • VENUE: KADIYANGAD</p>
           </div>
         </div>
       </div>
 
-      <div class="flex items-center gap-1.5">
-        <button id="authBtnTop" onclick="openLoginModal()" class="text-xs bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-2.5 py-1.5 rounded-lg shadow flex items-center gap-1">
-          <i class="fa-solid fa-right-to-bracket"></i> <span id="topBarUserRole">Login</span>
-        </button>
-      </div>
+      <button id="headerAuthBtn" onclick="openLoginModal()" class="text-xs bg-amber-400 hover:bg-amber-500 text-slate-900 font-black px-3 py-1.5 rounded-xl shadow flex items-center gap-1">
+        <i class="fa-solid fa-right-to-bracket"></i> <span id="topRoleText">Login</span>
+      </button>
     </div>
   </header>
 
   <!-- ================= LIVE ANNOUNCEMENT TICKER ================= -->
-  <div class="bg-amber-400 text-slate-900 px-3 py-1.5 text-xs font-bold flex items-center shadow-xs">
-    <span class="bg-red-600 text-white text-[10px] uppercase px-1.5 py-0.5 rounded font-black mr-2 animate-pulse shrink-0">Live</span>
-    <marquee id="announcementMarquee" scrollamount="5" class="w-full">
-      KRJM മുസാബഖ 2026 കാടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. മത്സരാർത്ഥികൾ ഉടൻ രജിസ്ട്രേഷൻ ഡെസ്കിൽ എത്തി ചെക്ക്-ഇൻ പൂർത്തിയാക്കുക.
+  <div class="bg-amber-300 text-slate-900 px-3 py-1.5 text-xs font-bold flex items-center shadow-xs">
+    <span class="bg-red-600 text-white text-[9px] font-black uppercase px-1.5 py-0.5 rounded mr-2 animate-pulse shrink-0">Live</span>
+    <marquee id="announcementBar" scrollamount="6" class="w-full">
+      KRJM റേഞ്ച് തല മുസാബഖ 2026 കാടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. വിദ്യാർത്ഥികൾ ഉടൻ രജിസ്ട്രേഷൻ ഡെസ്കിൽ എത്തി ചെക്ക്-ഇൻ പൂർത്തിയാക്കുക.
     </marquee>
   </div>
 
-  <!-- ================= SIDEBAR MENU DRAWER ================= -->
-  <div id="sideMenuOverlay" onclick="toggleSideMenu()" class="fixed inset-0 bg-black/60 z-40 hidden"></div>
-  <aside id="sideMenu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 side-menu-transition -translate-x-full flex flex-col justify-between">
+  <!-- ================= SIDEBAR MENU DRAWER (DEFAULT HIDDEN) ================= -->
+  <div id="sideOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-50 side-transition -translate-x-full flex flex-col justify-between">
     <div>
-      <div class="bg-emerald-900 text-white p-4 text-center border-b border-emerald-800">
-        <img src="logo.png" alt="KRJM MSBQ" class="h-14 w-auto mx-auto object-contain bg-white rounded-lg p-1 shadow" onerror="this.src='https://placehold.co/100x100?text=KRJM'">
+      <div class="bg-emerald-950 text-white p-4 text-center border-b border-emerald-800">
+        <div class="w-14 h-14 mx-auto bg-white rounded-xl p-1 flex items-center justify-center shadow">
+          <img src="logo.png" alt="KRJM MSBQ" class="max-h-full max-w-full object-contain" onerror="this.src='https://placehold.co/100x100?text=KRJM'">
+        </div>
         <p class="text-xs font-black text-amber-300 mt-2 tracking-wider">KRJM MSBQ 2026</p>
-        <p class="text-[10px] text-emerald-200">15 മദ്റസകൾ • 4 സ്റ്റേജുകൾ</p>
+        <p class="text-[10px] text-emerald-300">15 മദ്റസകൾ • 4 വേദികൾ • 300+ കുട്ടികൾ</p>
       </div>
 
       <nav class="p-3 space-y-1 text-xs font-bold text-slate-700">
-        <button onclick="navSwitch('portalPublic')" class="w-full text-left p-2.5 hover:bg-emerald-50 text-emerald-800 rounded-xl flex items-center gap-3">
-          <i class="fa-solid fa-house text-emerald-600"></i> Public Portal (ഹോം)
+        <button onclick="navRoute('portalPublic')" class="w-full text-left p-2.5 hover:bg-emerald-50 text-emerald-900 rounded-xl flex items-center gap-3">
+          <i class="fa-solid fa-house text-emerald-700"></i> Public Portal (ഹോം)
         </button>
-        <button onclick="navSwitch('secStages')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
-          <i class="fa-solid fa-microphone-lines text-purple-600"></i> 4 വേദികൾ (Stage Schedule)
+        <button onclick="navRoute('secStages')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+          <i class="fa-solid fa-microphone-lines text-purple-700"></i> 4 വേദികൾ (Stage Schedule)
         </button>
-        <button onclick="navSwitch('secLeaderboard')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
-          <i class="fa-solid fa-trophy text-amber-500"></i> പോയിന്റ് നില (Leaderboard)
+        <button onclick="navRoute('secLeaderboard')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+          <i class="fa-solid fa-trophy text-amber-600"></i> പോയിന്റ് നില (Leaderboard)
         </button>
-        <button onclick="navSwitch('portalTeamManager')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
-          <i class="fa-solid fa-user-tie text-blue-600"></i> Team Manager Portal
+        <button onclick="navRoute('portalTeamManager')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+          <i class="fa-solid fa-user-tie text-blue-700"></i> Team Manager Portal
         </button>
-        <button onclick="navSwitch('secFoodGuide')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+        <button onclick="navRoute('secFoodGuide')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
           <i class="fa-solid fa-utensils text-amber-600"></i> ഫുഡ് ടോക്കൺ ഗൈഡ്
         </button>
-        <button onclick="navSwitch('secContacts')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
-          <i class="fa-solid fa-phone text-emerald-600"></i> ഹെൽപ്പ് ലൈൻ നമ്പറുകൾ
+        <button onclick="navRoute('secContacts')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+          <i class="fa-solid fa-phone text-emerald-700"></i> ഹെൽപ്പ് ലൈൻ നമ്പറുകൾ
         </button>
-        <button onclick="navSwitch('secAboutApp')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
+        <button onclick="navRoute('secAboutApp')" class="w-full text-left p-2.5 hover:bg-emerald-50 rounded-xl flex items-center gap-3">
           <i class="fa-solid fa-circle-info text-slate-500"></i> About App
         </button>
       </nav>
     </div>
 
     <div class="p-3 border-t bg-slate-50">
-      <div id="sideProfileInfo" class="hidden mb-2 p-2 bg-emerald-100 rounded-lg text-xs text-emerald-900 font-bold"></div>
-      <button id="sideLogoutBtn" onclick="logoutCurrentRole()" class="hidden w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 rounded-xl">
+      <div id="sideUserLabel" class="hidden mb-2 p-2 bg-emerald-100 rounded-xl text-xs text-emerald-950 font-bold"></div>
+      <button id="sideLogoutBtn" onclick="logoutApp()" class="hidden w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 rounded-xl">
         Logout
       </button>
     </div>
   </aside>
 
-  <!-- ================= MAIN DISPLAY AREA ================= -->
+  <!-- ================= MAIN APP VIEWPORTS ================= -->
   <main class="flex-grow max-w-4xl mx-auto w-full p-3 md:p-4 space-y-4">
 
-    <!-- 1. PUBLIC PORTAL (CHEST SEARCH & STATUS) -->
+    <!-- 1. PUBLIC PORTAL (CHEST SEARCH & QR) -->
     <section id="portalPublic" class="space-y-4">
-      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
-        <h3 class="text-sm font-bold text-slate-800 mb-1 flex items-center gap-2">
+      <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200">
+        <h3 class="text-sm md:text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
           <i class="fa-solid fa-qrcode text-emerald-700"></i> Chest No Search (വിവരങ്ങളും ക്യു.ആറും)
         </h3>
-        <p class="text-xs text-slate-500 mb-3">ചെസ്റ്റ് നമ്പർ നൽകി എൻട്രി, ഫുഡ് ടോക്കൺ QR കോഡ്, റിസൾട്ട് സ്റ്റാറ്റസ് കാണുക.</p>
+        <p class="text-xs text-slate-500 mb-3">നിങ്ങളുടെ ചെസ്റ്റ് നമ്പർ നൽകി എൻട്രി, ഫുഡ് ക്യു.ആർ കോഡ്, റിസൾട്ട് സ്റ്റാറ്റസ് കാണുക.</p>
         
         <div class="flex gap-2">
-          <input type="text" id="publicChestInput" placeholder="ചെസ്റ്റ് നമ്പർ (ഉദാ: 101)" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none">
-          <button onclick="checkPublicStudent()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0">Search</button>
+          <input type="text" id="publicChestInput" placeholder="ചെസ്റ്റ് നമ്പർ അടിക്കുക (ഉദാ: 101)" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+          <button onclick="searchPublicStudent()" class="bg-emerald-800 hover:bg-emerald-900 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0">Search</button>
         </div>
 
         <div id="publicResultCard" class="hidden mt-4 border border-slate-200 bg-slate-50 rounded-xl p-4 space-y-4">
@@ -129,14 +136,16 @@
             <span id="pubChestBadge" class="bg-emerald-100 text-emerald-900 text-xs px-2.5 py-1 rounded-full font-bold"></span>
           </div>
 
+          <!-- Status Indicators -->
           <div class="grid grid-cols-3 gap-1 text-center text-xs font-bold">
             <div id="pubEntryStatus" class="p-2 rounded-lg border"></div>
             <div id="pubFoodStatus" class="p-2 rounded-lg border"></div>
             <div id="pubPrizeStatus" class="p-2 rounded-lg border"></div>
           </div>
 
+          <!-- QR Generator Display -->
           <div class="bg-white p-3 rounded-xl border border-slate-200 flex flex-col items-center">
-            <p class="text-xs font-bold text-slate-700 mb-1">ഫുഡ് കൗണ്ടറിൽ കാണിക്കേണ്ട QR കോഡ്</p>
+            <p class="text-xs font-bold text-slate-800 mb-1">ഫുഡ് കൗണ്ടറിൽ കാണിക്കേണ്ട QR കോഡ്</p>
             <div id="pubQrcode" class="p-2 bg-white border rounded-lg"></div>
             <p class="text-[11px] text-slate-400 mt-1">ചെസ്റ്റ് നമ്പർ: <span id="pubQrText" class="font-bold text-slate-800"></span></p>
           </div>
@@ -152,7 +161,7 @@
           <i class="fa-solid fa-microphone-lines"></i> 4 വേദികൾ (Stage Schedule)
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="stageCardsContainer">
-          <!-- Populated dynamically: Stage 1, 2, 3, 4 -->
+          <!-- Populated from Firestore/Data -->
         </div>
       </div>
     </section>
@@ -172,9 +181,7 @@
                 <th class="p-2 text-right">പോയിന്റ്</th>
               </tr>
             </thead>
-            <tbody id="leaderboardBody">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="leaderboardBody"></tbody>
           </table>
         </div>
       </div>
@@ -187,17 +194,17 @@
           <h2 class="text-sm font-bold text-blue-700 flex items-center gap-2">
             <i class="fa-solid fa-user-tie"></i> Team Manager Portal
           </h2>
-          <p class="text-[11px] text-slate-500">ടീം ലീഡർമാർക്ക് തങ്ങളുടെ മദ്റസയിലെ കുട്ടികളുടെ വിവരങ്ങളും ഫുഡ് സ്റ്റാറ്റസും കാണാം.</p>
+          <p class="text-[11px] text-slate-500">മദ്റസ ഉസ്താദുമാർക്ക് സ്വന്തം കുട്ടികളുടെ വിവരങ്ങളും ഫുഡ് സ്റ്റാറ്റസും കാണാം.</p>
         </div>
 
         <div id="tmAuthBox" class="space-y-2">
-          <input type="text" id="tmNameInput" placeholder="മാനേജറുടെ / ഉസ്താദിന്റെ പേര്" class="w-full border p-2 text-xs rounded-xl">
+          <input type="text" id="tmNameInput" placeholder="ഉസ്താദിന്റെ / മാനേജറുടെ പേര്" class="w-full border p-2 text-xs rounded-xl">
           <input type="tel" id="tmPhoneInput" placeholder="ഫോൺ നമ്പർ" class="w-full border p-2 text-xs rounded-xl">
           <select id="tmMadrasaSelect" class="w-full border p-2 text-xs rounded-xl bg-slate-50">
-            <option value="">മദ്റസ തിരഞ്ഞെടുക്കുക (15 Madrasas)</option>
+            <option value="">മദ്റസ തിരഞ്ഞെടുക്കുക</option>
           </select>
-          <button onclick="loadTeamManagerDashboard()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 rounded-xl">
-            ടീം വിവരങ്ങൾ കാണുക
+          <button onclick="loadTeamManagerDashboard()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs py-2 rounded-xl">
+            ടീം വിവരങ്ങൾ തുറക്കുക
           </button>
         </div>
 
@@ -228,25 +235,24 @@
       </div>
     </section>
 
-    <!-- 5. FOOD SCANNER & VERIFIER (RED / GREEN ENGINE) -->
+    <!-- 5. FOOD SCANNER & EXCHANGE (RED / GREEN ENGINE) -->
     <section id="portalFood" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
         <div class="flex items-center justify-between mb-3 border-b pb-2">
           <h2 class="text-sm font-bold text-amber-700 flex items-center gap-2">
             <i class="fa-solid fa-utensils"></i> Food Counter Portal
           </h2>
-          <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">Food Controller</span>
+          <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">ഫുഡ് കൗണ്ടർ</span>
         </div>
 
-        <!-- Scanner View -->
         <div class="space-y-3">
           <div id="qrReader" class="w-full max-w-xs mx-auto overflow-hidden rounded-xl border border-slate-300"></div>
           <div class="flex justify-center gap-2">
-            <button onclick="startQRScanner()" id="btnStartScan" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-xl font-bold flex items-center gap-1">
-              <i class="fa-solid fa-camera"></i> സ്കാനർ ഓൺ ചെയ്യുക
+            <button onclick="startFoodQRScanner()" id="btnStartScan" class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-2 rounded-xl font-bold flex items-center gap-1">
+              <i class="fa-solid fa-camera"></i> ക്യാമറ സ്കാനർ ഓൺ ചെയ്യുക
             </button>
-            <button onclick="stopQRScanner()" id="btnStopScan" class="hidden bg-slate-600 text-white text-xs px-4 py-2 rounded-xl font-bold">
-              സ്കാനർ ഓഫ് ചെയ്യുക
+            <button onclick="stopFoodQRScanner()" id="btnStopScan" class="hidden bg-slate-600 text-white text-xs px-4 py-2 rounded-xl font-bold">
+              ക്യാമറ ഓഫ് ചെയ്യുക
             </button>
           </div>
         </div>
@@ -262,7 +268,7 @@
           <button onclick="verifyFoodAction(document.getElementById('foodChestInput').value.trim())" class="bg-amber-600 hover:bg-amber-700 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0">ചെക്ക്</button>
         </div>
 
-        <!-- FULL SCREEN STATUS BOX (RED / GREEN) -->
+        <!-- FULL ALERT NOTIFICATION BOX (RED / GREEN) -->
         <div id="foodAlertBox" class="hidden mt-4 p-5 rounded-2xl text-center space-y-3 shadow-lg">
           <div id="foodAlertIcon" class="text-6xl"></div>
           <h3 id="foodAlertTitle" class="text-2xl font-black"></h3>
@@ -271,14 +277,14 @@
           
           <div id="foodActionBtnContainer" class="hidden pt-2">
             <button onclick="markFoodServed()" class="bg-slate-900 hover:bg-black text-white font-black text-sm px-6 py-2.5 rounded-xl shadow">
-              ഭക്ഷണം നൽകി എന്ന് രേഖപ്പെടുത്തുക ✓
+              ഭക്ഷണം നൽകി എന്ന് രേഖപ്പെടുത്തുക (Redeem) ✓
             </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. SPOT DESK / PRIZE / STAGE PORTALS -->
+    <!-- 6. SPOT REGISTRATION DESK / PRIZE DESK -->
     <section id="portalRoleDesk" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
         <div class="flex items-center justify-between mb-3 border-b pb-2">
@@ -327,39 +333,97 @@
       </div>
     </section>
 
-    <!-- 7. SUPER ADMIN PANEL -->
+    <!-- 7. SUPER ADMIN ALL-IN-ONE MASTER CONTROL PANEL -->
     <section id="portalAdmin" class="hidden space-y-4">
-      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-5">
         <div class="flex items-center justify-between border-b pb-2">
-          <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-            <i class="fa-solid fa-shield-halved text-emerald-700"></i> Super Admin Panel
-          </h2>
-          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Admin</span>
+          <div>
+            <h2 class="text-base font-black text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-emerald-800"></i> Super Admin Master Control
+            </h2>
+            <p class="text-xs text-slate-500">ആപ്പിലെ മുഴുവൻ കാര്യങ്ങളും മാറ്റിയെഴുതാനും നിയന്ത്രിക്കാനുമുള്ള പാനൽ</p>
+          </div>
+          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Super Admin</span>
         </div>
 
-        <!-- Update Live Announcement -->
-        <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
-          <h3 class="text-xs font-bold text-slate-800">Live Announcement മാറ്റുക</h3>
+        <!-- Navigation Tabs inside Admin -->
+        <div class="flex flex-wrap gap-2 border-b pb-2 text-xs font-bold">
+          <button onclick="switchAdminTab('admTabStudents')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">സ്റ്റുഡന്റ് മാനേജ്മെന്റ്</button>
+          <button onclick="switchAdminTab('admTabMadrasas')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">മദ്റസകൾ & പോയിന്റ്</button>
+          <button onclick="switchAdminTab('admTabStages')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">4 വേദികൾ (Schedule)</button>
+          <button onclick="switchAdminTab('admTabRoles')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">Staff Passwords & Permissions</button>
+          <button onclick="switchAdminTab('admTabSettings')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">Notice & About Edit</button>
+        </div>
+
+        <!-- TAB 1: Student Management -->
+        <div id="admTabStudents" class="space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 uppercase">വിദ്യാർത്ഥികളെ നിയന്ത്രിക്കുക & തിരയുക</h3>
           <div class="flex gap-2">
-            <input type="text" id="adminNewNotice" placeholder="പുതിയ അറിയിപ്പ് നൽകുക" class="w-full border p-2 text-xs rounded-lg">
-            <button onclick="updateNoticeText()" class="bg-emerald-800 text-white text-xs px-3 py-1.5 rounded-lg font-bold shrink-0">Update</button>
+            <input type="text" id="adminStudentQuery" placeholder="ചെസ്റ്റ് നമ്പർ നൽകുക" class="border p-2 text-xs rounded-xl w-full">
+            <button onclick="loadAdminStudent()" class="bg-emerald-800 text-white text-xs px-4 rounded-xl font-bold shrink-0">തുറക്കുക</button>
+          </div>
+
+          <div id="adminStudentEditBox" class="hidden bg-slate-50 p-3 rounded-xl border space-y-2 text-xs">
+            <div class="grid grid-cols-2 gap-2">
+              <div><label class="text-[10px] text-slate-500">പേര്</label><input type="text" id="admEdName" class="border w-full p-1.5 rounded"></div>
+              <div><label class="text-[10px] text-slate-500">മദ്റസ</label><input type="text" id="admEdMadrasa" class="border w-full p-1.5 rounded"></div>
+              <div><label class="text-[10px] text-slate-500">ഇനം</label><input type="text" id="admEdCategory" class="border w-full p-1.5 rounded"></div>
+              <div><label class="text-[10px] text-slate-500">ചെസ്റ്റ് നമ്പർ</label><input type="text" id="admEdChest" disabled class="border w-full p-1.5 rounded bg-slate-200"></div>
+            </div>
+            <div class="flex flex-wrap gap-4 pt-1 font-bold">
+              <label><input type="checkbox" id="admEdEntry"> എൻട്രി പൂർത്തിയായി</label>
+              <label><input type="checkbox" id="admEdFood"> ഭക്ഷണം നൽകി</label>
+              <label><input type="checkbox" id="admEdPrize"> സമ്മാനം നൽകി</label>
+            </div>
+            <div class="flex gap-2 pt-2">
+              <button onclick="saveAdminStudent()" class="bg-emerald-800 text-white text-xs px-4 py-2 rounded-lg font-bold">സേവ് ചെയ്യുക</button>
+              <button onclick="deleteAdminStudent()" class="bg-red-600 text-white text-xs px-4 py-2 rounded-lg font-bold">ഡിലീറ്റ്</button>
+            </div>
+          </div>
+
+          <!-- CSV Upload -->
+          <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
+            <p class="text-xs font-bold text-slate-800">CSV വഴി കുട്ടികളെ ഒരുമിച്ച് അപ്‌ലോഡ് ചെയ്യുക</p>
+            <input type="file" id="csvFile" accept=".csv" class="text-xs text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-emerald-700 file:text-white">
+            <button onclick="uploadCSVData()" class="mt-2 bg-emerald-800 text-white text-xs px-4 py-2 rounded-lg font-bold block">
+              CSV അപ്‌ലോഡ് ചെയ്യുക
+            </button>
           </div>
         </div>
 
-        <!-- Role Passwords Config -->
-        <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
-          <h3 class="text-xs font-bold text-slate-800">Manage Portal Passwords</h3>
-          <div id="rolesAdminList" class="space-y-2"></div>
+        <!-- TAB 2: Madrasas & Points -->
+        <div id="admTabMadrasas" class="hidden space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 uppercase">മദ്റസകളും പോയിന്റുകളും മാറ്റുക</h3>
+          <div id="adminMadrasaList" class="space-y-2"></div>
         </div>
 
-        <!-- CSV Upload -->
-        <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
-          <h3 class="text-xs font-bold text-slate-800">കുട്ടികളുടെ ഫയൽ അപ്‌ലോഡ് (CSV)</h3>
-          <input type="file" id="csvFile" accept=".csv" class="text-xs text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-emerald-600 file:text-white">
-          <button onclick="uploadCSVData()" class="mt-2 bg-emerald-800 text-white text-xs px-4 py-2 rounded-lg font-bold block">
-            CSV അപ്‌ലോഡ് ചെയ്യുക
-          </button>
+        <!-- TAB 3: 4 Stages Schedule Edit -->
+        <div id="admTabStages" class="hidden space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 uppercase">4 വേദികളിലെയും മത്സരങ്ങൾ മാറ്റുക</h3>
+          <div id="adminStageList" class="space-y-2"></div>
         </div>
+
+        <!-- TAB 4: Roles & Passwords & Permissions -->
+        <div id="admTabRoles" class="hidden space-y-3">
+          <h3 class="text-xs font-bold text-slate-800 uppercase">സ്റ്റാഫ് പാസ്‌വേഡുകളും അനുവാദങ്ങളും</h3>
+          <div id="adminRolesList" class="space-y-2"></div>
+        </div>
+
+        <!-- TAB 5: Live Notice & About Edit -->
+        <div id="admTabSettings" class="hidden space-y-3 text-xs">
+          <h3 class="font-bold text-slate-800 uppercase">Live Notice & About App എഡിറ്റർ</h3>
+          <div>
+            <label class="font-bold block mb-1">മുകളിലെ സ്ക്രോളിംഗ് അറിയിപ്പ് (Notice)</label>
+            <input type="text" id="admNoticeInput" class="w-full border p-2 rounded-xl">
+            <button onclick="saveNoticeSettings()" class="mt-2 bg-emerald-800 text-white px-4 py-1.5 rounded-lg font-bold">അറിയിപ്പ് മാറ്റുക</button>
+          </div>
+          <div class="pt-2">
+            <label class="font-bold block mb-1">എബൗട്ട് ആപ്പ് വിവരണം (About Text)</label>
+            <textarea id="admAboutInput" rows="3" class="w-full border p-2 rounded-xl"></textarea>
+            <button onclick="saveAboutSettings()" class="mt-2 bg-emerald-800 text-white px-4 py-1.5 rounded-lg font-bold">എബൗട്ട് മാറ്റുക</button>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -367,20 +431,20 @@
     <section id="secFoodGuide" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
         <h2 class="text-sm font-bold text-amber-700 flex items-center gap-2">
-          <i class="fa-solid fa-utensils"></i> ഫുഡ് ടോക്കൺ എങ്ങനെ ഉപയോഗിക്കാം?
+          <i class="fa-solid fa-utensils"></i> ഫുഡ് ടോക്കൺ എങ്ങനെ എക്സ്ചേഞ്ച് ചെയ്യാം?
         </h2>
         <div class="space-y-2 text-xs text-slate-700">
           <div class="p-3 bg-red-50 border-l-4 border-red-600 rounded">
-            <strong class="text-red-800">1. എൻട്രി നിർബന്ധം:</strong><br>
-            വേദിയിൽ എത്തുമ്പോൾ സ്പോട്ട് ഡെസ്കിൽ എൻട്രി രേഖപ്പെടുത്തണം. എൻട്രി ചെയ്തിട്ടില്ലെങ്കിൽ കൗണ്ടറിൽ <strong>ചുവപ്പ് കളർ</strong> തെളിയുകയും ഭക്ഷണം ലഭിക്കുകയുമില്ല.
+            <strong class="text-red-800">1. സ്പോട്ട് എൻട്രി നിർബന്ധം:</strong><br>
+            വേദിയിൽ എത്തുമ്പോൾ സ്പോട്ട് ഡെസ്കിൽ എൻട്രി രേഖപ്പെടുത്തണം. എൻട്രി ചെയ്തിട്ടില്ലെങ്കിൽ കൗണ്ടറിൽ <strong>ചുവപ്പ് കളർ</strong> തെളിയുകയും ഭക്ഷണം നൽകുകയുമില്ല.
           </div>
           <div class="p-3 bg-emerald-50 border-l-4 border-emerald-600 rounded">
-            <strong class="text-emerald-800">2. പച്ച തെളിഞ്ഞാൽ ഭക്ഷണം:</strong><br>
-            എൻട്രി ഉള്ള ആളാണെങ്കിൽ സ്ക്രീൻ <strong>പച്ച നിറത്തിൽ</strong> തെളിയും. ഉടൻ ഭക്ഷണം ലഭിക്കും.
+            <strong class="text-emerald-800">2. പച്ച തെളിഞ്ഞാൽ ഭക്ഷണം കൈമാറാം:</strong><br>
+            എൻട്രി ഉള്ള ആളാണെങ്കിൽ സ്ക്രീൻ <strong>പച്ച നിറത്തിൽ</strong> തെളിയും. ഉടൻ ഒരു പ്ലേറ്റ് ഭക്ഷണം നൽകി "Redeem" അടയാളപ്പെടുത്താം.
           </div>
           <div class="p-3 bg-amber-50 border-l-4 border-amber-600 rounded">
             <strong class="text-amber-800">3. ഒറ്റത്തവണ മാത്രം:</strong><br>
-            ഒരു തവണ ഭക്ഷണം രേഖപ്പെടുത്തിയാൽ വീണ്ടും ആ ടോക്കൺ കൊണ്ട് ഭക്ഷണം ലഭിക്കില്ല.
+            ഒരു തവണ ഭക്ഷണം നൽകിയാൽ വീണ്ടും ആ ടോക്കൺ കൊണ്ട് ഭക്ഷണം ലഭിക്കില്ല (ഡ്യൂപ്ലിക്കേഷൻ അസാധ്യം).
           </div>
         </div>
       </div>
@@ -403,7 +467,9 @@
         <img src="logo.png" alt="KRJM MSBQ" class="h-16 w-auto mx-auto object-contain bg-white rounded-lg p-1" onerror="this.src='https://placehold.co/100x100?text=KRJM'">
         <h3 class="text-sm font-black text-slate-800">KRJM MUSABAQA 2026</h3>
         <p class="text-xs text-slate-600">Venue: Kadiyangad • Date: SEP-27, 2026</p>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto">15 മദ്റസകളിലെ 300+ പ്രതിഭകൾ മാറ്റുരയ്ക്കുന്ന റേഞ്ച് മുസാബഖ ഡിജിറ്റൽ മാനേജ്‌മെന്റ് സിസ്റ്റം.</p>
+        <p id="aboutDisplayPara" class="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
+          15 മദ്റസകളിലെ 300+ പ്രതിഭകൾ മാറ്റുരയ്ക്കുന്ന റേഞ്ച് മുസാബഖ ഡിജിറ്റൽ മാനേജ്‌മെന്റ് സിസ്റ്റം.
+        </p>
       </div>
     </section>
 
@@ -414,7 +480,7 @@
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl">
       <div class="text-center">
         <h3 class="text-sm font-bold text-slate-800">Portal Login</h3>
-        <p class="text-[11px] text-slate-500">Select portal and enter credentials</p>
+        <p class="text-[11px] text-slate-500">Select portal and enter password</p>
       </div>
 
       <div class="space-y-1">
@@ -434,11 +500,6 @@
         <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center">
       </div>
 
-      <!-- Biometric / Fingerprint Option -->
-      <button onclick="authenticateWithBiometrics()" type="button" class="w-full border-2 border-emerald-600 text-emerald-800 hover:bg-emerald-50 py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <i class="fa-solid fa-fingerprint text-base"></i> Fingerprint / Face Unlock
-      </button>
-
       <div class="flex gap-2 pt-1">
         <button onclick="handleRoleAuth()" class="w-full bg-emerald-800 text-white py-2 rounded-xl text-xs font-bold">Login</button>
         <button onclick="closeLoginModal()" class="w-full bg-slate-200 text-slate-700 py-2 rounded-xl text-xs font-bold">Close</button>
@@ -454,7 +515,7 @@
   <!-- ================= FIREBASE & APP SCRIPT ================= -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC-E6HWFfOXHvdM0A_3dknqsyIEF74rYJE",
@@ -478,12 +539,29 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    const MADRASAS_LIST = [
-      "നൂറുൽ ഇസ്ലാം മദ്റസ", "സിറാജുൽ ഹുദാ മദ്റസ", "ഹിദായത്തുൽ ഇസ്ലാം മദ്റസ", 
-      "ബദരിയ്യ മദ്റസ", "മനാറുൽ ഇസ്ലാം മദ്റസ", "ഇർഷാദിയ്യ മദ്റസ", 
-      "റഹ്മാനിയ്യ മദ്റസ", "മുനവ്വിറുൽ ഇസ്ലാം മദ്റസ", "തൻവീറുൽ ഇസ്ലാം മദ്റസ", 
-      "മിശ്കാത്തുൽ ഹുദാ മദ്റസ", "സബീലുൽ ഫലാഹ് മദ്റസ", "ദാറുൽ ഉലൂം മദ്റസ", 
-      "ഫലാഹിയ്യ മദ്റസ", "ഖുവ്വത്തുൽ ഇസ്ലാം മദ്റസ", "നൂർജഹാൻ മദ്റസ"
+    let madrasasData = [
+      { name: "നൂറുൽ ഇസ്ലാം മദ്റസ", points: 120 },
+      { name: "സിറാജുൽ ഹുദാ മദ്റസ", points: 110 },
+      { name: "ഹിദായത്തുൽ ഇസ്ലാം മദ്റസ", points: 95 },
+      { name: "ബദരിയ്യ മദ്റസ", points: 90 },
+      { name: "മനാറുൽ ഇസ്ലാം മദ്റസ", points: 85 },
+      { name: "ഇർഷാദിയ്യ മദ്റസ", points: 80 },
+      { name: "റഹ്മാനിയ്യ മദ്റസ", points: 75 },
+      { name: "മുനവ്വിറുൽ ഇസ്ലാം മദ്റസ", points: 70 },
+      { name: "തൻവീറുൽ ഇസ്ലാം മദ്റസ", points: 65 },
+      { name: "മിശ്കാത്തുൽ ഹുദാ മദ്റസ", points: 60 },
+      { name: "സബീലുൽ ഫലാഹ് മദ്റസ", points: 55 },
+      { name: "ദാറുൽ ഉലൂം മദ്റസ", points: 50 },
+      { name: "ഫലാഹിയ്യ മദ്റസ", points: 45 },
+      { name: "ഖുവ്വത്തുൽ ഇസ്ലാം മദ്റസ", points: 40 },
+      { name: "നൂർജഹാൻ മദ്റസ", points: 35 }
+    ];
+
+    let stagesData = [
+      { id: 1, name: "വേദി 1 (Main Hall)", current: "ഖിറാഅത്ത് (ജൂനിയർ)", next: "ഹിഫ്ള്" },
+      { id: 2, name: "വേദി 2 (Auditorium)", current: "പ്രസംഗം മലയാളം (സീനിയർ)", next: "പ്രസംഗം അറബിക്" },
+      { id: 3, name: "വേദി 3 (Room A)", current: "ഖവാലി / ഗ്രൂപ്പ് സോംഗ്", next: "മാപ്പിളപ്പാട്ട്" },
+      { id: 4, name: "വേദി 4 (Room B)", current: "ഖുർആൻ ക്വിസ്", next: "കഥാരചന" }
     ];
 
     let currentUserRole = null;
@@ -491,29 +569,34 @@
     let activeFoodStudent = null;
     let activeDeskStudent = null;
 
-    async function initApp() {
+    async function initSystem() {
       try {
-        const snap = await getDoc(doc(db, "config", "roles"));
-        if (snap.exists()) rolesConfig = snap.data();
-        else await setDoc(doc(db, "config", "roles"), rolesConfig);
+        const rSnap = await getDoc(doc(db, "config", "roles"));
+        if(rSnap.exists()) rolesConfig = rSnap.data();
 
-        const noticeSnap = await getDoc(doc(db, "config", "notice"));
-        if(noticeSnap.exists()) {
-          document.getElementById("announcementMarquee").innerText = noticeSnap.data().text;
+        const nSnap = await getDoc(doc(db, "config", "notice"));
+        if(nSnap.exists()) {
+          document.getElementById("announcementBar").innerText = nSnap.data().text;
+          document.getElementById("admNoticeInput").value = nSnap.data().text;
         }
 
-        renderRolesAdmin();
-        renderMadrasaDropdown();
+        const aSnap = await getDoc(doc(db, "config", "about"));
+        if(aSnap.exists()) {
+          document.getElementById("aboutDisplayPara").innerText = aSnap.data().text;
+          document.getElementById("admAboutInput").value = aSnap.data().text;
+        }
+
         renderStages();
         renderLeaderboard();
+        populateMadrasaSelects();
       } catch (e) { console.error(e); }
     }
-    initApp();
+    initSystem();
 
-    // ================= DRAWER & NAVIGATION =================
-    window.toggleSideMenu = function() {
-      const menu = document.getElementById("sideMenu");
-      const overlay = document.getElementById("sideMenuOverlay");
+    // ================= NAVIGATION =================
+    window.toggleSidebar = function() {
+      const menu = document.getElementById("sidebar");
+      const overlay = document.getElementById("sideOverlay");
       if (menu.classList.contains("-translate-x-full")) {
         menu.classList.remove("-translate-x-full");
         overlay.classList.remove("hidden");
@@ -523,9 +606,9 @@
       }
     };
 
-    window.navSwitch = function(secId) {
-      const menu = document.getElementById("sideMenu");
-      const overlay = document.getElementById("sideMenuOverlay");
+    window.navRoute = function(secId) {
+      const menu = document.getElementById("sidebar");
+      const overlay = document.getElementById("sideOverlay");
       menu.classList.add("-translate-x-full");
       overlay.classList.add("hidden");
 
@@ -538,7 +621,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // ================= AUTH & BIOMETRICS =================
+    // ================= AUTHENTICATION =================
     window.openLoginModal = function() {
       document.getElementById("loginPasswordInput").value = "";
       document.getElementById("loginModal").classList.remove("hidden");
@@ -547,32 +630,13 @@
       document.getElementById("loginModal").classList.add("hidden");
     };
 
-    window.authenticateWithBiometrics = async function() {
-      if (window.PublicKeyCredential) {
-        try {
-          const role = document.getElementById("loginRoleSelect").value;
-          // Trigger biometric prompt on supported browsers
-          const challenge = new Uint8Array(32);
-          window.crypto.getRandomValues(challenge);
-          
-          alert("ബയോമെട്രിക് / ഫിംഗർപ്രിന്റ് പ്രാമാണീകരണം വിജയകരം!");
-          applyLoginRole(role);
-          closeLoginModal();
-        } catch (e) {
-          alert("ഫിംഗർപ്രിന്റ് ലഭ്യമല്ല. പാസ്‌വേഡ് ഉപയോഗിക്കുക.");
-        }
-      } else {
-        alert("ഈ ഉപകരണത്തിൽ ബയോമെട്രിക് ലഭ്യമല്ല.");
-      }
-    };
-
     window.handleRoleAuth = function() {
       const role = document.getElementById("loginRoleSelect").value;
       const pass = document.getElementById("loginPasswordInput").value.trim();
 
       if (role === 'admin') {
         if (pass === SUPER_ADMIN_PASS) {
-          applyLoginRole('admin');
+          applyRoleSession('admin');
           closeLoginModal();
           return;
         } else {
@@ -583,7 +647,7 @@
 
       if (rolesConfig[role]) {
         if (rolesConfig[role].pass === pass) {
-          applyLoginRole(role);
+          applyRoleSession(role);
           closeLoginModal();
         } else {
           alert("പാസ്‌വേഡ് തെറ്റാണ്!");
@@ -591,42 +655,43 @@
       }
     };
 
-    function applyLoginRole(role) {
+    function applyRoleSession(role) {
       currentUserRole = role;
       if (role === 'admin') {
-        activatePortal('portalAdmin', 'Super Admin');
+        activatePortalView('portalAdmin', 'Super Admin');
+        buildAdminDashboard();
       } else if (role === 'food') {
-        activatePortal('portalFood', rolesConfig[role].title);
+        activatePortalView('portalFood', rolesConfig[role].title);
       } else {
         document.getElementById("roleDeskTitle").innerText = rolesConfig[role].title;
         document.getElementById("roleDeskBadge").innerText = rolesConfig[role].title;
         document.getElementById("blkRoleEntry").style.display = rolesConfig[role].canEntry ? "flex" : "none";
         document.getElementById("blkRolePrize").style.display = rolesConfig[role].canPrize ? "flex" : "none";
-        activatePortal('portalRoleDesk', rolesConfig[role].title);
+        activatePortalView('portalRoleDesk', rolesConfig[role].title);
       }
     }
 
-    function activatePortal(id, title) {
-      navSwitch(id);
-      document.getElementById("topBarUserRole").innerText = title;
-      document.getElementById("authBtnTop").onclick = logoutCurrentRole;
-      document.getElementById("sideProfileInfo").innerText = "Logged in: " + title;
-      document.getElementById("sideProfileInfo").classList.remove("hidden");
+    function activatePortalView(id, title) {
+      navRoute(id);
+      document.getElementById("topRoleText").innerText = title;
+      document.getElementById("headerAuthBtn").onclick = logoutApp;
+      document.getElementById("sideUserLabel").innerText = "Logged in: " + title;
+      document.getElementById("sideUserLabel").classList.remove("hidden");
       document.getElementById("sideLogoutBtn").classList.remove("hidden");
     }
 
-    window.logoutCurrentRole = function() {
+    window.logoutApp = function() {
       currentUserRole = null;
-      document.getElementById("topBarUserRole").innerText = "Login";
-      document.getElementById("authBtnTop").onclick = openLoginModal;
-      document.getElementById("sideProfileInfo").classList.add("hidden");
+      document.getElementById("topRoleText").innerText = "Login";
+      document.getElementById("headerAuthBtn").onclick = openLoginModal;
+      document.getElementById("sideUserLabel").classList.add("hidden");
       document.getElementById("sideLogoutBtn").classList.add("hidden");
-      stopQRScanner();
-      navSwitch('portalPublic');
+      stopFoodQRScanner();
+      navRoute('portalPublic');
     };
 
-    // ================= PUBLIC SEARCH & QR =================
-    window.checkPublicStudent = async function() {
+    // ================= 1. PUBLIC CHEST SEARCH & QR =================
+    window.searchPublicStudent = async function() {
       const chest = document.getElementById("publicChestInput").value.trim();
       const err = document.getElementById("pubError");
       const card = document.getElementById("publicResultCard");
@@ -646,7 +711,6 @@
           document.getElementById("pubChestBadge").innerText = "Chest: " + chest;
           document.getElementById("pubQrText").innerText = chest;
 
-          // Entry Status
           const entryEl = document.getElementById("pubEntryStatus");
           if(s.entryRegistered) {
             entryEl.className = "p-2 rounded-lg border bg-emerald-50 text-emerald-800 border-emerald-300";
@@ -656,7 +720,6 @@
             entryEl.innerText = "എൻട്രി: ഇല്ല ✕";
           }
 
-          // Food Status
           const foodEl = document.getElementById("pubFoodStatus");
           if(s.foodGiven) {
             foodEl.className = "p-2 rounded-lg border bg-blue-50 text-blue-800 border-blue-300";
@@ -666,7 +729,6 @@
             foodEl.innerText = "ഭക്ഷണം: ബാക്കി";
           }
 
-          // Prize Status
           const prizeEl = document.getElementById("pubPrizeStatus");
           if(s.prizeGiven) {
             prizeEl.className = "p-2 rounded-lg border bg-purple-50 text-purple-800 border-purple-300";
@@ -676,7 +738,6 @@
             prizeEl.innerText = "സമ്മാനം: ഇല്ല";
           }
 
-          // QR Generator
           const qrBox = document.getElementById("pubQrcode");
           qrBox.innerHTML = "";
           new QRCode(qrBox, {
@@ -698,7 +759,7 @@
       }
     };
 
-    // ================= FOOD CONTROL (RED / GREEN) =================
+    // ================= 2. FOOD TOKEN EXCHANGE ENGINE =================
     window.verifyFoodAction = async function(chestNo) {
       if (!chestNo) return;
       const box = document.getElementById("foodAlertBox");
@@ -713,7 +774,6 @@
 
       try {
         const snap = await getDoc(doc(db, "students", chestNo));
-        
         if (!snap.exists()) {
           box.className = "mt-4 p-5 rounded-2xl text-center space-y-3 shadow-lg bg-red-600 text-white";
           icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
@@ -731,7 +791,7 @@
           box.className = "mt-4 p-5 rounded-2xl text-center space-y-3 shadow-lg bg-red-600 text-white animate-pulse";
           icon.innerHTML = '<i class="fa-solid fa-ban"></i>';
           title.innerText = "ഭക്ഷണമില്ല - എൻട്രി ചെയ്തിട്ടില്ല!";
-          desc.innerText = "സ്പോട്ട് എൻട്രി രജിസ്ട്രേഷൻ പൂർത്തിയായിട്ടില്ല. രജിസ്ട്രേഷൻ ഡെസ്കിലേക്ക് അയക്കുക.";
+          desc.innerText = "സ്പോട്ട് രജിസ്ട്രേഷൻ പൂർത്തിയായിട്ടില്ല. രജിസ്ട്രേഷൻ ഡെസ്കിലേക്ക് അയക്കുക.";
         } else if (data.foodGiven) {
           box.className = "mt-4 p-5 rounded-2xl text-center space-y-3 shadow-lg bg-amber-500 text-white";
           icon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
@@ -752,11 +812,11 @@
     window.markFoodServed = async function() {
       if (!activeFoodStudent) return;
       await updateDoc(doc(db, "students", activeFoodStudent.id), { foodGiven: true });
-      alert(activeFoodStudent.name + " എന്ന വിദ്യാർത്ഥിക്ക് ഭക്ഷണം നൽകി എന്ന് രേഖപ്പെടുത്തി.");
+      alert(activeFoodStudent.name + " എന്ന വിദ്യാർത്ഥിക്ക് ഭക്ഷണം നൽകി എന്ന് രേഖപ്പെടുത്തി (Redeemed).");
       verifyFoodAction(activeFoodStudent.id);
     };
 
-    window.startQRScanner = function() {
+    window.startFoodQRScanner = function() {
       document.getElementById("btnStartScan").classList.add("hidden");
       document.getElementById("btnStopScan").classList.remove("hidden");
 
@@ -771,11 +831,11 @@
         () => {}
       ).catch(err => {
         alert("ക്യാമറ ഓപ്പൺ ചെയ്യാൻ കഴിഞ്ഞില്ല: " + err);
-        stopQRScanner();
+        stopFoodQRScanner();
       });
     };
 
-    window.stopQRScanner = function() {
+    window.stopFoodQRScanner = function() {
       if (html5QrScanner) {
         html5QrScanner.stop().then(() => {
           html5QrScanner.clear();
@@ -785,7 +845,7 @@
       }
     };
 
-    // ================= ROLE DESK (ENTRY & PRIZE) =================
+    // ================= 3. DESK OPERATIONS =================
     window.fetchRoleDeskStudent = async function() {
       const chest = document.getElementById("roleDeskChestInput").value.trim();
       const card = document.getElementById("roleDeskStudentCard");
@@ -819,7 +879,7 @@
       } else {
         lblEntry.innerText = "രജിസ്റ്റർ ചെയ്തിട്ടില്ല ✕";
         lblEntry.className = "text-xs font-bold text-red-600";
-        btnEntry.innerText = "എൻട്രി രേഖപ്പെടുത്തുക";
+        btnEntry.innerText = "എൻട്രി നൽകുക";
         btnEntry.className = "text-xs font-bold px-3 py-1.5 rounded-lg bg-emerald-600 text-white";
       }
 
@@ -854,12 +914,196 @@
       updateRoleDeskUI();
     };
 
-    // ================= TEAM MANAGER DASHBOARD =================
-    function renderMadrasaDropdown() {
+    // ================= 4. SUPER ADMIN COMPLETE CONTROL =================
+    window.switchAdminTab = function(tabId) {
+      ['admTabStudents', 'admTabMadrasas', 'admTabStages', 'admTabRoles', 'admTabSettings'].forEach(t => {
+        document.getElementById(t).classList.add("hidden");
+      });
+      document.getElementById(tabId).classList.remove("hidden");
+    };
+
+    function buildAdminDashboard() {
+      renderAdminMadrasas();
+      renderAdminStages();
+      renderAdminRoles();
+    }
+
+    // Admin Student Edit
+    window.loadAdminStudent = async function() {
+      const chest = document.getElementById("adminStudentQuery").value.trim();
+      if (!chest) return;
+      const snap = await getDoc(doc(db, "students", chest));
+      if (snap.exists()) {
+        const s = snap.data();
+        document.getElementById("admEdChest").value = chest;
+        document.getElementById("admEdName").value = s.name || "";
+        document.getElementById("admEdMadrasa").value = s.madrasa || "";
+        document.getElementById("admEdCategory").value = s.category || "";
+        document.getElementById("admEdEntry").checked = !!s.entryRegistered;
+        document.getElementById("admEdFood").checked = !!s.foodGiven;
+        document.getElementById("admEdPrize").checked = !!s.prizeGiven;
+        document.getElementById("adminStudentEditBox").classList.remove("hidden");
+      } else {
+        alert("വിദ്യാർത്ഥിയെ കണ്ടെത്തിയില്ല!");
+      }
+    };
+
+    window.saveAdminStudent = async function() {
+      const chest = document.getElementById("admEdChest").value;
+      await updateDoc(doc(db, "students", chest), {
+        name: document.getElementById("admEdName").value.trim(),
+        madrasa: document.getElementById("admEdMadrasa").value.trim(),
+        category: document.getElementById("admEdCategory").value.trim(),
+        entryRegistered: document.getElementById("admEdEntry").checked,
+        foodGiven: document.getElementById("admEdFood").checked,
+        prizeGiven: document.getElementById("admEdPrize").checked
+      });
+      alert("വിദ്യാർത്ഥിയുടെ വിവരങ്ങൾ സേവ് ചെയ്തു!");
+    };
+
+    window.deleteAdminStudent = async function() {
+      const chest = document.getElementById("admEdChest").value;
+      if(confirm("ഈ വിദ്യാർത്ഥിയെ ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?")) {
+        await deleteDoc(doc(db, "students", chest));
+        alert("വിദ്യാർത്ഥിയെ നീക്കം ചെയ്തു!");
+        document.getElementById("adminStudentEditBox").classList.add("hidden");
+      }
+    };
+
+    // Admin Madrasa Points
+    function renderAdminMadrasas() {
+      const container = document.getElementById("adminMadrasaList");
+      container.innerHTML = "";
+      madrasasData.forEach((m, idx) => {
+        container.innerHTML += `
+          <div class="bg-white p-2.5 rounded-xl border flex items-center justify-between text-xs">
+            <span class="font-bold">${m.name}</span>
+            <div class="flex items-center gap-1">
+              <input type="number" id="mPoints_${idx}" value="${m.points}" class="w-16 border p-1 rounded text-center">
+              <button onclick="updateMadrasaPoints(${idx})" class="bg-slate-800 text-white px-2 py-1 rounded font-bold">Save</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    window.updateMadrasaPoints = function(idx) {
+      const pts = parseInt(document.getElementById(`mPoints_${idx}`).value) || 0;
+      madrasasData[idx].points = pts;
+      madrasasData.sort((a,b) => b.points - a.points);
+      renderLeaderboard();
+      renderAdminMadrasas();
+      alert("പോയിന്റ് അപ്‌ഡേറ്റ് ചെയ്തു!");
+    };
+
+    // Admin Stages Schedule
+    function renderAdminStages() {
+      const container = document.getElementById("adminStageList");
+      container.innerHTML = "";
+      stagesData.forEach((st, idx) => {
+        container.innerHTML += `
+          <div class="bg-white p-2.5 rounded-xl border space-y-1 text-xs">
+            <span class="font-black text-purple-800">${st.name}</span>
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" id="stCurr_${idx}" value="${st.current}" class="border p-1 rounded" placeholder="ഇപ്പോൾ നടക്കുന്നത്">
+              <input type="text" id="stNext_${idx}" value="${st.next}" class="border p-1 rounded" placeholder="അടുത്ത മത്സരം">
+            </div>
+            <button onclick="updateStageSchedule(${idx})" class="bg-purple-800 text-white text-[11px] px-3 py-1 rounded font-bold">Update Stage</button>
+          </div>
+        `;
+      });
+    }
+
+    window.updateStageSchedule = function(idx) {
+      stagesData[idx].current = document.getElementById(`stCurr_${idx}`).value.trim();
+      stagesData[idx].next = document.getElementById(`stNext_${idx}`).value.trim();
+      renderStages();
+      alert("സ്റ്റേജ് വിവരങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്തു!");
+    };
+
+    // Admin Roles & Permissions
+    function renderAdminRoles() {
+      const container = document.getElementById("adminRolesList");
+      container.innerHTML = "";
+      for(let k in rolesConfig) {
+        const r = rolesConfig[k];
+        container.innerHTML += `
+          <div class="bg-white p-2.5 rounded-xl border flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div>
+              <p class="font-bold">${r.title} (${k})</p>
+              <input type="text" id="admPass_${k}" value="${r.pass}" class="border p-1 rounded w-28 text-center mt-1">
+            </div>
+            <div class="flex items-center gap-2">
+              <label><input type="checkbox" id="admEntry_${k}" ${r.canEntry ? 'checked' : ''}> Entry Desk</label>
+              <label><input type="checkbox" id="admPrize_${k}" ${r.canPrize ? 'checked' : ''}> Prize Desk</label>
+              <button onclick="saveAdminRoleConfig('${k}')" class="bg-slate-800 text-white px-3 py-1 rounded font-bold">Save</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    window.saveAdminRoleConfig = async function(k) {
+      rolesConfig[k].pass = document.getElementById(`admPass_${k}`).value.trim();
+      rolesConfig[k].canEntry = document.getElementById(`admEntry_${k}`).checked;
+      rolesConfig[k].canPrize = document.getElementById(`admPrize_${k}`).checked;
+      await setDoc(doc(db, "config", "roles"), rolesConfig);
+      alert(rolesConfig[k].title + " വിവരങ്ങൾ സേവ് ചെയ്തു!");
+    };
+
+    // Notice & About Text Saves
+    window.saveNoticeSettings = async function() {
+      const text = document.getElementById("admNoticeInput").value.trim();
+      if(!text) return;
+      await setDoc(doc(db, "config", "notice"), { text });
+      document.getElementById("announcementBar").innerText = text;
+      alert("അറിയിപ്പ് ലൈവായി അപ്‌ഡേറ്റ് ചെയ്തു!");
+    };
+
+    window.saveAboutSettings = async function() {
+      const text = document.getElementById("admAboutInput").value.trim();
+      if(!text) return;
+      await setDoc(doc(db, "config", "about"), { text });
+      document.getElementById("aboutDisplayPara").innerText = text;
+      alert("About വിവരണം അപ്‌ഡേറ്റ് ചെയ്തു!");
+    };
+
+    // CSV Bulk Import
+    window.uploadCSVData = function() {
+      const file = document.getElementById("csvFile").files[0];
+      if (!file) {
+        alert("CSV ഫയൽ തിരഞ്ഞെടുക്കുക.");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const lines = e.target.result.split("\n");
+        let count = 0;
+        for (let l of lines) {
+          const c = l.split(",").map(x => x.trim());
+          if (c.length >= 2 && c[0] && c[0].toLowerCase() !== "chestno") {
+            await setDoc(doc(db, "students", c[0]), {
+              name: c[1],
+              madrasa: c[2] || "",
+              category: c[3] || "",
+              entryRegistered: false,
+              foodGiven: false,
+              prizeGiven: false
+            }, { merge: true });
+            count++;
+          }
+        }
+        alert(count + " കുട്ടികളുടെ വിവരങ്ങൾ വിജയകരമായി ചേർത്തു!");
+      };
+      reader.readAsText(file);
+    };
+
+    // ================= TEAM MANAGER & STAGES RENDERING =================
+    function populateMadrasaSelects() {
       const sel = document.getElementById("tmMadrasaSelect");
-      sel.innerHTML = '<option value="">മദ്റസ തിരഞ്ഞെടുക്കുക (15 Madrasas)</option>';
-      MADRASAS_LIST.forEach(m => {
-        sel.innerHTML += `<option value="${m}">${m}</option>`;
+      sel.innerHTML = '<option value="">മദ്റസ തിരഞ്ഞെടുക്കുക</option>';
+      madrasasData.forEach(m => {
+        sel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
       });
     }
 
@@ -909,18 +1153,10 @@
       document.getElementById("tmDashboardBox").classList.add("hidden");
     };
 
-    // ================= STAGES (4 STAGES) & LEADERBOARD =================
     function renderStages() {
-      const stages = [
-        { id: 1, name: "വേദി 1 (Main Hall)", current: "ഖിറാഅത്ത് (ജൂനിയർ)", next: "ഹിഫ്ള്" },
-        { id: 2, name: "വേദി 2 (Auditorium)", current: "പ്രസംഗം മലയാളം (സീനിയർ)", next: "പ്രസംഗം അറബിക്" },
-        { id: 3, name: "വേദി 3 (Room A)", current: "ഖവാലി / ഗ്രൂപ്പ് സോംഗ്", next: "മാപ്പിളപ്പാട്ട്" },
-        { id: 4, name: "വേദി 4 (Room B)", current: "ഖുർആൻ ക്വിസ്", next: "കഥാരചന" }
-      ];
-
       const cont = document.getElementById("stageCardsContainer");
       cont.innerHTML = "";
-      stages.forEach(st => {
+      stagesData.forEach(st => {
         cont.innerHTML += `
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
             <span class="text-xs font-black text-purple-800 uppercase">${st.name}</span>
@@ -934,81 +1170,16 @@
     function renderLeaderboard() {
       const body = document.getElementById("leaderboardBody");
       body.innerHTML = "";
-      MADRASAS_LIST.slice(0, 10).forEach((m, idx) => {
+      madrasasData.forEach((m, idx) => {
         body.innerHTML += `
           <tr class="border-b">
             <td class="p-2 font-bold">${idx + 1}</td>
-            <td class="p-2">${m}</td>
-            <td class="p-2 text-right font-black text-emerald-800">${(15 - idx) * 10} pts</td>
+            <td class="p-2">${m.name}</td>
+            <td class="p-2 text-right font-black text-emerald-800">${m.points} pts</td>
           </tr>
         `;
       });
     }
-
-    // ================= SUPER ADMIN CONTROLS =================
-    window.updateNoticeText = async function() {
-      const text = document.getElementById("adminNewNotice").value.trim();
-      if (!text) return;
-      await setDoc(doc(db, "config", "notice"), { text });
-      document.getElementById("announcementMarquee").innerText = text;
-      alert("Live Announcement അപ്‌ഡേറ്റ് ചെയ്തു!");
-      document.getElementById("adminNewNotice").value = "";
-    };
-
-    function renderRolesAdmin() {
-      const container = document.getElementById("rolesAdminList");
-      container.innerHTML = "";
-      for (let k in rolesConfig) {
-        const r = rolesConfig[k];
-        const div = document.createElement("div");
-        div.className = "bg-white p-2 rounded-lg border flex items-center justify-between text-xs";
-        div.innerHTML = `
-          <span><b>${r.title}</b> (${k})</span>
-          <div class="flex gap-1">
-            <input type="text" id="pass_${k}" value="${r.pass}" class="border px-2 py-1 rounded w-24">
-            <button onclick="saveAdminPass('${k}')" class="bg-slate-800 text-white px-2 py-1 rounded font-bold">Save</button>
-          </div>
-        `;
-        container.appendChild(div);
-      }
-    }
-
-    window.saveAdminPass = async function(key) {
-      const p = document.getElementById(`pass_${key}`).value.trim();
-      if (!p) return;
-      rolesConfig[key].pass = p;
-      await setDoc(doc(db, "config", "roles"), rolesConfig);
-      alert(rolesConfig[key].title + " password updated!");
-    };
-
-    window.uploadCSVData = function() {
-      const file = document.getElementById("csvFile").files[0];
-      if (!file) {
-        alert("CSV ഫയൽ തിരഞ്ഞെടുക്കുക.");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = async function(e) {
-        const lines = e.target.result.split("\n");
-        let count = 0;
-        for (let l of lines) {
-          const c = l.split(",").map(x => x.trim());
-          if (c.length >= 2 && c[0] && c[0].toLowerCase() !== "chestno") {
-            await setDoc(doc(db, "students", c[0]), {
-              name: c[1],
-              madrasa: c[2] || "",
-              category: c[3] || "",
-              entryRegistered: false,
-              foodGiven: false,
-              prizeGiven: false
-            }, { merge: true });
-            count++;
-          }
-        }
-        alert(count + " കുട്ടികളുടെ വിവരങ്ങൾ ചേർത്തു!");
-      };
-      reader.readAsText(file);
-    };
   </script>
 </body>
 </html>
