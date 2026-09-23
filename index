@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>റേഞ്ച് മദ്റസ മുസാബഖ - പോർട്ടൽ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
+    body { font-family: 'Manjari', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 pb-16">
+
+  <!-- Header -->
+  <header class="bg-emerald-700 text-white p-4 shadow-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <div>
+        <h1 class="text-xl md:text-2xl font-bold">റേഞ്ച് മദ്റസ മുസാബഖ</h1>
+        <p class="text-xs text-emerald-100">ഡെസ്ക് & ടോക്കൺ മാനേജ്‌മെന്റ് സിസ്റ്റം</p>
+      </div>
+      <button onclick="toggleAdminModal()" class="text-xs bg-emerald-800 hover:bg-emerald-900 border border-emerald-600 px-3 py-1.5 rounded-lg flex items-center gap-1">
+        <i class="fa-solid fa-lock"></i> <span id="adminBtnText">ഡെസ്ക് ലോഗിൻ</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Live Notice Bar -->
+  <div class="bg-amber-100 border-b border-amber-200 px-4 py-2 text-xs md:text-sm text-amber-900 font-medium text-center">
+    📢 അറിയിപ്പ്: മത്സരങ്ങൾ കൃത്യസമയത്ത് ആരംഭിക്കും. കുട്ടികൾ ചെസ്റ്റ് നമ്പറുമായി നിശ്ചിത വേദിയിൽ എത്തുക.
+  </div>
+
+  <main class="max-w-4xl mx-auto p-4 space-y-6">
+
+    <!-- Section: Student / Public Status Check -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+      <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
+        <i class="fa-solid fa-user-check text-emerald-600"></i> വിവരങ്ങളും സ്റ്റാറ്റസും പരിശോധിക്കുക
+      </h2>
+      <p class="text-xs text-slate-500 mb-4">നിങ്ങളുടെ ചെസ്റ്റ് നമ്പർ നൽകി ഫുഡ് ടോക്കൺ, സമ്മാനം എന്നിവയുടെ വിവരങ്ങൾ പരിശോധിക്കുക.</p>
+      
+      <div class="flex gap-2">
+        <input type="text" id="searchChest" placeholder="ചെസ്റ്റ് നമ്പർ അടിക്കുക (ഉദാ: 101)" class="w-full border border-slate-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+        <button onclick="searchStudent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0">
+          തിരയുക
+        </button>
+      </div>
+
+      <!-- Result Card -->
+      <div id="studentResultCard" class="hidden mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+        <div class="flex justify-between items-start border-b border-slate-200 pb-2">
+          <div>
+            <h3 id="resName" class="font-bold text-base text-slate-900"></h3>
+            <p id="resMadrasa" class="text-xs text-slate-600"></p>
+            <p id="resCategory" class="text-xs text-slate-500 mt-1"></p>
+          </div>
+          <span id="resChestBadge" class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold"></span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <!-- Food Status -->
+          <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+            <p class="text-xs text-slate-500 mb-1">ഭക്ഷണ ടോക്കൺ</p>
+            <span id="resFoodStatus" class="inline-block px-2.5 py-1 text-xs font-bold rounded-md"></span>
+          </div>
+          <!-- Prize Status -->
+          <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+            <p class="text-xs text-slate-500 mb-1">സമ്മാന വിതരണം</p>
+            <span id="resPrizeStatus" class="inline-block px-2.5 py-1 text-xs font-bold rounded-md"></span>
+          </div>
+        </div>
+      </div>
+      <p id="searchError" class="hidden text-xs text-red-500 mt-2 text-center"></p>
+    </div>
+
+    <!-- Section: Desk Counters (Protected) -->
+    <div id="deskSection" class="hidden space-y-6">
+      <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl flex justify-between items-center">
+        <div>
+          <span class="text-xs font-bold bg-emerald-600 text-white px-2 py-0.5 rounded">ഡെസ്ക് പാനൽ സജീവം</span>
+          <p class="text-xs text-emerald-800 mt-1">ടോക്കൺ, പ്രൈസ് നൽകാൻ താഴെയുള്ള സെക്ഷൻ ഉപയോഗിക്കുക.</p>
+        </div>
+        <button onclick="logoutAdmin()" class="text-xs text-red-600 hover:underline font-bold">ലോഗ് ഔട്ട്</button>
+      </div>
+
+      <!-- Quick Action Counter -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2 mb-3">
+          <i class="fa-solid fa-qrcode text-blue-600"></i> സ്പീഡ് ഡെസ്ക് കൗണ്ടർ (Quick Counter)
+        </h2>
+        <div class="flex gap-2 mb-4">
+          <input type="text" id="actionChestNo" placeholder="ചെസ്റ്റ് നമ്പർ അടിക്കുക" class="w-full border border-slate-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button onclick="fetchForAction()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0">
+            Fetch
+          </button>
+        </div>
+
+        <div id="actionDetailsCard" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-4">
+          <div class="border-b border-slate-200 pb-2">
+            <h3 id="actName" class="font-bold text-base text-slate-900"></h3>
+            <p id="actMeta" class="text-xs text-slate-600"></p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Food Button -->
+            <div class="bg-white p-3 rounded-lg border border-slate-200 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-slate-500">ഭക്ഷണം</p>
+                <p id="actFoodLabel" class="text-xs font-bold text-slate-700"></p>
+              </div>
+              <button id="btnToggleFood" onclick="updateStatus('food')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-white"></button>
+            </div>
+
+            <!-- Prize Button -->
+            <div class="bg-white p-3 rounded-lg border border-slate-200 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-slate-500">സമ്മാനം</p>
+                <p id="actPrizeLabel" class="text-xs font-bold text-slate-700"></p>
+              </div>
+              <button id="btnTogglePrize" onclick="updateStatus('prize')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-white"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Single / CSV Import Section -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
+        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-file-csv text-amber-600"></i> കുട്ടികളുടെ വിവരങ്ങൾ അപ്‌ലോഡ് ചെയ്യുക (Data Import)
+        </h2>
+        <p class="text-xs text-slate-500">മെയിൻ സൈറ്റിൽ നിന്നുള്ള CSV ഫയൽ അല്ലെങ്കിൽ ഓരോ കുട്ടികളെയായി ഇവിടെ ചേർക്കാം.</p>
+        
+        <div class="border-2 border-dashed border-slate-300 p-4 rounded-xl text-center">
+          <input type="file" id="csvFileInput" accept=".csv" class="text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+          <button onclick="processCSV()" class="mt-2 bg-slate-800 hover:bg-slate-900 text-white text-xs px-4 py-2 rounded-lg font-bold">
+            CSV അപ്‌ലോഡ് ചെയ്യുക
+          </button>
+          <p class="text-[10px] text-slate-400 mt-2">CSV ഫോർമാറ്റ്: chestNo, name, madrasa, category</p>
+        </div>
+
+        <div class="text-center text-xs text-slate-400">അല്ലെങ്കിൽ നേരിട്ട് ചേർക്കുക</div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <input type="text" id="newChest" placeholder="ചെസ്റ്റ് നമ്പർ" class="border p-2 text-xs rounded-lg">
+          <input type="text" id="newName" placeholder="പേര്" class="border p-2 text-xs rounded-lg">
+          <input type="text" id="newMadrasa" placeholder="മദ്റസ" class="border p-2 text-xs rounded-lg">
+          <input type="text" id="newCategory" placeholder="ഇനം / കാറ്റഗറി" class="border p-2 text-xs rounded-lg">
+        </div>
+        <button onclick="addSingleStudent()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs py-2 rounded-lg font-bold">
+          ഡാറ്റാബേസിലേക്ക് ചേർക്കുക
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Login Modal -->
+  <div id="adminModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-sm space-y-4">
+      <h3 class="text-base font-bold text-slate-800">ഡെസ്ക് ലോഗിൻ പിൻ (PIN)</h3>
+      <input type="password" id="adminPin" placeholder="PIN അടിക്കുക (Default: 1234)" class="w-full border rounded-xl px-3 py-2 text-sm text-center tracking-widest">
+      <div class="flex gap-2">
+        <button onclick="verifyPin()" class="w-full bg-emerald-600 text-white py-2 rounded-xl text-xs font-bold">ലോഗിൻ</button>
+        <button onclick="toggleAdminModal()" class="w-full bg-slate-200 text-slate-700 py-2 rounded-xl text-xs font-bold">ക്ലോസ്</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    // താങ്കൾ നൽകിയ Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyC-E6HWFfOXHvdM0A_3dknqsyIEF74rYJE",
+      authDomain: "krjm-musabaqa.firebaseapp.com",
+      projectId: "krjm-musabaqa",
+      storageBucket: "krjm-musabaqa.firebasestorage.app",
+      messagingSenderId: "946415537412",
+      appId: "1:946415537412:web:9701b52de3f56cfaa35451"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Default desk PIN (ആവശ്യമെങ്കിൽ മാറ്റാം)
+    const DESK_PIN = "1234";
+    let activeStudent = null;
+
+    // --- Search Student (Public) ---
+    window.searchStudent = async function() {
+      const chest = document.getElementById("searchChest").value.trim();
+      const err = document.getElementById("searchError");
+      const card = document.getElementById("studentResultCard");
+      err.classList.add("hidden");
+      card.classList.add("hidden");
+
+      if(!chest) return;
+
+      try {
+        const docRef = doc(db, "students", chest);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          document.getElementById("resName").innerText = data.name;
+          document.getElementById("resMadrasa").innerText = "മദ്റസ: " + data.madrasa;
+          document.getElementById("resCategory").innerText = "വിഭാഗം: " + (data.category || "-");
+          document.getElementById("resChestBadge").innerText = "ചെസ്റ്റ്: " + chest;
+
+          // Food Status Label
+          const foodEl = document.getElementById("resFoodStatus");
+          if(data.foodGiven) {
+            foodEl.innerText = "ഭക്ഷണം വാങ്ങി ✓";
+            foodEl.className = "inline-block px-2.5 py-1 text-xs font-bold rounded-md bg-emerald-100 text-emerald-800";
+          } else {
+            foodEl.innerText = "വാങ്ങിയിട്ടില്ല ✕";
+            foodEl.className = "inline-block px-2.5 py-1 text-xs font-bold rounded-md bg-amber-100 text-amber-800";
+          }
+
+          // Prize Status Label
+          const prizeEl = document.getElementById("resPrizeStatus");
+          if(data.prizeGiven) {
+            prizeEl.innerText = "കൈപ്പറ്റി ✓";
+            prizeEl.className = "inline-block px-2.5 py-1 text-xs font-bold rounded-md bg-emerald-100 text-emerald-800";
+          } else {
+            prizeEl.innerText = "കൈപ്പറ്റിയിട്ടില്ല ✕";
+            prizeEl.className = "inline-block px-2.5 py-1 text-xs font-bold rounded-md bg-slate-100 text-slate-700";
+          }
+
+          card.classList.remove("hidden");
+        } else {
+          err.innerText = "ഈ ചെസ്റ്റ് നമ്പറിലുള്ള വിവരങ്ങൾ ലഭ്യമായിട്ടില്ല.";
+          err.classList.remove("hidden");
+        }
+      } catch (e) {
+        err.innerText = "ഡാറ്റ എടുക്കുന്നതിൽ തകരാർ: " + e.message;
+        err.classList.remove("hidden");
+      }
+    };
+
+    // --- Action Desk (Admin) ---
+    window.fetchForAction = async function() {
+      const chest = document.getElementById("actionChestNo").value.trim();
+      const card = document.getElementById("actionDetailsCard");
+      card.classList.add("hidden");
+
+      if(!chest) return;
+
+      const docRef = doc(db, "students", chest);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        activeStudent = { id: docSnap.id, ...docSnap.data() };
+        document.getElementById("actName").innerText = activeStudent.name + " (" + activeStudent.id + ")";
+        document.getElementById("actMeta").innerText = activeStudent.madrasa + " | " + (activeStudent.category || "");
+
+        renderDeskButtons();
+        card.classList.remove("hidden");
+      } else {
+        alert("വിദ്യാർത്ഥിയെ കണ്ടെത്താനായില്ല!");
+      }
+    };
+
+    function renderDeskButtons() {
+      const foodBtn = document.getElementById("btnToggleFood");
+      const foodLabel = document.getElementById("actFoodLabel");
+      if(activeStudent.foodGiven) {
+        foodLabel.innerText = "കൈപ്പറ്റി (Done)";
+        foodBtn.innerText = "റദ്ദാക്കുക";
+        foodBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-400 hover:bg-slate-500 text-white";
+      } else {
+        foodLabel.innerText = "ബാക്കി (Pending)";
+        foodBtn.innerText = "ഭക്ഷണം നൽകി";
+        foodBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white";
+      }
+
+      const prizeBtn = document.getElementById("btnTogglePrize");
+      const prizeLabel = document.getElementById("actPrizeLabel");
+      if(activeStudent.prizeGiven) {
+        prizeLabel.innerText = "കൈപ്പറ്റി (Done)";
+        prizeBtn.innerText = "റദ്ദാക്കുക";
+        prizeBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-400 hover:bg-slate-500 text-white";
+      } else {
+        prizeLabel.innerText = "കൈപ്പറ്റിയിട്ടില്ല";
+        prizeBtn.innerText = "സമ്മാനം നൽകി";
+        prizeBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white";
+      }
+    }
+
+    window.updateStatus = async function(type) {
+      if(!activeStudent) return;
+      const docRef = doc(db, "students", activeStudent.id);
+
+      if(type === 'food') {
+        const newVal = !activeStudent.foodGiven;
+        await updateDoc(docRef, { foodGiven: newVal });
+        activeStudent.foodGiven = newVal;
+      } else if(type === 'prize') {
+        const newVal = !activeStudent.prizeGiven;
+        await updateDoc(docRef, { prizeGiven: newVal });
+        activeStudent.prizeGiven = newVal;
+      }
+      renderDeskButtons();
+    };
+
+    // --- Single Add & CSV Import ---
+    window.addSingleStudent = async function() {
+      const chest = document.getElementById("newChest").value.trim();
+      const name = document.getElementById("newName").value.trim();
+      const madrasa = document.getElementById("newMadrasa").value.trim();
+      const category = document.getElementById("newCategory").value.trim();
+
+      if(!chest || !name) {
+        alert("ചെസ്റ്റ് നമ്പറും പേരും നൽകണം.");
+        return;
+      }
+
+      await setDoc(doc(db, "students", chest), {
+        name, madrasa, category,
+        foodGiven: false,
+        prizeGiven: false
+      });
+
+      alert("വിദ്യാർത്ഥിയെ വിജയകരമായി ചേർത്തു!");
+      document.getElementById("newChest").value = "";
+      document.getElementById("newName").value = "";
+      document.getElementById("newMadrasa").value = "";
+      document.getElementById("newCategory").value = "";
+    };
+
+    window.processCSV = function() {
+      const file = document.getElementById("csvFileInput").files[0];
+      if(!file) {
+        alert("ദയവായി ഒരു CSV ഫയൽ തിരഞ്ഞെടുക്കുക.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const text = e.target.result;
+        const lines = text.split("\n");
+        let count = 0;
+
+        for(let line of lines) {
+          const parts = line.split(",").map(p => p.trim());
+          // format: chest, name, madrasa, category
+          if(parts.length >= 2 && parts[0] && parts[0].toLowerCase() !== "chestno") {
+            const chest = parts[0];
+            const name = parts[1];
+            const madrasa = parts[2] || "";
+            const category = parts[3] || "";
+
+            await setDoc(doc(db, "students", chest), {
+              name, madrasa, category,
+              foodGiven: false,
+              prizeGiven: false
+            }, { merge: true });
+            count++;
+          }
+        }
+        alert(count + " വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ വിജയകരമായി ചേർത്തു!");
+      };
+      reader.readAsText(file);
+    };
+
+    // --- Pin Modal & UI Handling ---
+    window.toggleAdminModal = function() {
+      const m = document.getElementById("adminModal");
+      m.classList.toggle("hidden");
+    };
+
+    window.verifyPin = function() {
+      const pin = document.getElementById("adminPin").value;
+      if(pin === DESK_PIN) {
+        document.getElementById("deskSection").classList.remove("hidden");
+        document.getElementById("adminBtnText").innerText = "ഡെസ്ക് തുറന്നു";
+        toggleAdminModal();
+      } else {
+        alert("തെറ്റായ പിൻ (PIN) നമ്പർ!");
+      }
+    };
+
+    window.logoutAdmin = function() {
+      document.getElementById("deskSection").classList.add("hidden");
+      document.getElementById("adminBtnText").innerText = "ഡെസ്ക് ലോഗിൻ";
+      document.getElementById("adminPin").value = "";
+    };
+  </script>
+</body>
+</html>
