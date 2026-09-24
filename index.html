@@ -11,8 +11,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
-  <!-- Embedded Web App Manifest for Direct Real PWA Install (No Chrome Badge) -->
-  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS1JKTSBNdXNhYmFxYSAyMDI2Iiwic2hvcnRfbmFtZSI6IktSSk0gTVVTQlEiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzgzMTg0MyIsInRoZW1lX2NvbG9yIjoiIzgzMTg0MyIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7dXRmOCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48cmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9JzEyMCcgZmlsbD0nIzgzMTg0MycvPjxwYXRoIGQ9J00yNTYgMTIwcDMwIDYwIDYwIDMwLTYwIDMwLTMwIDYwLTMwLTYwLTYwLTMwIDYwLTMweiBnZmlsbD0nI2ZiYmYyNCcvPjx0ZXh0IHg9JzI1NicgeT0nMzIwJyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZm9udC1zaXplPSc1MicgZm9udC13ZWlnaHQ9JzkwMCcgZmlsbD0nI2ZmZmZmZicgdGV4dC1hbmNob3I9J21pZGRsZSc+TVVTQUJBUUE8L3RleHQ+PHRleHQgeD0nMjU2JyB5PSc0MDAnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmb250LXNpemU9JzY0JyBmb250LXdlaWdodD0nOTAwJyBmaWxsPScjZmJmZjI0JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5LUkpNPC90ZXh0Pjwvc3ZnPiIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwicHVycG9zZSI6ImFueSBtYXNrYWJsZSJ9XX0=">
+  <!-- Embedded Standalone Manifest for Real App Installation with Custom Logo -->
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS1JKTSBNdXNhYmFxYSAyMDI2Iiwic2hvcnRfbmFtZSI6IktSSk0gTVVTQlEiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiM4MzE4NDMiLCJ0aGVtZV9jb2xvciI6IiM4MzE4NDMiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO3V0ZjgsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PScxMjAnIGZpbGw9JyM4MzE4NDMnLz48cGF0aCBkPSdNMjU2IDEyMHAzMCA2MCA2MCAzMC02MCAzMC0zMCA2MC0zMC02MC02MC0zMCA2MC0zMHonIGZpbGw9JyNmYmJmMjQnLz48dGV4dCB4PScyNTYnIHk9JzMyMCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nNTInIGZvbnQtd2VpZ2h0PSc5MDAnIGZpbGw9JyNmZmZmZmYnIHRleHQtYW5jaG9yPSdtaWRkbGUnPk1VU0FCQVFBPC90ZXh0Pjx0ZXh0IHg9JzI1NicgeT0nNDAwJyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZm9udC1zaXplPSc2NCc importer='true'IGZvbnQtd2VpZ2h0PSc5MDAnIGZpbGw9JyNmYmJmMjQnIHRleHQtYW5jaG9yPSdtaWRkbGUnPktSSk08L3RleHQ+PC9zdmc+Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn1dfQ==">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -36,7 +38,7 @@
 </head>
 <body class="bg-rose-50/50 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- ================= TOP MAIN HEADER ================= -->
+  <!-- ================= TOP HEADER ================= -->
   <header class="bg-gradient-to-r from-rose-950 via-emerald-950 to-rose-950 text-white sticky top-0 z-30 shadow-lg border-b-2 border-rose-500/40 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -44,7 +46,6 @@
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
         <div class="flex items-center gap-2">
-          <!-- Customized App Icon Badge with MUSABAQA & KRJM -->
           <div class="w-11 h-11 bg-rose-900 rounded-xl p-1 flex flex-col items-center justify-center shadow border border-amber-400 shrink-0">
             <span class="text-[7px] font-black text-white tracking-tighter">MUSABAQA</span>
             <span class="text-[10px] font-black text-amber-300 leading-none">KRJM</span>
@@ -69,10 +70,10 @@
     </div>
   </header>
 
-  <!-- LIVE SUMMARY BAR (PROTECTED: ONLY VISIBLE AFTER LOGGING IN) -->
+  <!-- LIVE SUMMARY BAR (SHOWN ONLY TO LOGGED-IN PORTALS) -->
   <div id="liveStatusBar" class="hidden bg-gradient-to-r from-rose-900 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center shadow-xs no-print gap-2">
     <div class="flex items-center gap-2">
-      <span class="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">Live Desk Count</span>
+      <span class="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">Live Counter</span>
       <span>എൻട്രി: <b id="statTotalCheckedIn">0</b> കുട്ടികൾ</span>
     </div>
     <div class="flex items-center gap-3">
@@ -118,31 +119,36 @@
     </div>
   </aside>
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN APP DISPLAY -->
   <main class="flex-grow max-w-5xl mx-auto w-full p-3 md:p-4 space-y-4 no-print">
 
-    <!-- ================= 1. PUBLIC PORTAL ================= -->
+    <!-- ================= 1. PUBLIC PORTAL & STUDENT VERIFICATION ================= -->
     <section id="portalPublic" class="space-y-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         
-        <!-- Search Card with Auto-Suggestions -->
-        <div class="md:col-span-2 bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-rose-200 relative">
+        <!-- Student Verification with Admission Number as Password -->
+        <div class="md:col-span-2 bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-rose-200">
           <h3 class="text-sm md:text-base font-bold text-rose-950 mb-1 flex items-center gap-2">
-            <i class="fa-solid fa-magnifying-glass text-rose-700"></i> വിവരങ്ങൾ & ഫലങ്ങൾ പരിശോധിക്കുക
+            <i class="fa-solid fa-user-lock text-rose-700"></i> വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ പരിശോധിക്കുക
           </h3>
-          <p class="text-xs text-slate-500 mb-3">ചെസ്റ്റ് നമ്പർ അല്ലെങ്കിൽ പേര് നൽകുക.</p>
+          <p class="text-xs text-slate-500 mb-3">ചെസ്റ്റ് നമ്പറും / ടോക്കൺ നമ്പറും നൽകി അഡ്മിഷൻ നമ്പർ പാസ്‌വേഡായി നൽകുക.</p>
           
-          <div class="relative">
-            <div class="flex gap-2">
-              <input type="text" id="publicSearchQuery" oninput="handlePublicSearchSuggestions()" placeholder="പേര് അല്ലെങ്കിൽ ചെസ്റ്റ് നമ്പർ ടൈപ്പ് ചെയ്യുക" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-rose-600 focus:outline-none">
-              <button onclick="executePublicSearch()" class="bg-gradient-to-r from-rose-800 to-emerald-900 text-white px-5 py-2 rounded-xl text-sm font-bold shrink-0 shadow">Search</button>
+          <div class="space-y-2 max-w-md">
+            <div>
+              <label class="text-[11px] font-bold text-slate-600">ചെസ്റ്റ് നമ്പർ അല്ലെങ്കിൽ ടോക്കൺ നമ്പർ</label>
+              <input type="text" id="stdCheckChestOrToken" placeholder="ഉദാ: 101 അല്ലെങ്കിൽ S-1" class="w-full border p-2 text-xs rounded-xl focus:ring-2 focus:ring-rose-600 focus:outline-none">
             </div>
-            <!-- Auto-Suggest Dropdown -->
-            <div id="searchSuggestionsList" class="hidden absolute left-0 right-0 top-full mt-1 bg-white border border-rose-200 rounded-xl shadow-xl max-h-48 overflow-y-auto z-20 text-xs"></div>
+            <div>
+              <label class="text-[11px] font-bold text-slate-600">പാസ്‌വേഡ് (മദ്റസ അഡ്മിഷൻ നമ്പർ)</label>
+              <input type="password" id="stdCheckPassword" placeholder="അഡ്മിഷൻ നമ്പർ നൽകുക" class="w-full border p-2 text-xs rounded-xl focus:ring-2 focus:ring-rose-600 focus:outline-none">
+            </div>
+            <button onclick="verifyAndShowStudentData()" class="w-full bg-gradient-to-r from-rose-800 to-emerald-900 text-white text-xs font-bold py-2.5 rounded-xl shadow">
+              പരിശോധിക്കുക
+            </button>
           </div>
 
-          <!-- Single Search Result View -->
-          <div id="publicResultCard" class="hidden mt-4 border border-rose-200 bg-rose-50/30 rounded-xl p-4 space-y-3 relative">
+          <!-- Result Card (Shown after correct admission number password) -->
+          <div id="publicResultCard" class="hidden mt-4 border border-rose-200 bg-rose-50/40 rounded-xl p-4 space-y-3 relative">
             <button onclick="closePublicSearchResult()" class="absolute top-2 right-2 text-slate-400 hover:text-slate-700 bg-white rounded-full w-6 h-6 flex items-center justify-center border shadow-xs">
               <i class="fa-solid fa-xmark text-xs"></i>
             </button>
@@ -156,7 +162,7 @@
               </div>
             </div>
 
-            <!-- Result Highlight -->
+            <!-- Result Tag -->
             <div id="pubResultBadgeContainer" class="hidden bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 p-2 rounded-xl font-black text-center text-xs shadow-xs">
               🏆 <span id="pubResultText"></span> (<span id="pubResultGrade"></span>)
             </div>
@@ -167,7 +173,7 @@
               <div id="pubPrizeStatus" class="p-2 rounded-lg border"></div>
             </div>
 
-            <!-- Token QR Code (Clean & Minimal) -->
+            <!-- Minimal QR Code -->
             <div class="bg-white p-3 rounded-xl border border-rose-200 flex flex-col items-center">
               <p class="text-xs font-black text-slate-900" id="pubQrTitleName"></p>
               <p class="text-[11px] font-bold text-rose-900 mb-2" id="pubQrMetaLine"></p>
@@ -199,7 +205,7 @@
       </div>
     </section>
 
-    <!-- ================= 2. STAGE TIME SCHEDULE & STATUS ================= -->
+    <!-- ================= 2. STAGE TIME SCHEDULE ================= -->
     <section id="secStages" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-200 space-y-4">
         <h2 class="text-sm font-bold text-rose-950 flex items-center gap-2">
@@ -291,7 +297,7 @@
       </div>
     </section>
 
-    <!-- ================= 5. FOOD SCANNER (MATCHING ATTACHED SCREENSHOT) ================= -->
+    <!-- ================= 5. FOOD SCANNER (EXACT LAYOUT OF IMAGE 1) ================= -->
     <section id="portalFood" class="hidden space-y-4">
       <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200 max-w-lg mx-auto space-y-4">
         
@@ -318,7 +324,7 @@
           </div>
         </div>
 
-        <!-- Result Box matching Screenshot (Red Warning / Green Success) -->
+        <!-- Result Box matching Screenshot 1 (Red Warning / Green Success) -->
         <div id="foodResultCardBox" class="p-4 md:p-5 rounded-2xl text-center space-y-1.5 shadow-md bg-rose-800 text-white">
           <h3 id="foodCardHeading" class="text-base md:text-lg font-black tracking-tight">
             ✕ എൻട്രി ചെയ്തിട്ടില്ല - ഫുഡ് നൽകരുത്
@@ -337,7 +343,7 @@
           </div>
         </div>
 
-        <!-- 3 Status Box Counters matching Screenshot: എൻട്രി ചെയ്തവർ | ഫുഡ് കിട്ടിയവർ | ആകെ ടോക്കൺ -->
+        <!-- 3 Status Box Counters matching Screenshot 1 -->
         <div class="grid grid-cols-3 gap-2 text-center">
           <div class="border border-slate-200 bg-slate-50 p-2.5 rounded-xl shadow-xs">
             <p class="text-lg font-black text-slate-900" id="cardStatEntry">0</p>
@@ -476,15 +482,15 @@
       </div>
     </section>
 
-    <!-- ================= 8. STAGE MANAGERS ================= -->
+    <!-- ================= 8. SINGLE STAGE MANAGER ================= -->
     <section id="portalStage" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-purple-200 space-y-4">
         <div class="border-b pb-2 flex justify-between items-center">
-          <h2 id="stagePortalTitle" class="text-sm font-bold text-purple-950">Stage Manager</h2>
-          <span id="stagePortalBadge" class="text-xs bg-purple-100 text-purple-900 font-bold px-2 py-0.5 rounded"></span>
+          <h2 class="text-sm font-bold text-purple-950">സ്റ്റേജ് മാനേജർ പോർട്ടൽ (Stage Manager)</h2>
+          <span class="text-xs bg-purple-100 text-purple-900 font-bold px-2 py-0.5 rounded">Stage Control</span>
         </div>
         <div class="space-y-3">
-          <h3 class="text-xs font-bold text-slate-700 uppercase">ഈ സ്റ്റേജിലെ മത്സര ക്രമം & നിലവിലെ പരിപാടി</h3>
+          <h3 class="text-xs font-bold text-slate-700 uppercase">വേദികൾ തോറുമുള്ള മത്സര ക്രമം</h3>
           <div id="stageManagerEventsList" class="space-y-2"></div>
         </div>
       </div>
@@ -581,10 +587,7 @@
           <option value="desk">Spot Registration Desk</option>
           <option value="food">Food Counter</option>
           <option value="prize">Prize Distribution Desk</option>
-          <option value="stage1">Stage 1 Manager</option>
-          <option value="stage2">Stage 2 Manager</option>
-          <option value="stage3">Stage 3 Manager</option>
-          <option value="stage4">Stage 4 Manager</option>
+          <option value="stage">Stage Manager</option>
           <option value="coadmin">Co-Admin</option>
           <option value="admin">Super Admin</option>
         </select>
@@ -630,30 +633,27 @@
       desk:    { title: "Spot Registration Desk", pass: "desk123", canEntry: true },
       food:    { title: "Food Counter", pass: "food123" },
       prize:   { title: "Prize Desk", pass: "prize123" },
-      stage1:  { title: "Stage 1 Manager", pass: "stg1" },
-      stage2:  { title: "Stage 2 Manager", pass: "stg2" },
-      stage3:  { title: "Stage 3 Manager", pass: "stg3" },
-      stage4:  { title: "Stage 4 Manager", pass: "stg4" },
+      stage:   { title: "Stage Manager", pass: "stage123" },
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
     let madrasasData = [
-      { regNo: "M01", name: "നൂറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M02", name: "സിറാജുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M03", name: "ഹിദായത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M04", name: "ബദരിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M05", name: "മനാറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M06", name: "ഇർഷാദിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M07", name: "റഹ്മാനിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M08", name: "മുനവ്വിറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M09", name: "തൻവീറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M10", name: "മിശ്കാത്തുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M11", name: "സബീലുൽ ഫലാഹ് മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M12", name: "ദാറുൽ ഉലൂം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M13", name: "ഫലാഹിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M14", name: "ഖുവ്വത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M15", name: "നൂർജഹാൻ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M16", name: "അൽ മദ്റസത്തുൽ ഇസ്ലാമിയ്യ", points: 0, managerName: "", managerPhone: "" }
+      { regNo: "M01", name: "നൂറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M02", name: "സിറാജുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M03", name: "ഹിദായത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M04", name: "ബദരിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M05", name: "മനാറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M06", name: "ഇർഷാദിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M07", name: "റഹ്മാനിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M08", name: "മുനവ്വിറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M09", name: "തൻവീറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M10", name: "മിശ്കാത്തുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M11", name: "സബീലുൽ ഫലാഹ് മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M12", name: "ദാറുൽ ഉലൂം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M13", name: "ഫലാഹിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M14", name: "ഖുവ്വത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M15", name: "നൂർജഹാൻ മദ്റസ", points: 0, managerName: "", managerPhone: "", password: "" },
+      { regNo: "M16", name: "അൽ മദ്റസത്തുൽ ഇസ്ലാമിയ്യ", points: 0, managerName: "", managerPhone: "", password: "" }
     ];
 
     let programsList = [
@@ -678,7 +678,7 @@
     let bulkStudentsInMemory = [];
     let currentLoggedInMadrasa = null;
     let allStudentsCache = [];
-    let foodScanMode = 'food'; // 'entry' or 'food'
+    let foodScanMode = 'food';
 
     async function initSystem() {
       try {
@@ -720,7 +720,6 @@
       document.getElementById("statTotalCheckedIn").innerText = checkedInCount;
       document.getElementById("statTotalFoodStudents").innerText = foodStudentsCount;
 
-      // Update counters matching screenshot
       document.getElementById("cardStatEntry").innerText = checkedInCount;
       document.getElementById("cardStatFood").innerText = foodStudentsCount;
       document.getElementById("cardStatTotal").innerText = allStudentsCache.length;
@@ -749,7 +748,7 @@
       menu.classList.add("-translate-x-full");
       overlay.classList.add("hidden");
 
-      const secs = ['portalPublic', 'secStages', 'secLeaderboard', 'portalStudentLogin', 'portalTeamManager', 'portalFood', 'portalRoleDesk', 'portalPrize', 'portalStage', 'portalAdmin'];
+      const secs = ['portalPublic', 'secStages', 'secLeaderboard', 'portalTeamManager', 'portalFood', 'portalRoleDesk', 'portalPrize', 'portalStage', 'portalAdmin'];
       secs.forEach(s => {
         const el = document.getElementById(s);
         if(el) el.classList.add("hidden");
@@ -802,8 +801,18 @@
         activatePortalView('portalFood', 'Food Desk');
       } else if (role === 'prize') {
         activatePortalView('portalPrize', 'Prize Desk');
-      } else if (role.startsWith('stage')) {
-        activateStageManagerPortal(role);
+      } else if (role === 'stage') {
+        document.getElementById("stageManagerEventsList").innerHTML = scheduleData.map((ev, i) => `
+          <div class="bg-purple-50 p-3 rounded-xl border flex justify-between items-center text-xs">
+            <div><span class="font-black text-purple-950">${ev.stage} - ${ev.time}</span><p class="font-bold text-slate-800">${ev.item}</p></div>
+            <select onchange="updateStageItemStatus(${i}, this.value)" class="border p-1 rounded font-bold bg-white text-xs">
+              <option value="ആരംഭിച്ചു" ${ev.status === 'ആരംഭിച്ചു' ? 'selected' : ''}>ആരംഭിച്ചു</option>
+              <option value="അടുത്തത്" ${ev.status === 'അടുത്തത്' ? 'selected' : ''}>അടുത്തത്</option>
+              <option value="പൂർത്തിയായി" ${ev.status === 'പൂർത്തിയായി' ? 'selected' : ''}>പൂർത്തിയായി</option>
+            </select>
+          </div>
+        `).join("");
+        activatePortalView('portalStage', 'Stage Manager');
       } else {
         activatePortalView('portalRoleDesk', 'Registration Desk');
         populateDeskFilter();
@@ -828,7 +837,7 @@
       if(role === 'admin' || role === 'prize') {
         html += `<button onclick="navRoute('portalPrize')" class="w-full text-left p-2.5 hover:bg-rose-50 rounded-xl flex items-center gap-3"><i class="fa-solid fa-award text-amber-700"></i> Prize Desk</button>`;
       }
-      if(role === 'admin' || role.startsWith('stage')) {
+      if(role === 'admin' || role === 'stage') {
         html += `<button onclick="navRoute('portalStage')" class="w-full text-left p-2.5 hover:bg-rose-50 rounded-xl flex items-center gap-3"><i class="fa-solid fa-microphone-lines text-purple-700"></i> Stage Manager</button>`;
       }
       if(role === 'admin') {
@@ -846,14 +855,6 @@
       document.getElementById("sideLogoutBtn").classList.remove("hidden");
     }
 
-    function activateStageManagerPortal(stageKey) {
-      const stgName = stageKey === 'stage1' ? 'Stage 1' : stageKey === 'stage2' ? 'Stage 2' : stageKey === 'stage3' ? 'Stage 3' : 'Stage 4';
-      document.getElementById("stagePortalTitle").innerText = stgName + " Manager";
-      document.getElementById("stagePortalBadge").innerText = stgName;
-      renderStageManagerEvents(stgName);
-      activatePortalView('portalStage', stgName);
-    }
-
     window.logoutApp = function() {
       currentUserRole = null;
       document.getElementById("topRoleText").innerText = "Login";
@@ -867,39 +868,30 @@
       navRoute('portalPublic');
     };
 
-    // ================= PUBLIC AUTO-SUGGEST & SEARCH =================
-    window.handlePublicSearchSuggestions = function() {
-      const q = document.getElementById("publicSearchQuery").value.trim().toLowerCase();
-      const drop = document.getElementById("searchSuggestionsList");
-      if (!q || q.length < 2) { drop.classList.add("hidden"); return; }
-      const matches = allStudentsCache.filter(s => (s.name && s.name.toLowerCase().includes(q)) || (s.id && s.id.toLowerCase().includes(q))).slice(0, 8);
-      if (matches.length > 0) {
-        drop.innerHTML = matches.map(m => `
-          <div onclick="selectStudentSuggestion('${m.id}')" class="p-2 border-b hover:bg-rose-50 cursor-pointer flex justify-between items-center">
-            <div><span class="font-bold text-slate-800">${m.name}</span><p class="text-[10px] text-slate-500">${m.madrasa}</p></div>
-            <span class="bg-rose-100 text-rose-900 font-bold px-2 py-0.5 rounded text-[10px]">Chest: ${m.id}</span>
-          </div>
-        `).join("");
-        drop.classList.remove("hidden");
-      } else { drop.classList.add("hidden"); }
-    };
-
-    window.selectStudentSuggestion = function(chestNo) {
-      document.getElementById("publicSearchQuery").value = chestNo;
-      document.getElementById("searchSuggestionsList").classList.add("hidden");
-      executePublicSearch();
-    };
-
-    window.executePublicSearch = function() {
-      document.getElementById("searchSuggestionsList").classList.add("hidden");
-      const q = document.getElementById("publicSearchQuery").value.trim().toLowerCase();
+    // ================= STUDENT SEARCH WITH ADMISSION NUMBER PASSWORD =================
+    window.verifyAndShowStudentData = function() {
+      const q = document.getElementById("stdCheckChestOrToken").value.trim().toLowerCase();
+      const pass = document.getElementById("stdCheckPassword").value.trim();
       const err = document.getElementById("pubError");
       const card = document.getElementById("publicResultCard");
       err.classList.add("hidden"); card.classList.add("hidden");
-      if (!q) return;
 
-      const student = allStudentsCache.find(s => s.id.toLowerCase() === q || (s.name && s.name.toLowerCase().includes(q)));
-      if (student) {
+      if(!q || !pass) {
+        err.innerText = "ചെസ്റ്റ് നമ്പറും അഡ്മിഷൻ നമ്പറും നൽകുക!";
+        err.classList.remove("hidden");
+        return;
+      }
+
+      const student = allStudentsCache.find(s => (s.id.toLowerCase() === q || (s.tokenNo && s.tokenNo.toLowerCase() === q)));
+
+      if(student) {
+        // Verify admission number password
+        if(student.admissionNo && student.admissionNo.trim() !== pass) {
+          err.innerText = "തെറ്റായ അഡ്മിഷൻ നമ്പർ (Password)!";
+          err.classList.remove("hidden");
+          return;
+        }
+
         document.getElementById("pubName").innerText = student.name;
         document.getElementById("pubMadrasa").innerText = "മദ്റസ: " + student.madrasa;
         document.getElementById("pubTokenBadge").innerText = "Token: " + (student.tokenNo || '-');
@@ -918,7 +910,7 @@
 
         const fEl = document.getElementById("pubFoodStatus");
         fEl.className = "p-2 rounded-lg border " + (student.foodGiven ? 'bg-blue-50 text-blue-800 border-blue-300' : 'bg-slate-100 text-slate-600 border-slate-300');
-        fEl.innerText = student.foodGiven ? "ഭക്ഷണം: നൽകി" : "ഭക്ഷണം: ലഭിച്ചിട്ടില്ല";
+        fEl.innerText = student.foodGiven ? "ഭക്ഷണം: നൽകി" : "ഭക്ഷണം: ലഭ്യമായിട്ടില്ല";
 
         const pEl = document.getElementById("pubPrizeStatus");
         pEl.className = "p-2 rounded-lg border " + (student.prizeGiven ? 'bg-purple-50 text-purple-800 border-purple-300' : 'bg-slate-100 text-slate-600 border-slate-300');
@@ -940,11 +932,11 @@
 
     window.closePublicSearchResult = function() {
       document.getElementById("publicResultCard").classList.add("hidden");
-      document.getElementById("publicSearchQuery").value = "";
-      document.getElementById("searchSuggestionsList").classList.add("hidden");
+      document.getElementById("stdCheckChestOrToken").value = "";
+      document.getElementById("stdCheckPassword").value = "";
     };
 
-    // ================= TEAM MANAGER PORTAL =================
+    // ================= TEAM MANAGER =================
     window.authenticateTeamManager = function() {
       const reg = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phone = document.getElementById("tmPhoneInput").value.trim();
@@ -976,7 +968,7 @@
             <td class="p-2 text-slate-500">${s.class || '-'}</td>
             <td class="p-2 text-slate-500">${s.category || '-'}</td>
             <td class="p-2">${s.entryRegistered ? '<span class="text-emerald-700 font-bold">OK ✓</span>' : '<span class="text-red-600 font-bold">ഇല്ല</span>'}</td>
-            <td class="p-2">${s.foodGiven ? '<span class="text-blue-700 font-bold">വാങ്ങി ✓</span>' : '<span class="text-slate-500 font-bold">ലഭിച്ചിട്ടില്ല</span>'}</td>
+            <td class="p-2">${s.foodGiven ? '<span class="text-blue-700 font-bold">വാങ്ങി ✓</span>' : '<span class="text-slate-500 font-bold">ലഭ്യമായിട്ടില്ല</span>'}</td>
           </tr>
         `).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളെ ചേർത്തിട്ടില്ല.</td></tr>';
       } else { alert("തെറ്റായ വിവരങ്ങൾ!"); }
@@ -992,7 +984,7 @@
       }
     };
 
-    // ================= FOOD COUNTER (MATCHING SCREENSHOT) =================
+    // ================= FOOD COUNTER (MATCHING IMAGE 1) =================
     window.switchFoodScanMode = function(mode) {
       foodScanMode = mode;
       if (mode === 'entry') {
@@ -1286,31 +1278,15 @@
       fetchPrizeStudent();
     };
 
-    // ================= STAGE MANAGERS =================
-    function renderStageManagerEvents(stageName) {
-      const container = document.getElementById("stageManagerEventsList");
-      const events = scheduleData.filter(st => st.stage === stageName);
-      container.innerHTML = events.map((ev, i) => `
-        <div class="bg-purple-50/60 p-3 rounded-xl border flex justify-between items-center text-xs">
-          <div><span class="font-black text-purple-950">${ev.time}</span><p class="font-bold text-slate-800">${ev.item}</p></div>
-          <select onchange="updateStageItemStatus('${stageName}', ${i}, this.value)" class="border p-1 rounded font-bold bg-white text-xs">
-            <option value="ആരംഭിച്ചു" ${ev.status === 'ആരംഭിച്ചു' ? 'selected' : ''}>ആരംഭിച്ചു</option>
-            <option value="അടുത്തത്" ${ev.status === 'അടുത്തത്' ? 'selected' : ''}>അടുത്തത്</option>
-            <option value="പൂർത്തിയായി" ${ev.status === 'പൂർത്തിയായി' ? 'selected' : ''}>പൂർത്തിയായി</option>
-          </select>
-        </div>
-      `).join("") || '<p class="text-xs text-slate-400">പരിപാടികളില്ല.</p>';
-    }
-
-    window.updateStageItemStatus = async function(stageName, idx, val) {
-      const match = scheduleData.filter(st => st.stage === stageName)[idx];
-      if(match) match.status = val;
+    // ================= STAGE MANAGER =================
+    window.updateStageItemStatus = async function(idx, val) {
+      scheduleData[idx].status = val;
       await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
       renderScheduleTimetable();
       alert("സ്റ്റാറ്റസ് അപ്‌ഡേറ്റ് ചെയ്തു!");
     };
 
-    // ================= ADMIN: 16 MADRASAS & CLEAR OLD DATA & CSV UPLOAD =================
+    // ================= SUPER ADMIN CONTROLS =================
     window.switchAdminTab = function(tabId) {
       ['admTabMadrasasFiles', 'admTabResults', 'admTabBulkPrint', 'admTabStages', 'admTabRoles'].forEach(t => {
         const el = document.getElementById(t);
@@ -1333,7 +1309,7 @@
           await deleteDoc(doc(db, "students", d.id));
         }
         allStudentsCache = [];
-        alert("പഴയ ഡാറ്റ പൂർണ്ണമായി നീക്കം ചെയ്തു! ഇനി പുതിയ ഫയൽ അപ്‌ലോഡ് ചെയ്യാം.");
+        alert("പഴയ ഡാറ്റ പൂർണ്ണമായി നീക്കം ചെയ്തു!");
         refreshCounters();
       }
     };
@@ -1350,6 +1326,7 @@
             <div class="flex items-center gap-1">
               <input type="password" id="mPass_${idx}" value="${m.password || ''}" placeholder="പാസ്‌വേഡ്" class="w-20 border p-1 rounded text-center">
               <button onclick="saveSingleMadrasaRow(${idx})" class="bg-slate-800 text-white px-2.5 py-1 rounded font-bold">Save</button>
+              <button onclick="deleteSingleMadrasaStudents('${m.name}')" class="bg-red-600 text-white px-2 py-1 rounded font-bold" title="ഈ മദ്റസയിലെ കുട്ടികളെ മാത്രം ഡിലീറ്റ് ചെയ്യുക"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 border-t">
@@ -1366,6 +1343,18 @@
       `).join("");
     }
 
+    window.deleteSingleMadrasaStudents = async function(madrasaName) {
+      if(confirm(`${madrasaName} യിലെ വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ മാത്രം ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?`)) {
+        const toDelete = allStudentsCache.filter(s => s.madrasa === madrasaName);
+        for(let s of toDelete) {
+          await deleteDoc(doc(db, "students", s.id));
+        }
+        allStudentsCache = allStudentsCache.filter(s => s.madrasa !== madrasaName);
+        alert(`${madrasaName} ലെ കുട്ടികളെ നീക്കം ചെയ്തു!`);
+        refreshCounters();
+      }
+    };
+
     window.saveSingleMadrasaRow = async function(idx) {
       madrasasData[idx].regNo = document.getElementById(`mReg_${idx}`).value.trim().toUpperCase();
       madrasasData[idx].name = document.getElementById(`mName_${idx}`).value.trim();
@@ -1377,7 +1366,7 @@
       alert("മദ്റസ വിവരങ്ങൾ സേവ് ചെയ്തു!");
     };
 
-    // CSV Auto-mapping (Chest No, Name, Madrasa, Class, Items)
+    // CSV PARSER USING EXACT SCHEMA PROVIDED
     window.uploadCsvForMadrasa = function(idx) {
       const fileInput = document.getElementById(`mCsvFile_${idx}`);
       const file = fileInput.files[0];
@@ -1392,22 +1381,39 @@
         let count = 0;
         let startToken = allStudentsCache.length + 1;
 
+        // Auto Header matching based on provided list:
+        // Register number, Chest number, Name, Class, Uid/msr, DATE of birth, Admission number, section, Items
+        const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
+        let chestIdx = headers.findIndex(h => h.includes("chest") || h.includes("ചെസ്റ്റ്"));
+        let nameIdx = headers.findIndex(h => h.includes("name") || h.includes("പേര്"));
+        let classIdx = headers.findIndex(h => h.includes("class") || h.includes("ക്ലാസ്സ്"));
+        let admIdx = headers.findIndex(h => h.includes("admission") || h.includes("adm"));
+        let itemIdx = headers.findIndex(h => h.includes("item") || h.includes("ഇനം") || h.includes("category"));
+
+        if(chestIdx === -1) chestIdx = 1;
+        if(nameIdx === -1) nameIdx = 2;
+        if(classIdx === -1) classIdx = 3;
+        if(admIdx === -1) admIdx = 6;
+        if(itemIdx === -1) itemIdx = 8;
+
         for (let i = 1; i < lines.length; i++) {
           const l = lines[i].trim();
           if(!l) continue;
           const c = l.split(",").map(x => x.trim().replace(/^"|"$/g, ''));
-          // Parsing strictly using: Chest number, Name, Class, Items
-          if (c[1] && c[2]) {
-            const chestNo = c[1];
-            const studentName = c[2];
-            const cls = c[3] || "General";
-            const items = c[8] || c[4] || "";
+
+          if (c[chestIdx] && c[nameIdx]) {
+            const chestNo = c[chestIdx];
+            const studentName = c[nameIdx];
+            const cls = c[classIdx] || "General";
+            const admissionNo = c[admIdx] || "1234";
+            const items = c[itemIdx] || "";
             const tokenNo = "S-" + String(startToken + count);
 
             await setDoc(doc(db, "students", chestNo), {
               name: studentName,
               madrasa: madrasaName,
               class: cls,
+              admissionNo: admissionNo,
               category: items,
               tokenNo: tokenNo,
               entryRegistered: false,
@@ -1424,7 +1430,7 @@
       reader.readAsText(file);
     };
 
-    // ================= RESULTS, GRADES (A, B, C) & MARKS =================
+    // ================= RESULTS, GRADES & MARKS =================
     function renderAdminResultsCards() {
       const container = document.getElementById("adminResultsProgramList");
       container.innerHTML = programsList.map((p, idx) => `
@@ -1495,7 +1501,7 @@
       }
     };
 
-    // ================= PRINTABLE BADGES (NAME, CHEST, TOKEN ONLY) =================
+    // ================= BULK PRINTING =================
     window.generateAndPrintStudentCards = function() {
       const statusEl = document.getElementById("cardsPreviewStatus");
       if(statusEl) statusEl.innerText = "പ്രിന്റിംഗിനായി തയ്യാറാക്കുന്നു...";
@@ -1635,13 +1641,6 @@
       await setDoc(doc(db, "config", "roles"), rolesConfig);
       alert(rolesConfig[k].title + " പാസ്‌വേഡ് സേവ് ചെയ്തു!");
     };
-
-    // Auto-Register PWA Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7fSk7').catch(() => {});
-      });
-    }
   </script>
 </body>
 </html>
