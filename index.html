@@ -18,6 +18,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
 
@@ -85,23 +86,14 @@
     </div>
   </header>
 
-  <!-- LIVE ROTATING TICKER -->
-  <div class="bg-gradient-to-r from-rose-900 via-purple-950 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex items-center shadow-xs no-print overflow-hidden">
-    <span class="bg-amber-400 text-slate-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md mr-2 shrink-0 border border-amber-300 flex items-center gap-1">
-      <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
-    </span>
-    <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
-      KRJM റേഞ്ച് തല മുസാബഖ 2026 കടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. ഫലങ്ങൾ തത്സമയം ലഭ്യമാണ്.
-    </marquee>
+  <!-- LIVE METRICS BANNER (AVAILABLE FOR ACTIVE DESKS) -->
+  <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
+    <div><span>ആകെ വിദ്യാർത്ഥികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
+    <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
+    <div><span>ഭക്ഷണം നൽകിയത്: <b id="statTotalFoodStudents" class="text-amber-400">0</b></span> <span class="text-slate-400 font-normal">(+ <b id="statTotalFoodManagers" class="text-white">0</b> മാനേജർ)</span></div>
   </div>
 
-  <!-- PROTECTED LIVE METRICS BAR (LOGGED IN ROLES ONLY) -->
-  <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700">
-    <div><span>എൻട്രി ചെയ്ത കുട്ടികൾ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
-    <div><span>ഭക്ഷണം നൽകിയത്: <b id="statTotalFoodStudents" class="text-amber-400">0</b></span> <span class="text-slate-400 font-normal">(+ <b id="statTotalFoodManagers" class="text-white">0</b> ഉസ്താദുമാർ)</span></div>
-  </div>
-
-  <!-- ================= SIDEBAR DRAWER ================= -->
+  <!-- SIDEBAR DRAWER -->
   <div id="sideOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-40 hidden no-print"></div>
   <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-50 side-transition -translate-x-full flex flex-col justify-between no-print">
     <div>
@@ -135,10 +127,10 @@
   <!-- ================= MAIN VIEWPORTS ================= -->
   <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL & COMPACT SIDE-BY-SIDE VERIFICATION BOXES -->
+    <!-- 1. PUBLIC PORTAL & COMPACT LIGHT-DARK BOXES -->
     <section id="portalPublic" class="space-y-3">
       
-      <!-- Live Stage Status -->
+      <!-- Stage Live Running Events Card -->
       <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-emerald-950 text-white p-3 rounded-xl shadow-sm space-y-1.5 border border-rose-800/40">
         <h3 class="text-[11px] font-black uppercase text-amber-300 flex items-center gap-1.5">
           <i class="fa-solid fa-satellite-dish text-red-400 animate-pulse"></i> വേദികളിൽ ഇപ്പോൾ നടക്കുന്നത് (Live Stage Status)
@@ -146,57 +138,57 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs" id="publicLiveStageBoxes"></div>
       </div>
 
-      <!-- COMPACT TWO-COLUMN GRID: SOFT MODERN LIGHT-DARK TINTED -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 items-start">
+      <!-- TWO-COLUMN GRID: ELEGANT COMPACT VIEW -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         
-        <!-- Student Verification Form (Soft Dark Rose Tint) -->
-        <div class="bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 text-rose-100 p-3.5 rounded-2xl shadow-md border border-rose-800/80 space-y-2">
-          <div class="flex items-center gap-2 border-b border-rose-800/50 pb-1.5">
-            <div class="w-7 h-7 rounded-lg bg-rose-800/60 flex items-center justify-center text-amber-300 border border-rose-600/50">
-              <i class="fa-solid fa-user-check text-xs"></i>
+        <!-- Student Verification Form: Light-Dark Rose -->
+        <div class="bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 text-rose-100 p-4 rounded-2xl shadow-md border-2 border-rose-800/80 space-y-2.5">
+          <div class="flex items-center gap-2 border-b border-rose-800/50 pb-2">
+            <div class="w-8 h-8 rounded-xl bg-rose-800/60 flex items-center justify-center text-amber-300 border border-rose-600/50">
+              <i class="fa-solid fa-user-check text-sm"></i>
             </div>
             <div>
               <h3 class="text-xs sm:text-sm font-black text-rose-100 uppercase tracking-wide">വിദ്യാർത്ഥികളുടെ ഫലങ്ങൾ</h3>
-              <p class="text-[9px] text-rose-300">റിസൾട്ടും വിവരങ്ങളും പരിശോധിക്കാം</p>
+              <p class="text-[10px] text-rose-300 leading-none">റിസൾട്ടും വിവരങ്ങളും പരിശോധിക്കാം</p>
             </div>
           </div>
           
-          <div class="space-y-1.5 pt-0.5">
+          <div class="space-y-2 pt-0.5">
             <div>
               <label class="text-[10px] font-bold text-rose-300 block mb-0.5">പേര് / ചെസ്റ്റ് നമ്പർ</label>
-              <input type="text" id="stdCheckIdInput" placeholder="ഉദാ: 101 അല്ലെങ്കിൽ പേര്" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <input type="text" id="stdCheckIdInput" placeholder="ഉദാ: 101 അല്ലെങ്കിൽ പേര്" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-2 text-xs rounded-xl focus:ring-1 focus:ring-amber-400 focus:outline-none">
             </div>
             <div>
               <label class="text-[10px] font-bold text-rose-300 block mb-0.5">പാസ്‌വേഡ് (മദ്റസ Reg No)</label>
-              <input type="password" id="stdCheckRegPassword" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold tracking-wider">
+              <input type="password" id="stdCheckRegPassword" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-2 text-xs rounded-xl uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold tracking-wider">
             </div>
-            <button onclick="verifyAndShowStudentDetails()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-slate-950 font-black text-xs py-2 rounded-xl shadow transition">
+            <button onclick="verifyAndShowStudentDetails()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-slate-950 font-black text-xs py-2.5 rounded-xl shadow-md transition">
               പരിശോധിക്കുക
             </button>
           </div>
 
           <!-- Result Card Display -->
-          <div id="publicResultCard" class="hidden mt-2 border border-rose-500 bg-slate-950 rounded-xl p-2.5 space-y-1.5 relative shadow-lg">
-            <button onclick="closePublicSearchResult()" class="absolute top-1.5 right-1.5 text-rose-300 hover:text-white bg-rose-900/60 rounded-full w-5 h-5 flex items-center justify-center text-xs">✕</button>
+          <div id="publicResultCard" class="hidden mt-2 border border-rose-500 bg-slate-950 rounded-xl p-3 space-y-2 relative shadow-lg">
+            <button onclick="closePublicSearchResult()" class="absolute top-2 right-2 text-rose-300 hover:text-white bg-rose-900/60 rounded-full w-5 h-5 flex items-center justify-center text-xs">✕</button>
 
-            <div class="border-b border-rose-800/80 pb-1 pr-6">
-              <h4 id="pubName" class="text-xs sm:text-sm font-bold text-amber-300"></h4>
-              <p id="pubMadrasa" class="text-[10px] font-semibold text-rose-200"></p>
-              <div class="flex flex-wrap gap-1 mt-0.5">
-                <span id="pubTokenBadge" class="bg-amber-400/20 text-amber-300 text-[9px] font-black px-1.5 py-0.5 rounded-full border border-amber-400/40"></span>
-                <span id="pubChestBadge" class="bg-rose-500/20 text-rose-300 text-[9px] font-black px-1.5 py-0.5 rounded-full border border-rose-500/40"></span>
+            <div class="border-b border-rose-800/80 pb-1.5 pr-6">
+              <h4 id="pubName" class="text-sm font-bold text-amber-300"></h4>
+              <p id="pubMadrasa" class="text-xs font-semibold text-rose-200"></p>
+              <div class="flex flex-wrap gap-1 mt-1">
+                <span id="pubTokenBadge" class="bg-amber-400/20 text-amber-300 text-[10px] font-black px-2 py-0.5 rounded-full border border-amber-400/40"></span>
+                <span id="pubChestBadge" class="bg-rose-500/20 text-rose-300 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-500/40"></span>
               </div>
             </div>
 
-            <div id="pubPrizeStatusAlert" class="p-1.5 rounded-lg text-center text-xs font-black space-y-1"></div>
+            <div id="pubPrizeStatusAlert" class="p-2 rounded-lg text-center text-xs font-black space-y-1"></div>
 
-            <div class="grid grid-cols-2 gap-1 text-center text-[10px] font-bold">
-              <div id="pubEntryStatus" class="p-1 rounded-lg border"></div>
-              <div id="pubFoodStatus" class="p-1 rounded-lg border"></div>
+            <div class="grid grid-cols-2 gap-1.5 text-center text-[10px] font-bold">
+              <div id="pubEntryStatus" class="p-1.5 rounded-lg border"></div>
+              <div id="pubFoodStatus" class="p-1.5 rounded-lg border"></div>
             </div>
 
-            <div class="bg-white p-1.5 rounded-lg flex flex-col items-center">
-              <p class="text-[10px] font-black text-slate-900" id="pubQrTitleName"></p>
+            <div class="bg-white p-2 rounded-lg flex flex-col items-center">
+              <p class="text-[11px] font-black text-slate-900" id="pubQrTitleName"></p>
               <p class="text-[9px] font-bold text-slate-600 mb-0.5" id="pubQrMetaLine"></p>
               <div id="pubQrcode" class="p-1 bg-white border border-slate-200 rounded"></div>
             </div>
@@ -204,28 +196,28 @@
           <p id="pubError" class="hidden text-xs text-amber-300 mt-1 text-center font-bold"></p>
         </div>
 
-        <!-- Team Manager Form (Soft Dark Blue/Slate Tint) -->
-        <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-blue-100 p-3.5 rounded-2xl shadow-md border border-blue-800/80 space-y-2">
-          <div class="flex items-center gap-2 border-b border-blue-800/50 pb-1.5">
+        <!-- Team Manager Form: Light-Dark Blue -->
+        <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-blue-100 p-4 rounded-2xl shadow-md border-2 border-blue-800/80 space-y-2.5">
+          <div class="flex items-center gap-2 border-b border-blue-800/50 pb-2">
             <div class="w-8 h-8 rounded-xl bg-blue-800/60 flex items-center justify-center text-cyan-300 border border-blue-600/50">
-              <i class="fa-solid fa-user-tie text-xs"></i>
+              <i class="fa-solid fa-user-tie text-sm"></i>
             </div>
             <div>
               <h4 class="text-xs sm:text-sm font-black text-blue-100 uppercase tracking-wide">ടീം മാനേജർ ലോഗിൻ</h4>
-              <p class="text-[9px] text-blue-300">മദ്റസ ടീം പരിശോധന & QR കോഡ്</p>
+              <p class="text-[10px] text-blue-300 leading-none">മദ്റസ ടീം പരിശോധന & QR കോഡ്</p>
             </div>
           </div>
           
-          <div class="space-y-1.5 pt-0.5">
+          <div class="space-y-2 pt-0.5">
             <div>
               <label class="text-[10px] font-bold text-blue-300 block mb-0.5">മദ്റസ Reg No</label>
-              <input type="text" id="tmRegNoInput" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg uppercase font-bold focus:ring-1 focus:ring-cyan-400 focus:outline-none tracking-wider">
+              <input type="text" id="tmRegNoInput" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-2 text-xs rounded-xl uppercase font-bold focus:ring-1 focus:ring-cyan-400 focus:outline-none tracking-wider">
             </div>
             <div>
               <label class="text-[10px] font-bold text-blue-300 block mb-0.5">ഫോൺ നമ്പർ</label>
-              <input type="tel" id="tmPhoneInput" placeholder="രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-cyan-400 focus:outline-none">
+              <input type="tel" id="tmPhoneInput" placeholder="രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-2 text-xs rounded-xl focus:ring-1 focus:ring-cyan-400 focus:outline-none">
             </div>
-            <button onclick="authenticateTeamManager()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-slate-950 font-black text-xs py-2 rounded-xl shadow transition">
+            <button onclick="authenticateTeamManager()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-slate-950 font-black text-xs py-2.5 rounded-xl shadow-md transition">
               ടീം വിവരങ്ങൾ തുറക്കുക
             </button>
           </div>
@@ -297,6 +289,18 @@
                 </button>
               </div>
             </div>
+          </div>
+
+          <!-- Edit Profile Option for Team Manager -->
+          <div class="bg-white p-3.5 rounded-xl border border-blue-200 space-y-2 text-xs">
+            <span class="font-bold text-blue-950"><i class="fa-solid fa-user-pen"></i> മാനേജറുടെ വിവരങ്ങൾ തിരുത്തുക:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input type="text" id="tmEditSelfName" placeholder="മാനേജറുടെ പേര്" class="border p-2 rounded-xl">
+              <input type="tel" id="tmEditSelfPhone" placeholder="മൊബൈൽ നമ്പർ" class="border p-2 rounded-xl">
+            </div>
+            <button onclick="saveTeamManagerProfileSelf()" class="bg-blue-700 hover:bg-blue-800 text-white font-bold px-4 py-1.5 rounded-xl shadow-xs">
+              സേവ് ചെയ്യുക ✓
+            </button>
           </div>
 
           <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
@@ -421,7 +425,7 @@
 
         <div class="space-y-2 pt-2 border-t">
           <div class="flex justify-between items-center">
-            <h4 class="text-xs font-bold text-slate-800 uppercase">രജിസ്ട്രേഷൻ ലിസ്റ്റ് (എഡിറ്റ് / ഒഴിവാക്കൽ)</h4>
+            <h4 class="text-xs font-bold text-slate-800 uppercase">രജിസ്ട്രേഷൻ ലിസ്റ്റ്</h4>
             <select id="deskFilterMadrasa" onchange="renderDeskStudentsTable()" class="border p-1 text-xs rounded-lg bg-slate-50">
               <option value="">എല്ലാ മദ്റസകളും</option>
             </select>
@@ -445,6 +449,50 @@
         </div>
       </div>
     </section>
+
+    <!-- PROFESSIONAL STUDENT EDIT MODAL POPUP FOR SPOT DESK -->
+    <div id="studentEditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
+      <div class="bg-white rounded-2xl p-5 w-full max-w-md space-y-3 shadow-2xl border border-slate-200">
+        <div class="flex justify-between items-center border-b pb-2">
+          <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-user-pen text-blue-600"></i> വിദ്യാർത്ഥിയുടെ വിവരങ്ങൾ എഡിറ്റ് ചെയ്യുക</h3>
+          <button onclick="closeStudentEditModal()" class="text-slate-400 hover:text-slate-700 font-bold text-base">✕</button>
+        </div>
+
+        <input type="hidden" id="editModalStudentId">
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ചെസ്റ്റ് നമ്പർ</label>
+            <input type="text" id="editModalChest" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ടോക്കൺ നമ്പർ</label>
+            <input type="text" id="editModalToken" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
+          </div>
+          <div class="col-span-2">
+            <label class="font-bold text-slate-600 block mb-0.5">വിദ്യാർത്ഥിയുടെ പേര്</label>
+            <input type="text" id="editModalName" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ക്ലാസ്സ്</label>
+            <input type="text" id="editModalClass" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">മത്സര ഇനം</label>
+            <input type="text" id="editModalCategory" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button onclick="saveStudentEditModalChanges()" class="w-1/2 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-xl text-xs font-bold shadow">
+            സേവ് ചെയ്യുക ✓
+          </button>
+          <button onclick="closeStudentEditModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
+            ക്ലോസ്
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- 7. PRIZE DISTRIBUTION DESK -->
     <section id="portalPrize" class="hidden space-y-4">
@@ -477,7 +525,6 @@
           <div id="prizeStudentCard" class="hidden bg-white border border-amber-200 rounded-xl p-3 space-y-2"></div>
         </div>
 
-        <!-- Add/Edit Program With Exact Point Logic & Without Grade Option -->
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-xs font-bold text-slate-800"><i class="fa-solid fa-trophy"></i> പുതിയ മത്സരം / വിജയികളെ രേഖപ്പെടുത്തുക:</span>
@@ -597,7 +644,6 @@
           <span class="text-xs bg-rose-100 text-rose-950 font-bold px-2 py-0.5 rounded-full">Admin Panel</span>
         </div>
 
-        <!-- Announcement Creator for Desks -->
         <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
           <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
           <div class="flex gap-2">
@@ -606,10 +652,9 @@
           </div>
         </div>
 
-        <!-- Contact Visibility Switch for Super Admin -->
         <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs">
           <div>
-            <h4 class="font-bold text-amber-950">Public Contact & Phone Visibility (ഫോൺ നമ്പറുകൾ കാണിക്കണോ?)</h4>
+            <h4 class="font-bold text-amber-950">Public Contact & Phone Visibility</h4>
             <p class="text-[10px] text-slate-600">ഇത് ഓൺ ആക്കിയാൽ മാത്രമേ പൊതുജനങ്ങൾക്ക് അഡ്മിൻ നമ്പറുകളും വാട്സാപ്പും കാണാൻ കഴിയൂ.</p>
           </div>
           <label class="relative inline-flex items-center cursor-pointer">
@@ -647,7 +692,7 @@
           </div>
         </div>
 
-        <!-- TAB 3: Printable QR Badges -->
+        <!-- TAB 3: Printable QR Badges with Madrasa Filter -->
         <div id="admTabBulkPrint" class="hidden space-y-3">
           <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex flex-wrap justify-between items-center gap-2">
             <div>
@@ -711,7 +756,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
+  <!-- UNIVERSAL LOGIN MODAL -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -736,7 +781,6 @@
         <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center">
       </div>
 
-      <!-- Action Buttons: Cancel on LEFT, Login on RIGHT -->
       <div class="flex gap-2 pt-2">
         <button onclick="closeLoginModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
           ക്യാൻസൽ
@@ -756,7 +800,7 @@
   <!-- ================= FIREBASE & APP ENGINE ================= -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs, writeBatch } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC-E6HWFfOXHvdM0A_3dknqsyIEF74rYJE",
@@ -830,22 +874,11 @@
     let currentSelectedStage = "Stage 1";
     let currentLoggedInMadrasa = null;
 
-    // Normalize phone number (removes spaces, +91, leading 0)
     function cleanPhone(p) {
       if(!p) return "";
       let cleaned = String(p).replace(/\D/g, "");
       return cleaned.slice(-10);
     }
-
-    // Safe History Handling so Back Button will not exit or logout
-    history.pushState({ page: 'portalPublic' }, '', '');
-    window.addEventListener('popstate', (e) => {
-      if (e.state && e.state.page) {
-        navRoute(e.state.page, false);
-      } else {
-        navRoute('portalPublic', false);
-      }
-    });
 
     async function initSystem() {
       try {
@@ -908,6 +941,7 @@
       });
       document.getElementById("statTotalCheckedIn").innerText = checkedInCount;
       document.getElementById("statTotalFoodStudents").innerText = foodStudentsCount;
+      document.getElementById("statTotalStudentsCount").innerText = allStudentsCache.length;
 
       const mSnap = await getDoc(doc(db, "config", "managerFood"));
       const mgrCount = mSnap.exists() ? (mSnap.data().count || 0) : 0;
@@ -1028,54 +1062,8 @@
         `;
       }
 
-      html += `
-        <button onclick="openMuallimLoginPrompt()" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3 text-emerald-800 border-t mt-2">
-          <i class="fa-solid fa-id-card-clip text-emerald-700"></i> മുഅല്ലിം ലോഗിൻ & QR
-        </button>
-      `;
-
       c.innerHTML = html;
     }
-
-    window.openSidebarDeskAction = function(action) {
-      navRoute('portalRoleDesk');
-      if (action === 'madrasaQr') {
-        printAllMadrasaMasterQRs();
-      } else if (action === 'printBadges') {
-        generateAndPrintStudentCards();
-      } else if (action === 'entryUstad') {
-        const reg = prompt("ഉസ്താദിന്റെ മദ്റസ Reg No നൽകുക (e.g. M01):");
-        const name = prompt("ഉസ്താദിന്റെ പേര് നൽകുക:");
-        if (reg && name) {
-          markManagerFoodRedeemed();
-          alert(`${name} ഉസ്താദിന്റെ എൻട്രിയും ഭക്ഷണവും വിജയകരമായി രേഖപ്പെടുത്തി!`);
-        }
-      }
-    };
-
-    // Muallim Login & QR Generation
-    window.openMuallimLoginPrompt = async function() {
-      const reg = prompt("മദ്റസ രജിസ്ട്രേഷൻ നമ്പർ നൽകുക (e.g. M01):");
-      const phone = prompt("രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ നൽകുക:");
-      if(reg && phone) {
-        const cleanP = cleanPhone(phone);
-        const m = madrasasData.find(x => x.regNo && x.regNo.trim().toUpperCase() === reg.trim().toUpperCase() && cleanPhone(x.managerPhone) === cleanP);
-        if(m) {
-          const printArea = document.getElementById("printableArea");
-          printArea.innerHTML = `
-            <div class="border-2 border-slate-900 bg-white p-4 rounded-2xl text-center space-y-2 max-w-sm mx-auto">
-              <h3 class="font-black text-slate-900">${m.name}</h3>
-              <p class="text-xs text-slate-600 font-bold">മുഅല്ലിം: ${m.managerName || 'ഉസ്താദ്'} (Reg: ${m.regNo})</p>
-              <div id="muallimQrBox" class="flex justify-center p-2"></div>
-              <button onclick="window.print()" class="no-print bg-slate-900 text-white text-xs px-4 py-2 rounded-xl">പ്രിന്റ് ചെയ്യുക</button>
-            </div>
-          `;
-          new QRCode(document.getElementById("muallimQrBox"), { text: `USTAD:${m.managerName || 'Ustad'}|MADRASA:${m.name}|REG:${m.regNo}`, width: 140, height: 140 });
-          alert("ഉസ്താദിന്റെ QR കോഡ് തയ്യാറായി! പ്രിന്റ് ചെയ്യാം.");
-          window.print();
-        } else { alert("മദ്റസ രജിസ്ട്രേഷൻ നമ്പറോ ഫോൺ നമ്പറോ തെറ്റാണ്!"); }
-      }
-    };
 
     function activatePortalView(id, title) {
       navRoute(id);
@@ -1100,7 +1088,7 @@
       navRoute('portalPublic');
     };
 
-    // ================= STUDENT VERIFICATION & MULTI-PRIZE CHECK =================
+    // ================= STUDENT VERIFICATION =================
     window.verifyAndShowStudentDetails = function() {
       const q = document.getElementById("stdCheckIdInput").value.trim().toLowerCase();
       const regPass = document.getElementById("stdCheckRegPassword").value.trim().toUpperCase();
@@ -1183,7 +1171,7 @@
       document.getElementById("stdCheckRegPassword").value = "";
     };
 
-    // ================= TEAM MANAGER AUTHENTICATION (FIXED) =================
+    // ================= TEAM MANAGER AUTHENTICATION =================
     window.authenticateTeamManager = async function() {
       const regInput = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phoneInput = cleanPhone(document.getElementById("tmPhoneInput").value);
@@ -1215,14 +1203,33 @@
         document.getElementById("tmQrBoxLabel").innerText = found.name;
         document.getElementById("tmQrBoxRegLabel").innerText = "Reg: " + found.regNo;
 
+        document.getElementById("tmEditSelfName").value = found.managerName || "";
+        document.getElementById("tmEditSelfPhone").value = found.managerPhone || "";
+
         const qrBox = document.getElementById("tmMadrasaQrBox");
         qrBox.innerHTML = "";
         new QRCode(qrBox, { text: `MADRASA:${found.name}|REG:${found.regNo}`, width: 90, height: 90, correctLevel: QRCode.CorrectLevel.L });
 
         renderTeamManagerStudents();
       } else { 
-        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ കൃത്യമായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
+        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്."); 
       }
+    };
+
+    window.saveTeamManagerProfileSelf = async function() {
+      const name = document.getElementById("tmEditSelfName").value.trim();
+      const phone = document.getElementById("tmEditSelfPhone").value.trim();
+      if(!name || !phone) {
+        alert("പേരും ഫോൺ നമ്പറും നൽകുക!");
+        return;
+      }
+
+      currentLoggedInMadrasa.managerName = name;
+      currentLoggedInMadrasa.managerPhone = phone;
+
+      await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+      document.getElementById("tmCurrentManager").innerText = `മാനേജർ: ${name} (${phone})`;
+      alert("പ്രൊഫൈൽ വിവരങ്ങൾ വിജയകരമായി സേവ് ചെയ്തു!");
     };
 
     function renderTeamManagerStudents() {
@@ -1473,16 +1480,13 @@
 
     function populateDeskFilter() {
       const sel = document.getElementById("deskFilterMadrasa");
-      const addSel = document.getElementById("deskAddMadrasa");
       const printSel = document.getElementById("printFilterMadrasa");
 
       if(sel) sel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
-      if(addSel) addSel.innerHTML = '<option value="">മദ്റസ *</option>';
       if(printSel) printSel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
 
       madrasasData.forEach(m => {
         if(sel) sel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
-        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
         if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
       });
     }
@@ -1505,8 +1509,8 @@
             </button>
           </td>
           <td class="p-2 text-right space-x-1">
-            <button onclick="deskEditStudentPrompt('${s.id}')" class="text-blue-600"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button onclick="deskDeleteStudentPrompt('${s.id}')" class="text-red-600"><i class="fa-solid fa-trash"></i></button>
+            <button onclick="openStudentEditModal('${s.id}')" class="text-blue-600 p-1 hover:text-blue-800"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onclick="deskDeleteStudentPrompt('${s.id}')" class="text-red-600 p-1 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
       `).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളില്ല.</td></tr>';
@@ -1520,17 +1524,52 @@
       refreshCounters();
     };
 
-    window.deskEditStudentPrompt = async function(id) {
-      const local = allStudentsCache.find(x => x.id === id);
-      if(!local) return;
-      const newName = prompt("പേര് മാറ്റുക:", local.name);
-      const newClass = prompt("ക്ലാസ്സ് മാറ്റുക:", local.class || "");
-      const newCat = prompt("മത്സര ഇനം മാറ്റുക:", local.category || "");
-      if(newName) {
-        await updateDoc(doc(db, "students", id), { name: newName, class: newClass, category: newCat });
-        local.name = newName; local.class = newClass; local.category = newCat;
-        renderDeskStudentsTable();
+    // Professional Student Edit Modal Handlers
+    window.openStudentEditModal = function(id) {
+      const s = allStudentsCache.find(x => x.id === id);
+      if(!s) return;
+
+      document.getElementById("editModalStudentId").value = s.id;
+      document.getElementById("editModalChest").value = s.id;
+      document.getElementById("editModalToken").value = s.tokenNo || '-';
+      document.getElementById("editModalName").value = s.name || '';
+      document.getElementById("editModalClass").value = s.class || '';
+      document.getElementById("editModalCategory").value = s.category || '';
+
+      document.getElementById("studentEditModal").classList.remove("hidden");
+    };
+
+    window.closeStudentEditModal = function() {
+      document.getElementById("studentEditModal").classList.add("hidden");
+    };
+
+    window.saveStudentEditModalChanges = async function() {
+      const id = document.getElementById("editModalStudentId").value;
+      const s = allStudentsCache.find(x => x.id === id);
+      if(!s) return;
+
+      const newName = document.getElementById("editModalName").value.trim();
+      const newClass = document.getElementById("editModalClass").value.trim();
+      const newCategory = document.getElementById("editModalCategory").value.trim();
+
+      if(!newName) {
+        alert("വിദ്യാർത്ഥിയുടെ പേര് നൽകുക!");
+        return;
       }
+
+      await updateDoc(doc(db, "students", id), {
+        name: newName,
+        class: newClass,
+        category: newCategory
+      });
+
+      s.name = newName;
+      s.class = newClass;
+      s.category = newCategory;
+
+      closeStudentEditModal();
+      renderDeskStudentsTable();
+      alert("വിവരങ്ങൾ വിജയകരമായി സേവ് ചെയ്തു!");
     };
 
     window.deskDeleteStudentPrompt = async function(id) {
@@ -1542,7 +1581,7 @@
       }
     };
 
-    // ================= PRIZE DISTRIBUTION DESK & EXACT POINT CALCULATION =================
+    // ================= PRIZE DISTRIBUTION DESK =================
     function calculatePoints(itemType, place, grade) {
       if (grade === "NONE") return 0;
       if (itemType === 'individual') {
@@ -1830,9 +1869,10 @@
     window.clearAllStudentsDataPrompt = async function() {
       if(confirm("പഴയ എല്ലാ വിദ്യാർത്ഥികളുടെയും ഡാറ്റ പൂർണ്ണമായി ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?")) {
         const snap = await getDocs(collection(db, "students"));
-        for(let d of snap.docs) {
-          await deleteDoc(doc(db, "students", d.id));
-        }
+        const batch = writeBatch(db);
+        snap.forEach(d => batch.delete(d.ref));
+        await batch.commit();
+
         allStudentsCache = [];
         alert("പഴയ ഡാറ്റ പൂർണ്ണമായി നീക്കം ചെയ്തു!");
         refreshCounters();
@@ -1871,17 +1911,31 @@
     window.deleteSingleMadrasaStudents = async function(madrasaName) {
       if(confirm(`${madrasaName} യിലെ വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ മാത്രം ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?`)) {
         const toDelete = allStudentsCache.filter(s => s.madrasa === madrasaName);
+        const batch = writeBatch(db);
         for(let s of toDelete) {
-          await deleteDoc(doc(db, "students", s.id));
+          batch.delete(doc(db, "students", s.id));
         }
+        await batch.commit();
+
         allStudentsCache = allStudentsCache.filter(s => s.madrasa !== madrasaName);
         alert(`${madrasaName} ലെ കുട്ടികളെ നീക്കം ചെയ്തു!`);
         refreshCounters();
       }
     };
 
-    // INTELLIGENT SEQUENTIAL TOKEN PARSER (Starts S-1 for 1st Madrasa, and continues without resetting)
-    window.uploadCsvForMadrasa = function(idx) {
+    window.saveSingleMadrasaRow = async function(idx) {
+      madrasasData[idx].regNo = document.getElementById(`mReg_${idx}`).value.trim().toUpperCase();
+      madrasasData[idx].name = document.getElementById(`mName_${idx}`).value.trim();
+      madrasasData[idx].points = parseInt(document.getElementById(`mPoints_${idx}`).value) || 0;
+      madrasasData[idx].managerName = document.getElementById(`mManagerName_${idx}`).value.trim();
+      madrasasData[idx].managerPhone = document.getElementById(`mManagerPhone_${idx}`).value.trim();
+
+      await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+      alert("മദ്റസ വിവരങ്ങളും മാനേജറുടെ നമ്പറും സേവ് ചെയ്തു!");
+    };
+
+    // FAST BATCH CSV PARSER WITH STRICT CONTINUOUS TOKEN INCREMENT
+    window.uploadCsvForMadrasa = async function(idx) {
       const fileInput = document.getElementById(`mCsvFile_${idx}`);
       const file = fileInput.files[0];
       const madrasaName = madrasasData[idx].name;
@@ -1892,18 +1946,18 @@
         const lines = e.target.result.split("\n");
         if(lines.length === 0) return;
 
-        // Find the absolute highest existing token number currently stored
-        let highestNum = 0;
+        // Calculate absolute max existing token number
+        let maxExisting = 0;
         allStudentsCache.forEach(s => {
           if (s.tokenNo && s.tokenNo.startsWith("S-")) {
             const num = parseInt(s.tokenNo.replace("S-", ""), 10);
-            if (!isNaN(num) && num > highestNum) {
-              highestNum = num;
+            if (!isNaN(num) && num > maxExisting) {
+              maxExisting = num;
             }
           }
         });
 
-        let nextTokenNum = highestNum + 1;
+        let nextTokenNum = maxExisting + 1;
         let count = 0;
 
         const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
@@ -1917,6 +1971,8 @@
         if(classIdx === -1) classIdx = 3;
         if(itemIdx === -1) itemIdx = 8;
 
+        const batch = writeBatch(db);
+
         for (let i = 1; i < lines.length; i++) {
           const l = lines[i].trim();
           if(!l) continue;
@@ -1929,7 +1985,8 @@
             const items = c[itemIdx] || "";
             const tokenNo = "S-" + (nextTokenNum++);
 
-            await setDoc(doc(db, "students", chestNo), {
+            const docRef = doc(db, "students", chestNo);
+            batch.set(docRef, {
               name: studentName,
               madrasa: madrasaName,
               class: cls,
@@ -1938,25 +1995,19 @@
               entryRegistered: false,
               foodGiven: false
             }, { merge: true });
+
             count++;
           }
         }
-        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${highestNum + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അപ്‌ലോഡ് ചെയ്തു!`);
+
+        // Commit fast batch in 1 network call
+        await batch.commit();
+
+        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${maxExisting + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അതിവേഗം അപ്‌ലോഡ് ചെയ്തു!`);
         fileInput.value = "";
-        loadAllStudentsCache();
+        await loadAllStudentsCache();
       };
       reader.readAsText(file);
-    };
-
-    window.saveSingleMadrasaRow = async function(idx) {
-      madrasasData[idx].regNo = document.getElementById(`mReg_${idx}`).value.trim().toUpperCase();
-      madrasasData[idx].name = document.getElementById(`mName_${idx}`).value.trim();
-      madrasasData[idx].points = parseInt(document.getElementById(`mPoints_${idx}`).value) || 0;
-      madrasasData[idx].managerName = document.getElementById(`mManagerName_${idx}`).value.trim();
-      madrasasData[idx].managerPhone = document.getElementById(`mManagerPhone_${idx}`).value.trim();
-
-      await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
-      alert("മദ്റസ വിവരങ്ങളും മാനേജറുടെ നമ്പറും സേവ് ചെയ്തു!");
     };
 
     // CSV PARSER FOR PROGRAMS
@@ -1988,7 +2039,7 @@
       reader.readAsText(file);
     };
 
-    // ================= BULK PRINTING (EXACT 12 BADGES PER A4 SHEET) =================
+    // ================= BULK PRINTING (EXACT 12 BADGES PER A4 SHEET: 3 COLS x 4 ROWS) =================
     window.executeSelectedBulkPrinting = function() {
       const type = document.getElementById("printFilterType").value;
       if (type === 'madrasa') {
@@ -2088,7 +2139,6 @@
         grouped[item.stage].push(item);
       });
 
-      // Filter and only show currently running items (auto-clears elapsed items)
       ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4'].forEach(stg => {
         const events = grouped[stg] || [];
         const activeItem = events.find(x => !isEventElapsed(x.time, x.duration)) || null;
