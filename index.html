@@ -19,7 +19,6 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
 
@@ -121,6 +120,7 @@
         <p class="text-xs font-black text-rose-300 mt-2 tracking-wider">KRJM MUSBQ 2026</p>
       </div>
 
+      <!-- Public & Role Links Container -->
       <nav class="p-3 space-y-1 text-xs font-bold text-slate-700" id="sidebarLinksContainer">
         <!-- Rendered dynamically -->
       </nav>
@@ -240,7 +240,7 @@
     <section id="secStages" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-calendar-check text-emerald-700"></i> സമയക്രമത്തിൽ ക്രമീകരിച്ച മത്സരങ്ങൾ (Schedule)
+          <i class="fa-solid fa-calendar-check text-emerald-700"></i> മത്സര സമയക്രമം & വേദികൾ (Schedule)
         </h2>
         <div class="space-y-2.5" id="stageScheduleContainer"></div>
       </div>
@@ -725,6 +725,7 @@
         <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center">
       </div>
 
+      <!-- Action Buttons: Cancel on LEFT, Login on RIGHT -->
       <div class="flex gap-2 pt-2">
         <button onclick="closeLoginModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
           ക്യാൻസൽ
@@ -815,8 +816,8 @@
     let allStudentsCache = [];
     let foodScanMode = 'individual';
     let currentSelectedStage = "Stage 1";
+    let currentLoggedInMadrasa = null;
 
-    // Normalize phone number (removes spaces, +91, 0)
     function cleanPhone(p) {
       if(!p) return "";
       let cleaned = String(p).replace(/\D/g, "");
@@ -863,6 +864,7 @@
         loadAllStudentsCache();
         renderSavedProgramsList();
 
+        buildSidebarMenuForRole(null);
         setInterval(renderScheduleTimetable, 30000);
       } catch (e) { console.error(e); }
     }
@@ -1006,8 +1008,52 @@
         `;
       }
 
+      html += `
+        <button onclick="openMuallimLoginPrompt()" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3 text-emerald-800 border-t mt-2">
+          <i class="fa-solid fa-id-card-clip text-emerald-700"></i> മുഅല്ലിം ലോഗിൻ & QR
+        </button>
+      `;
+
       c.innerHTML = html;
     }
+
+    window.openSidebarDeskAction = function(action) {
+      navRoute('portalRoleDesk');
+      if (action === 'madrasaQr') {
+        printAllMadrasaMasterQRs();
+      } else if (action === 'printBadges') {
+        generateAndPrintStudentCards();
+      } else if (action === 'entryUstad') {
+        const reg = prompt("ഉസ്താദിന്റെ മദ്റസ Reg No നൽകുക (e.g. M01):");
+        const name = prompt("ഉസ്താദിന്റെ പേര് നൽകുക:");
+        if (reg && name) {
+          markManagerFoodRedeemed();
+          alert(`${name} ഉസ്താദിന്റെ എൻട്രിയും ഭക്ഷണവും വിജയകരമായി രേഖപ്പെടുത്തി!`);
+        }
+      }
+    };
+
+    window.openMuallimLoginPrompt = function() {
+      const reg = prompt("മദ്റസ രജിസ്ട്രേഷൻ നമ്പർ നൽകുക (e.g. M01):");
+      const name = prompt("ഉസ്താദിന്റെ പേര് നൽകുക:");
+      if(reg && name) {
+        const m = madrasasData.find(x => x.regNo === reg.trim().toUpperCase());
+        if(m) {
+          const printArea = document.getElementById("printableArea");
+          printArea.innerHTML = `
+            <div class="border-2 border-slate-900 bg-white p-4 rounded-2xl text-center space-y-2 max-w-sm mx-auto">
+              <h3 class="font-black text-slate-900">${m.name}</h3>
+              <p class="text-xs text-slate-600 font-bold">മുഅല്ലിം: ${name} (Reg: ${m.regNo})</p>
+              <div id="muallimQrBox" class="flex justify-center p-2"></div>
+              <button onclick="window.print()" class="no-print bg-slate-900 text-white text-xs px-4 py-2 rounded-xl">പ്രിന്റ് ചെയ്യുക</button>
+            </div>
+          `;
+          new QRCode(document.getElementById("muallimQrBox"), { text: `USTAD:${name}|MADRASA:${m.name}|REG:${m.regNo}`, width: 140, height: 140 });
+          alert("ഉസ്താദിന്റെ QR കോഡ് തയ്യാറായി! പ്രിന്റ് ചെയ്യാം.");
+          window.print();
+        } else { alert("മദ്റസയെ കണ്ടെത്തിയില്ല!"); }
+      }
+    };
 
     function activatePortalView(id, title) {
       navRoute(id);
@@ -1032,7 +1078,7 @@
       navRoute('portalPublic');
     };
 
-    // ================= STUDENT VERIFICATION =================
+    // ================= STUDENT VERIFICATION & MULTI-PRIZE CHECK =================
     window.verifyAndShowStudentDetails = function() {
       const q = document.getElementById("stdCheckIdInput").value.trim().toLowerCase();
       const regPass = document.getElementById("stdCheckRegPassword").value.trim().toUpperCase();
@@ -1100,7 +1146,7 @@
 
         const qrBox = document.getElementById("pubQrcode");
         qrBox.innerHTML = "";
-        new QRCode(qrBox, { text: student.id, width: 110, height: 110, correctLevel: QRCode.CorrectLevel.L });
+        new QRCode(qrBox, { text: student.id, width: 120, height: 120, correctLevel: QRCode.CorrectLevel.L });
 
         card.classList.remove("hidden");
       } else {
@@ -1125,7 +1171,6 @@
         return; 
       }
 
-      // Always fetch latest madrasas config directly from db to avoid stale data
       try {
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
         if(mSnap.exists()) {
@@ -1154,7 +1199,7 @@
 
         renderTeamManagerStudents();
       } else { 
-        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ കൃത്യമായി സേവ് ചെയ്തിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
+        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ കൃത്യമായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
       }
     };
 
@@ -1406,16 +1451,43 @@
 
     function populateDeskFilter() {
       const sel = document.getElementById("deskFilterMadrasa");
+      const addSel = document.getElementById("deskAddMadrasa");
       const printSel = document.getElementById("printFilterMadrasa");
 
       if(sel) sel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
+      if(addSel) addSel.innerHTML = '<option value="">മദ്റസ *</option>';
       if(printSel) printSel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
 
       madrasasData.forEach(m => {
         if(sel) sel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
+        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
         if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
       });
     }
+
+    window.deskAddMissingStudent = async function() {
+      const mName = document.getElementById("deskAddMadrasa").value;
+      const chest = document.getElementById("deskAddChest").value.trim();
+      const name = document.getElementById("deskAddName").value.trim();
+      const cls = document.getElementById("deskAddClass").value.trim();
+      const item = document.getElementById("deskAddItem").value.trim();
+
+      if(!mName || !chest || !name) {
+        alert("മദ്റസ, ചെസ്റ്റ് നമ്പർ, പേര് എന്നിവ നിർബന്ധമാണ്!");
+        return;
+      }
+
+      const tokenNo = "S-" + (allStudentsCache.length + 1);
+      await setDoc(doc(db, "students", chest), {
+        name, madrasa: mName, class: cls, category: item, tokenNo,
+        entryRegistered: true, foodGiven: false
+      });
+
+      alert(`${name} എന്ന കുട്ടിയെ ആഡ് ചെയ്തു!`);
+      document.getElementById("deskAddChest").value = "";
+      document.getElementById("deskAddName").value = "";
+      loadAllStudentsCache();
+    };
 
     window.renderDeskStudentsTable = function() {
       const filter = document.getElementById("deskFilterMadrasa").value;
@@ -1473,10 +1545,6 @@
     };
 
     // ================= PRIZE DISTRIBUTION DESK & EXACT POINT CALCULATION =================
-    // 1. വ്യക്തിഗത ഇനങ്ങൾ:
-    // I: A=10, B=8, C=6 | II: A=8, B=6, C=4 | III: A=6, B=4, C=2 | Without Grade=0
-    // 2. ഗ്രൂപ്പ് ഇനങ്ങൾ:
-    // I: A=15, B=13, C=11 | II: A=10, B=8, C=6 | III: A=8, B=6, C=4 | Without Grade=0
     function calculatePoints(itemType, place, grade) {
       if (grade === "NONE") return 0;
       if (itemType === 'individual') {
@@ -2001,6 +2069,7 @@
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
       const liveBoxes = document.getElementById("publicLiveStageBoxes");
+      if(!container || !liveBoxes) return;
       container.innerHTML = "";
       liveBoxes.innerHTML = "";
 
@@ -2029,7 +2098,7 @@
             <table class="w-full text-xs text-left">
               <thead class="bg-slate-100 text-slate-700 font-bold"><tr><th class="p-2">സമയം</th><th class="p-2">മത്സര ഇനം</th></tr></thead>
               <tbody>${grouped[stage].map(r => `
-                <tr class="border-b ${r.isBreak ? 'bg-amber-50 font-bold text-amber-900' : ''}">
+                <tr class="border-b ${r.isBreak ? 'bg-amber-50 text-amber-900 font-bold' : ''}">
                   <td class="p-2 font-black">${r.time}</td>
                   <td class="p-2">${r.item}${r.isBreak ? '☕ (ഇടവേള)' : ''}</td>
                 </tr>
