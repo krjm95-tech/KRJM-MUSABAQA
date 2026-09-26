@@ -42,6 +42,7 @@
   <!-- TOP HEADER -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
+      
       <div class="flex items-center gap-2">
         <button onclick="toggleSidebar()" class="p-2 text-rose-200 hover:bg-white/10 rounded-xl">
           <i class="fa-solid fa-bars text-xl"></i>
@@ -79,7 +80,17 @@
     </div>
   </header>
 
-  <!-- LIVE METRICS BAR -->
+  <!-- LIVE ROTATING TICKER -->
+  <div class="bg-gradient-to-r from-rose-900 via-purple-950 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex items-center shadow-xs no-print overflow-hidden">
+    <span class="bg-amber-400 text-slate-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md mr-2 shrink-0 border border-amber-300 flex items-center gap-1">
+      <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
+    </span>
+    <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
+      KRJM റേഞ്ച് തല മുസാബഖ 2026 കടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. ഫലങ്ങൾ തത്സമയം ലഭ്യമാണ്.
+    </marquee>
+  </div>
+
+  <!-- PROTECTED METRICS -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ കുട്ടികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -117,9 +128,9 @@
   </aside>
 
   <!-- ================= MAIN VIEWPORTS ================= -->
-  <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 no-print">
+  <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL (COMPACT VIEW) -->
+    <!-- 1. PUBLIC PORTAL -->
     <section id="portalPublic" class="space-y-3">
       
       <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-emerald-950 text-white p-3 rounded-xl shadow-sm space-y-1.5 border border-rose-800/40">
@@ -269,21 +280,16 @@
               <p class="text-xs text-slate-600" id="tmCurrentManager"></p>
             </div>
             
-            <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-blue-200 shadow-xs">
+            <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-blue-200 shadow-xs">
               <div id="tmMadrasaQrBox"></div>
               <div class="text-center">
-                <p class="text-[10px] font-black text-blue-950" id="tmQrBoxLabel"></p>
+                <p class="text-[11px] font-black text-blue-950" id="tmQrBoxLabel"></p>
                 <p class="text-[9px] text-slate-500 font-bold" id="tmQrBoxRegLabel"></p>
-                <button onclick="downloadTmQrCode()" class="mt-1 text-[10px] bg-blue-600 text-white font-bold px-2 py-1 rounded flex items-center gap-1 mx-auto">
+                <button onclick="downloadTmQrCode()" class="mt-2 text-[10px] bg-blue-600 text-white font-bold px-2.5 py-1 rounded flex items-center gap-1 mx-auto">
                   <i class="fa-solid fa-download"></i> QR ഡൗൺലോഡ്
                 </button>
               </div>
             </div>
-          </div>
-
-          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
-            <h4 class="font-black text-amber-950 uppercase"><i class="fa-solid fa-award"></i> സമ്മാന വിവരങ്ങൾ (Prizes Overview)</h4>
-            <div id="tmPrizeOverviewList" class="space-y-1"></div>
           </div>
 
           <div class="overflow-x-auto">
@@ -635,7 +641,6 @@
           <span class="text-xs bg-rose-100 text-rose-950 font-bold px-2 py-0.5 rounded-full" id="adminBadgeTitle">Admin Panel</span>
         </div>
 
-        <!-- Announcement Creator -->
         <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
           <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
           <div class="flex gap-2">
@@ -644,7 +649,6 @@
           </div>
         </div>
 
-        <!-- Navigation Tabs inside Admin -->
         <div class="flex flex-wrap gap-1.5 border-b pb-2 text-xs font-bold">
           <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">17 മദ്റസകൾ & CSV</button>
           <button onclick="switchAdminTab('admTabScheduleCsv')" class="px-3 py-1.5 bg-amber-600 text-white rounded-lg">ഷെഡ്യൂൾ CSV അപ്‌ലോഡ്</button>
@@ -698,7 +702,7 @@
           <div id="cardsPreviewStatus" class="text-xs text-slate-500 font-bold"></div>
         </div>
 
-        <!-- TAB 4: Staff Passwords (Fixed Persistence) -->
+        <!-- TAB 4: Staff Passwords -->
         <div id="admTabRoles" class="hidden space-y-3">
           <h3 class="text-xs font-bold text-slate-800 uppercase">സ്റ്റാഫ് പാസ്‌വേഡുകൾ മാറ്റുക</h3>
           <div id="adminRolesList" class="space-y-2"></div>
@@ -721,7 +725,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
+  <!-- UNIVERSAL LOGIN MODAL -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -832,7 +836,7 @@
       return cleaned.slice(-10);
     }
 
-    // History Back Navigation
+    // Step-by-Step Back Navigation Support
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) {
         navRoute(e.state.page, false);
@@ -849,27 +853,9 @@
         // 1. Fetch Students
         await loadAllStudentsCache();
 
-        // 2. Strict Madrasa Synchronization (Overrides any old M01 demo list)
-        const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if (mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
-          const listInDb = mSnap.data().list;
-          const isOldDemo = listInDb.some(m => m.regNo && m.regNo.startsWith("M0"));
-          
-          if (isOldDemo) {
-            madrasasData = [...OFFICIAL_17_MADRASAS];
-            await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
-          } else {
-            madrasasData = listInDb;
-            OFFICIAL_17_MADRASAS.forEach(om => {
-              if(!madrasasData.some(m => m.regNo === om.regNo)) {
-                madrasasData.push(om);
-              }
-            });
-          }
-        } else {
-          madrasasData = [...OFFICIAL_17_MADRASAS];
-          await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
-        }
+        // 2. Strict Madrasa Synchronization (FORCIBLY Overwrites any old M01 demo list with genuine 17 Madrasas)
+        madrasasData = [...OFFICIAL_17_MADRASAS];
+        await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
 
         const pSnap = await getDoc(doc(db, "config", "programs"));
         if(pSnap.exists()) programsList = pSnap.data().list;
@@ -1218,7 +1204,7 @@
       document.getElementById("stdCheckRegPassword").value = "";
     };
 
-    // ================= TEAM MANAGER AUTHENTICATION =================
+    // ================= TEAM MANAGER AUTHENTICATION (FIXED) =================
     window.authenticateTeamManager = async function() {
       const regInput = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phoneInput = cleanPhone(document.getElementById("tmPhoneInput").value);
@@ -1227,6 +1213,13 @@
         alert("ദയവായി മദ്റസ Reg No ഉം ഫോൺ നമ്പറും നൽകുക!"); 
         return; 
       }
+
+      try {
+        const mSnap = await getDoc(doc(db, "config", "madrasas"));
+        if(mSnap.exists() && mSnap.data().list) {
+          madrasasData = mSnap.data().list;
+        }
+      } catch(e) {}
 
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
@@ -1249,7 +1242,7 @@
 
         renderTeamManagerStudents();
       } else { 
-        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്."); 
+        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ കൃത്യമായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
       }
     };
 
@@ -1523,7 +1516,7 @@
       }
 
       const mObj = madrasasData.find(m => m.name === mName);
-      const existingInMadrasa = allStudentsCache.filter(s => s.madrasa === mName);
+      const existingInMadrasa = allStudentsCache.filter(s => s.madrasa === mName || s.madrasaReg === (mObj ? mObj.regNo : ''));
       const madrasaSl = existingInMadrasa.length + 1;
       const tokenNo = "S-" + (allStudentsCache.length + 1);
 
@@ -2064,7 +2057,7 @@
         }
 
         await batch.commit();
-        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ ടോക്കൺ നമ്പറും ക്രമനമ്പറും (Sl No 1-${count}) നൽകി വിജയകരമായി അപ്‌ലോഡ് ചെയ്തു!`);
+        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${maxExisting + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അപ്‌ലോഡ് ചെയ്തു!`);
         fileInput.value = "";
         await loadAllStudentsCache();
         render16MadrasasAdmin();
@@ -2202,8 +2195,10 @@
     // ================= SCHEDULE & LEADERBOARD =================
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      if(!container) return;
+      const liveBoxes = document.getElementById("publicLiveStageBoxes");
+      if(!container || !liveBoxes) return;
       container.innerHTML = "";
+      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
