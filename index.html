@@ -5,17 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KRJM MUSBQ 2026</title>
   
-  <meta name="theme-color" content="#831843">
+  <meta name="theme-color" content="#ffffff">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
-  <!-- Official Vector SVG Logo Embedded as Data-URI -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
 
-  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS1JKTSBNdXNhYmFxYSAyMDI2Iiwic2hvcnRfbmFtZSI6IktSSk0gTVVTQlEiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiNmZmZmZmYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO3V0ZjgsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MDAgNTYwJz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPScjZmZmZmZmJy8+PGNpcmNsZSBjeD0nMjUwJyBjeT0nOTUnIHI9JzQ1JyBmaWxsPScjM2VhMWRiJy8+PHBhdGggZD0nTTEyMCAxMjAgQyAxNzUgMTIwIDIyMCAxNDUgMjM1IDIwMCBMMjM1IDI3MCBDIDIzNSAyODUgMjQyIDI5MCAyNTAgMjkwIEMgMjU4IDI5MCAyNjUgMjg1IDI2NSAyNzAgTDI2NSAyMDAgQyAyODAgMTQ1IDMyNSAxMjAgMzgwIDEyMCBDIDQwMCAxMjAgNDA1IDEzNSAzOTAgMTQ4IEMgMzQ1IDE4NSAzMTUgMjIwIDMxNSAyODUgTDMxNSAyOTUgQyAzMTUgMzEwIDMwMCAzMTggMjgwIDMxOCBMMjIwIDMxOCBDIDIwMCAzMTggMTg1IDMxMCAxODUgMjk1IEwxODUgMjg1IEMgMTg1IDIyMCAxNTUgMTg1IDExMCAxNDggQyA5NSAxMzUgMTAwIDEyMCAxMjAgMTIwIFonIGZpbGw9JyMwMGE4NDMnLz48cmVjdCB4PScxMzUnIHk9JzE3MCcgd2lkdGg9JzUwJyBoZWlnaHQ9JzExMCcgcng9JzI1JyBmaWxsPScjYmEyMzJiJy8+PHJlY3QgeD0nMzE1JyB5PScxNzAnIHdpZHRoPSc1MCcgaGVpZ2h0PScxMTAnIHJ4PScownerIGZpbGw9JyNiYTIzMmInLz48dGV4dCB4PScyNTAnIHk9JzM5MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc5MDAnIGZvbnQtc2l6ZT0nNjQnIGZpbGw9JyMwNTA1MDUnPtmF2LPYp9io2YLYqTwvdGV4dD48dGV4dCB4PScyNTAnIHk9JzQ3NScgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc1MicgbGV0dGVyLXNwYWNpbmc9JzQnIGZpbGw9JyMxMTExMTEnPktSSk08L3RleHQ+PC9zdmc+Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn1dfQ==">
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS1JKTSBNdXNhYmFxYSAyMDI2Iiwic2hvcnRfbmFtZSI6IktSSk0gTVVTQlEiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiM4MzE4NDMiLCJ0aGVtZV9jb2xvciI6IiM4MzE4NDMiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO3V0ZjgsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MDAgNTYwJz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPScjZmZmZmZmJy8+PGNpcmNsZSBjeD0nMjUwJyBjeT0nOTUnIHI9JzQ1JyBmaWxsPScjM2VhMWRiJy8+PHBhdGggZD0nTTEyMCAxMjAgQyAxNzUgMTIwIDIyMCAxNDUgMjM1IDIwMCBMMjM1IDI3MCBDIDIzNSAyODUgMjQyIDI5MCAyNTAgMjkwIEMgMjU4IDI5MCAyNjUgMjg1IDI2NSAyNzAgTDI2NSAyMDAgQyAyODAgMTQ1IDMyNSAxMjAgMzgwIDEyMCBDIDQwMCAxMjAgNDA1IDEzNSAzOTAgMTQ4IEMgMzQ1IDE4NSAzMTUgMjIwIDMxNSAyODUgTDMxNSAyOTUgQyAzMTUgMzEwIDMwMCAzMTggMjgwIDMxOCBMMjIwIDMxOCBDIDIwMCAzMTggMTg1IDMxMCAxODUgMjk1IEwxODUgMjg1IEMgMTg1IDIyMCAxNTUgMTg1IDExMCAxNDggQyA5NSAxMzUgMTAwIDEyMCAxMjAgMTIwIFonIGZpbGw9JyMwMGE4NDMnLz48cmVjdCB4PScxMzUnIHk9JzE3MCcgd2lkdGg9JzUwJyBoZWlnaHQ9JzExMCcgcng9JzI1JyBmaWxsPScjYmEyMzJiJy8+PHJlY3QgeD0nMzE1JyB5PScxNzAnIHdpZHRoPSc1MCcgaGVpZ2h0PScxMTAnIHJ4PScownerIGZpbGw9JyNiYTIzMmInLz48dGV4dCB4PScyNTAnIHk9JzM5MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc5MDAnIGZvbnQtc2l6ZT0nNjQnIGZpbGw9JyMwNTA1MDUnPtmF2LPYp9io2YLYqTwvdGV4dD48dGV4dCB4PScyNTAnIHk9JzQ3NScgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc1MicgbGV0dGVyLXNwYWNpbmc9JzQnIGZpbGw9JyMxMTExMTEnPktSSk08L3RleHQ+PC9zdmc+Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn1dfQ==">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -70,7 +69,6 @@
         </div>
       </div>
 
-      <!-- Action items -->
       <div class="flex items-center gap-2">
         <button onclick="navRoute('secStages')" title="ഷെഡ്യൂൾ" class="px-2.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl border border-amber-400/40 text-xs font-bold flex items-center gap-1.5 shadow-xs">
           <i class="fa-solid fa-calendar-days text-amber-400"></i>
@@ -94,7 +92,7 @@
     </marquee>
   </div>
 
-  <!-- PROTECTED METRICS BAR -->
+  <!-- PROTECTED METRICS -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ വിദ്യാർത്ഥികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -117,7 +115,6 @@
           </svg>
         </div>
         <p class="text-xs font-black text-rose-300 mt-2 tracking-wider">KRJM MUSBQ 2026</p>
-        <p class="text-[10px] text-emerald-300">17 മദ്റസകൾ • 4 വേദികൾ</p>
       </div>
 
       <nav class="p-3 space-y-1 text-xs font-bold text-slate-700" id="sidebarLinksContainer"></nav>
@@ -161,7 +158,7 @@
             </div>
             <div>
               <h3 class="text-xs sm:text-sm font-black text-rose-100 uppercase tracking-wide leading-none">വിദ്യാർത്ഥികളുടെ ഫലങ്ങൾ</h3>
-              <p class="text-[9px] text-rose-300 leading-none mt-0.5">ഫലങ്ങളും വിവരങ്ങളും പരിശോധിക്കാം</p>
+              <p class="text-[9px] text-rose-300 leading-none mt-0.5">റിസൾട്ടും വിവരങ്ങളും പരിശോധിക്കാം</p>
             </div>
           </div>
           
@@ -250,7 +247,7 @@
     <section id="secLeaderboard" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2 mb-3">
-          <i class="fa-solid fa-trophy text-amber-500"></i> 17 മദ്റസകളുടെ പോയിന്റ് നില
+          <i class="fa-solid fa-trophy text-amber-500"></i> മദ്റസകളുടെ പോയിന്റ് നില
         </h2>
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
@@ -299,11 +296,6 @@
                 </button>
               </div>
             </div>
-          </div>
-
-          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
-            <h4 class="font-black text-amber-950 uppercase"><i class="fa-solid fa-award"></i> സമ്മാന വിവരങ്ങൾ (Prizes Overview)</h4>
-            <div id="tmPrizeOverviewList" class="space-y-1"></div>
           </div>
 
           <div class="overflow-x-auto">
@@ -421,19 +413,6 @@
           </div>
         </div>
 
-        <!-- Add Missing Student Section -->
-        <div id="deskAddMissingStudentForm" class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2">
-          <span class="text-xs font-bold text-emerald-950"><i class="fa-solid fa-user-plus"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക:</span>
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
-            <select id="deskAddMadrasa" class="border p-1.5 rounded bg-white font-bold"><option value="">മദ്റസ *</option></select>
-            <input type="text" id="deskAddChest" placeholder="ചെസ്റ്റ് നമ്പർ *" class="border p-1.5 rounded font-bold">
-            <input type="text" id="deskAddName" placeholder="പേര് *" class="border p-1.5 rounded font-bold">
-            <input type="text" id="deskAddClass" placeholder="ക്ലാസ്സ്" class="border p-1.5 rounded">
-            <input type="text" id="deskAddItem" placeholder="ഇനം" class="border p-1.5 rounded">
-          </div>
-          <button onclick="deskAddMissingStudentAction()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-1.5 rounded-lg">ആഡ് ചെയ്യുക ✓</button>
-        </div>
-
         <div class="space-y-2 pt-2 border-t">
           <div class="flex justify-between items-center">
             <h4 class="text-xs font-bold text-slate-800 uppercase">രജിസ്ട്രേഷൻ ലിസ്റ്റ്</h4>
@@ -460,50 +439,6 @@
         </div>
       </div>
     </section>
-
-    <!-- PROFESSIONAL STUDENT EDIT MODAL POPUP FOR SPOT DESK -->
-    <div id="studentEditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
-      <div class="bg-white rounded-2xl p-5 w-full max-w-md space-y-3 shadow-2xl border border-slate-200">
-        <div class="flex justify-between items-center border-b pb-2">
-          <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-user-pen text-blue-600"></i> വിദ്യാർത്ഥിയുടെ വിവരങ്ങൾ എഡിറ്റ് ചെയ്യുക</h3>
-          <button onclick="closeStudentEditModal()" class="text-slate-400 hover:text-slate-700 font-bold text-base">✕</button>
-        </div>
-
-        <input type="hidden" id="editModalStudentId">
-
-        <div class="grid grid-cols-2 gap-2 text-xs">
-          <div>
-            <label class="font-bold text-slate-600 block mb-0.5">ചെസ്റ്റ് നമ്പർ</label>
-            <input type="text" id="editModalChest" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
-          </div>
-          <div>
-            <label class="font-bold text-slate-600 block mb-0.5">ടോക്കൺ നമ്പർ</label>
-            <input type="text" id="editModalToken" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
-          </div>
-          <div class="col-span-2">
-            <label class="font-bold text-slate-600 block mb-0.5">വിദ്യാർത്ഥിയുടെ പേര്</label>
-            <input type="text" id="editModalName" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
-          </div>
-          <div>
-            <label class="font-bold text-slate-600 block mb-0.5">ക്ലാസ്സ്</label>
-            <input type="text" id="editModalClass" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
-          </div>
-          <div>
-            <label class="font-bold text-slate-600 block mb-0.5">മത്സര ഇനം</label>
-            <input type="text" id="editModalCategory" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
-          </div>
-        </div>
-
-        <div class="flex gap-2 pt-2">
-          <button onclick="saveStudentEditModalChanges()" class="w-1/2 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-xl text-xs font-bold shadow">
-            സേവ് ചെയ്യുക ✓
-          </button>
-          <button onclick="closeStudentEditModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
-            ക്ലോസ്
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- 7. PRIZE DISTRIBUTION DESK -->
     <section id="portalPrize" class="hidden space-y-4">
@@ -672,7 +607,7 @@
           <button onclick="switchAdminTab('admTabRoles')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">സ്റ്റാഫ് പാസ്‌വേഡ്</button>
         </div>
 
-        <!-- TAB 1: 17 Madrasas & CSV Upload (Always Visible) -->
+        <!-- TAB 1: 17 Madrasas & CSV Upload (Always dynamically rendered) -->
         <div id="admTabMadrasasFiles" class="space-y-3">
           <div class="flex flex-wrap justify-between items-center gap-2">
             <h3 class="text-xs font-bold text-slate-800 uppercase">17 മദ്റസകൾ & വിദ്യാർത്ഥി ഫയൽ അപ്‌ലോഡ്</h3>
@@ -759,7 +694,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL -->
+  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -827,7 +762,7 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    // 17 Complete Madrasas list (Always Safe & Never Lost)
+    // 17 Complete Madrasas list (Safely stored)
     const DEFAULT_17_MADRASAS = [
       { regNo: "M01", name: "നൂറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
       { regNo: "M02", name: "സിറാജുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
@@ -870,41 +805,38 @@
       return cleaned.slice(-10);
     }
 
-    // Restore persistent session
-    function restorePersistentSession() {
-      const savedRole = localStorage.getItem("krjm_active_role");
-      if(savedRole) {
-        applyRoleSession(savedRole, false);
+    // Step-by-Step History Navigation
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.page) {
+        navRoute(e.state.page, false);
       } else {
-        buildSidebarMenuForRole(null);
+        navRoute('portalPublic', false);
       }
-    }
-
-    window.returnToActiveDesk = function() {
-      if(currentUserRole) {
-        applyRoleSession(currentUserRole, false);
-      }
-    };
-
-    window.handleHeaderAuthClick = function() {
-      if (currentUserRole) {
-        logoutApp();
-      } else {
-        openLoginModal();
-      }
-    };
+    });
 
     async function initSystem() {
       try {
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
+        // 1. Fetch Students from Firestore
+        await loadAllStudentsCache();
+
+        // 2. Fetch or Sync Madrasas from Firestore
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length >= 17) {
+        if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
           madrasasData = mSnap.data().list;
+          
+          // Auto-Discovery: If students have madrasas not present in list, append them safely
+          allStudentsCache.forEach(s => {
+            if(s.madrasa && !madrasasData.some(m => m.name === s.madrasa)) {
+              const newReg = "M" + String(madrasasData.length + 1).padStart(2, '0');
+              madrasasData.push({ regNo: newReg, name: s.madrasa, points: 0, managerName: "", managerPhone: "" });
+            }
+          });
         } else {
-          await setDoc(doc(db, "config", "madrasas"), { list: DEFAULT_17_MADRASAS });
           madrasasData = [...DEFAULT_17_MADRASAS];
+          await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
         }
 
         const pSnap = await getDoc(doc(db, "config", "programs"));
@@ -933,14 +865,37 @@
 
         renderScheduleTimetable();
         renderLeaderboard();
-        loadAllStudentsCache();
         renderSavedProgramsList();
         render16MadrasasAdmin();
+        populateDeskFilter();
 
         restorePersistentSession();
       } catch (e) { console.error(e); }
     }
     initSystem();
+
+    function restorePersistentSession() {
+      const savedRole = localStorage.getItem("krjm_active_role");
+      if(savedRole) {
+        applyRoleSession(savedRole, false);
+      } else {
+        buildSidebarMenuForRole(null);
+      }
+    }
+
+    window.returnToActiveDesk = function() {
+      if(currentUserRole) {
+        applyRoleSession(currentUserRole, false);
+      }
+    };
+
+    window.handleHeaderAuthClick = function() {
+      if (currentUserRole) {
+        logoutApp();
+      } else {
+        openLoginModal();
+      }
+    };
 
     async function loadAllStudentsCache() {
       try {
@@ -1017,7 +972,7 @@
       return "Desk";
     }
 
-    // ================= AUTHENTICATION (FIXED AUTO-CLOSE MODAL) =================
+    // ================= AUTHENTICATION =================
     window.openLoginModal = function() {
       document.getElementById("loginPasswordInput").value = "";
       document.getElementById("loginModal").classList.remove("hidden");
@@ -1032,13 +987,13 @@
 
       if (pass === SUPER_ADMIN_PASS) {
         applyRoleSession(role);
-        closeLoginModal(); // Auto-close modal
+        closeLoginModal();
         return;
       }
 
       if (rolesConfig[role] && rolesConfig[role].pass === pass) {
         applyRoleSession(role);
-        closeLoginModal(); // Auto-close modal
+        closeLoginModal();
       } else {
         alert("പാസ്‌വേഡ് തെറ്റാണ്!");
       }
@@ -1053,12 +1008,10 @@
       document.getElementById("liveStatusBar").classList.remove("hidden");
       buildSidebarMenuForRole(role);
 
-      // Header button becomes red Logout button
       const authBtn = document.getElementById("headerAuthBtn");
       authBtn.className = "text-xs bg-red-600 hover:bg-red-700 text-white font-black px-3.5 py-1.5 rounded-xl shadow border border-red-500 transition";
       document.getElementById("topRoleText").innerText = "Logout";
 
-      // Super Admin vs Co-Admin controls
       const clearAllBtn = document.getElementById("btnSuperAdminClearAll");
       if(clearAllBtn) {
         clearAllBtn.style.display = (role === 'admin') ? "inline-block" : "none";
@@ -1289,13 +1242,6 @@
         alert("ദയവായി മദ്റസ Reg No ഉം ഫോൺ നമ്പറും നൽകുക!"); 
         return; 
       }
-
-      try {
-        const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list) {
-          madrasasData = mSnap.data().list;
-        }
-      } catch(e) {}
 
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
@@ -1971,16 +1917,13 @@
       }
     };
 
-    // ================= SUPER ADMIN CONTROLS (ALWAYS RENDERS 17 MADRASAS) =================
+    // ================= SUPER ADMIN CONTROLS =================
     window.switchAdminTab = function(tabId) {
       ['admTabMadrasasFiles', 'admTabScheduleCsv', 'admTabBulkPrint', 'admTabContactsAbout', 'admTabRoles'].forEach(t => {
         const el = document.getElementById(t);
         if(el) el.classList.add("hidden");
       });
       document.getElementById(tabId).classList.remove("hidden");
-      if (tabId === 'admTabMadrasasFiles') {
-        render16MadrasasAdmin();
-      }
     };
 
     function buildAdminDashboard() {
@@ -2006,10 +1949,8 @@
     function render16MadrasasAdmin() {
       const container = document.getElementById("admin16MadrasasList");
       if(!container) return;
-
-      const listToRender = (madrasasData && madrasasData.length >= 17) ? madrasasData : DEFAULT_17_MADRASAS;
-
-      container.innerHTML = listToRender.map((m, idx) => `
+      
+      container.innerHTML = madrasasData.map((m, idx) => `
         <div class="bg-white p-3 rounded-xl border shadow-xs space-y-2 text-xs">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-1.5">
@@ -2315,7 +2256,14 @@
       alert("ലൈവ് അനൗൺസ്‌മെന്റ് അപ്‌ഡേറ്റ് ചെയ്തു!");
     };
 
-    // ================= ABOUT & CONTACTS MANAGEMENT =================
+    // ================= ABOUT & CONTACTS VISIBILITY MANAGEMENT =================
+    window.toggleContactVisibility = async function() {
+      isContactPublicVisible = document.getElementById("admContactVisibilityToggle").checked;
+      await setDoc(doc(db, "config", "contactVisibility"), { visible: isContactPublicVisible });
+      renderContactsList();
+      alert(`കോൺടാക്റ്റ് നമ്പറുകളുടെ പബ്ലിക് വിസിബിലിറ്റി: ${isContactPublicVisible ? 'ഓൺ (Visible)' : 'ഓഫ് (Hidden)'}`);
+    };
+
     window.saveAboutAppContent = async function() {
       const t = document.getElementById("admAboutTextInp").value.trim();
       if(!t) return;
