@@ -11,7 +11,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
-  <!-- Embedded Logo as High-Res Icon & PWA Manifest -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
 
@@ -42,7 +41,7 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50/70 via-slate-50 to-amber-50/40 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- ================= TOP HEADER ================= -->
+  <!-- TOP HEADER -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
       
@@ -70,7 +69,6 @@
         </div>
       </div>
 
-      <!-- Action items -->
       <div class="flex items-center gap-2">
         <button onclick="navRoute('secStages')" title="ഷെഡ്യൂൾ" class="px-2.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl border border-amber-400/40 text-xs font-bold flex items-center gap-1.5 shadow-xs">
           <i class="fa-solid fa-calendar-days text-amber-400"></i>
@@ -94,7 +92,7 @@
     </marquee>
   </div>
 
-  <!-- PROTECTED METRICS -->
+  <!-- PROTECTED LIVE METRICS BAR -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ വിദ്യാർത്ഥികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -170,7 +168,7 @@
               <input type="text" id="stdCheckIdInput" placeholder="പേര് / ചെസ്റ്റ് നമ്പർ" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-amber-400 focus:outline-none">
             </div>
             <div>
-              <input type="password" id="stdCheckRegPassword" placeholder="പാസ്‌വേഡ് (മദ്റസ Reg No: 698)" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold">
+              <input type="password" id="stdCheckRegPassword" placeholder="പാസ്‌വേഡ് (മദ്റസ Reg No: ഉദാ 698)" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold">
             </div>
             <button onclick="verifyAndShowStudentDetails()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 text-slate-950 font-black text-xs py-1.5 rounded-lg shadow transition">
               പരിശോധിക്കുക
@@ -213,7 +211,7 @@
               <i class="fa-solid fa-user-tie text-xs"></i>
             </div>
             <div>
-              <h4 class="text-xs sm:text-sm font-black text-blue-100 uppercase tracking-wide leading-none">ടീം മാനേജർ ലോഗിൻ</h4>
+              <h4 class="text-xs font-black text-blue-100 uppercase tracking-wide leading-none">ടീം മാനേജർ ലോഗിൻ</h4>
               <p class="text-[9px] text-blue-300 leading-none mt-0.5">മദ്റസ പരിശോധന & QR കോഡ്</p>
             </div>
           </div>
@@ -505,6 +503,38 @@
       </div>
     </div>
 
+    <!-- MUALLIM REGISTRATION MODAL FOR SPOT DESK -->
+    <div id="muallimRegModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
+      <div class="bg-white rounded-2xl p-5 w-full max-w-md space-y-3 shadow-2xl border border-slate-200">
+        <div class="flex justify-between items-center border-b pb-2">
+          <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-user-tie text-emerald-700"></i> മുഅല്ലിം എൻട്രി & രജിസ്ട്രേഷൻ</h3>
+          <button onclick="closeMuallimRegModal()" class="text-slate-400 hover:text-slate-700 font-bold text-base">✕</button>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">മദ്റസ തിരഞ്ഞെടുക്കുക</label>
+            <select id="mualModalMadrasaSelect" class="w-full border p-2 rounded-xl font-bold bg-white"></select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">മുഅല്ലിമിന്റെ പേര്</label>
+            <input type="text" id="mualModalName" placeholder="ഉസ്താദിന്റെ പേര്" class="w-full border p-2 rounded-xl font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">മൊബൈൽ നമ്പർ</label>
+            <input type="tel" id="mualModalPhone" placeholder="മൊബൈൽ നമ്പർ" class="w-full border p-2 rounded-xl font-bold">
+          </div>
+        </div>
+        <div class="flex gap-2 pt-2">
+          <button onclick="saveMuallimEntryFromModal()" class="w-1/2 bg-emerald-700 hover:bg-emerald-800 text-white py-2 rounded-xl text-xs font-bold shadow">
+            രേഖപ്പെടുത്തുക ✓
+          </button>
+          <button onclick="closeMuallimRegModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
+            ക്ലോസ്
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- 7. PRIZE DISTRIBUTION DESK -->
     <section id="portalPrize" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
@@ -536,7 +566,6 @@
           <div id="prizeStudentCard" class="hidden bg-white border border-amber-200 rounded-xl p-3 space-y-2"></div>
         </div>
 
-        <!-- Add/Edit Program With Exact Point Logic & Without Grade Option -->
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-xs font-bold text-slate-800"><i class="fa-solid fa-trophy"></i> പുതിയ മത്സരം / വിജയികളെ രേഖപ്പെടുത്തുക:</span>
@@ -759,7 +788,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
+  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT - AUTO CLOSES UPON SUCCESS) -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -790,71 +819,6 @@
         </button>
         <button onclick="handleRoleAuth()" class="w-1/2 bg-slate-900 hover:bg-black text-white py-2 rounded-xl text-xs font-bold shadow">
           ലോഗിൻ
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MUALLIM REGISTRATION MODAL FOR SPOT DESK -->
-  <div id="muallimRegModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
-    <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-user-tie text-emerald-700"></i> മുഅല്ലിം രജിസ്ട്രേഷൻ</h3>
-        <button onclick="closeMuallimRegModal()" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
-      </div>
-
-      <div class="space-y-2 text-xs">
-        <div>
-          <label class="font-bold text-slate-600 block mb-0.5">മുഅല്ലിമിന്റെ പേര് *</label>
-          <input type="text" id="mualRegNameInp" placeholder="പേര് നൽകുക" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-emerald-600">
-        </div>
-        <div>
-          <label class="font-bold text-slate-600 block mb-0.5">മദ്റസ തിരഞ്ഞെടുക്കുക *</label>
-          <select id="mualRegMadrasaSelect" class="w-full border p-2 rounded-xl font-bold bg-white focus:ring-1 focus:ring-emerald-600"></select>
-        </div>
-        <div>
-          <label class="font-bold text-slate-600 block mb-0.5">മൊബൈൽ നമ്പർ *</label>
-          <input type="tel" id="mualRegPhoneInp" placeholder="10 അക്ക മൊബൈൽ നമ്പർ" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-emerald-600">
-        </div>
-      </div>
-
-      <div class="flex gap-2 pt-2">
-        <button onclick="saveMuallimRegistrationDetails()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2 rounded-xl text-xs shadow">
-          രജിസ്റ്റർ ചെയ്യുക ✓
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MUALLIM PUBLIC LOGIN & QR MODAL -->
-  <div id="muallimLoginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
-    <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-id-card-clip text-emerald-700"></i> മുഅല്ലിം ലോഗിൻ & QR</h3>
-        <button onclick="closeMuallimLoginModal()" class="text-slate-400 hover:text-slate-700 font-bold text-sm">✕</button>
-      </div>
-
-      <div class="space-y-2 text-xs">
-        <div>
-          <label class="font-bold text-slate-600 block mb-0.5">മദ്റസ തിരഞ്ഞെടുക്കുക *</label>
-          <select id="mualPubMadrasaSelect" class="w-full border p-2 rounded-xl font-bold bg-white focus:ring-1 focus:ring-emerald-600"></select>
-        </div>
-        <div>
-          <label class="font-bold text-slate-600 block mb-0.5">രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ *</label>
-          <input type="tel" id="mualPubPhoneInp" placeholder="മൊബൈൽ നമ്പർ" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-emerald-600">
-        </div>
-        <button onclick="verifyAndShowMuallimQR()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2 rounded-xl text-xs shadow">
-          ക്യു.ആർ കോഡ് തുറക്കുക
-        </button>
-      </div>
-
-      <!-- Muallim QR Display Container -->
-      <div id="mualQrDisplayCard" class="hidden border-t pt-3 flex flex-col items-center space-y-2 text-center">
-        <h4 id="mualQrNameText" class="font-black text-slate-900 text-xs"></h4>
-        <p id="mualQrMadrasaText" class="text-[10px] text-slate-600 font-bold"></p>
-        <div id="mualQrBoxHolder" class="p-1 bg-white border border-slate-200 rounded-lg"></div>
-        <button onclick="printMuallimDirectQR()" class="w-full bg-slate-900 text-white font-bold py-1.5 rounded-xl text-xs">
-          <i class="fa-solid fa-print"></i> പ്രിന്റ് / ഡൗൺലോഡ്
         </button>
       </div>
     </div>
@@ -892,7 +856,7 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    // 17 Complete Madrasas list matching user's exact specification
+    // 17 Real Madrasas list
     const DEFAULT_17_MADRASAS = [
       { regNo: "698", name: "MADRASATHUL MUHAMMADIYYA", points: 0, managerName: "", managerPhone: "" },
       { regNo: "1592", name: "NOORUL ISLAM MADRASA", points: 0, managerName: "", managerPhone: "" },
@@ -914,12 +878,11 @@
     ];
 
     let madrasasData = [...DEFAULT_17_MADRASAS];
-    let ustadDataList = [];
     let programsList = [];
     let scheduleData = [];
     let contactList = [];
     let aboutAppContent = "മദ്റസ റേഞ്ച് തല മുസാബഖ ഡിജിറ്റൽ മാനേജ്‌മെന്റ് സിസ്റ്റം.";
-    let isContactPublicVisible = false;
+    let isContactPublicVisible = true;
 
     let currentUserRole = null;
     let html5QrScanner = null;
@@ -936,7 +899,7 @@
       return cleaned.slice(-10);
     }
 
-    // History Back Navigation
+    // Step-by-Step Back Navigation Support
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) {
         navRoute(e.state.page, false);
@@ -950,22 +913,24 @@
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
-        // 1. Fetch Students
+        // 1. Fetch Students from Firestore
         await loadAllStudentsCache();
 
-        // 2. Fetch Madrasas Config
+        // 2. Fetch or Sync Madrasas from Firestore
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
         if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
           madrasasData = mSnap.data().list;
+          
+          // Auto-Discovery: If students have madrasas not present in list, append them safely
+          allStudentsCache.forEach(s => {
+            if(s.madrasa && !madrasasData.some(m => m.name === s.madrasa)) {
+              const newReg = String(madrasasData.length + 100);
+              madrasasData.push({ regNo: newReg, name: s.madrasa, points: 0, managerName: "", managerPhone: "" });
+            }
+          });
         } else {
           madrasasData = [...DEFAULT_17_MADRASAS];
           await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
-        }
-
-        // 3. Fetch Registered Ustads List
-        const uSnap = await getDoc(doc(db, "config", "ustads"));
-        if(uSnap.exists() && uSnap.data().list) {
-          ustadDataList = uSnap.data().list;
         }
 
         const pSnap = await getDoc(doc(db, "config", "programs"));
@@ -980,13 +945,6 @@
         const abSnap = await getDoc(doc(db, "config", "about"));
         if(abSnap.exists()) aboutAppContent = abSnap.data().text;
         document.getElementById("dispAboutText").innerText = aboutAppContent;
-
-        const cvSnap = await getDoc(doc(db, "config", "contactVisibility"));
-        if(cvSnap.exists()) {
-          isContactPublicVisible = cvSnap.data().visible;
-          const tog = document.getElementById("admContactVisibilityToggle");
-          if(tog) tog.checked = isContactPublicVisible;
-        }
 
         const ctSnap = await getDoc(doc(db, "config", "contacts"));
         if(ctSnap.exists()) contactList = ctSnap.data().list;
@@ -1081,6 +1039,14 @@
       });
       document.getElementById(secId).classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const returnBtn = document.getElementById("btnReturnToMyDesk");
+      if(currentUserRole && secId !== 'portalRoleDesk' && secId !== 'portalFood' && secId !== 'portalPrize' && secId !== 'portalStage' && secId !== 'portalAdmin') {
+        returnBtn.classList.remove("hidden");
+        document.getElementById("returnDeskNameText").innerText = getRoleShortTitle(currentUserRole);
+      } else {
+        returnBtn.classList.add("hidden");
+      }
     };
 
     function getRoleShortTitle(role) {
@@ -1093,7 +1059,7 @@
       return "Desk";
     }
 
-    // ================= AUTHENTICATION (FIXED AUTO-CLOSE) =================
+    // ================= AUTHENTICATION =================
     window.openLoginModal = function() {
       document.getElementById("loginPasswordInput").value = "";
       document.getElementById("loginModal").classList.remove("hidden");
@@ -1108,13 +1074,13 @@
 
       if (pass === SUPER_ADMIN_PASS) {
         applyRoleSession(role);
-        closeLoginModal(); // Immediately close modal
+        closeLoginModal();
         return;
       }
 
       if (rolesConfig[role] && rolesConfig[role].pass === pass) {
         applyRoleSession(role);
-        closeLoginModal(); // Immediately close modal
+        closeLoginModal();
       } else {
         alert("പാസ്‌വേഡ് തെറ്റാണ്!");
       }
@@ -1129,10 +1095,12 @@
       document.getElementById("liveStatusBar").classList.remove("hidden");
       buildSidebarMenuForRole(role);
 
+      // Header button becomes red Logout button
       const authBtn = document.getElementById("headerAuthBtn");
       authBtn.className = "text-xs bg-red-600 hover:bg-red-700 text-white font-black px-3.5 py-1.5 rounded-xl shadow border border-red-500 transition";
       document.getElementById("topRoleText").innerText = "Logout";
 
+      // Super Admin vs Co-Admin controls
       const clearAllBtn = document.getElementById("btnSuperAdminClearAll");
       if(clearAllBtn) {
         clearAllBtn.style.display = (role === 'admin') ? "inline-block" : "none";
@@ -1165,7 +1133,6 @@
         <button onclick="navRoute('secContactsAboutView')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-circle-info text-blue-600"></i> About & Contacts</button>
       `;
 
-      // Option to return to logged-in desk inside sidebar
       if(role) {
         html = `
           <button onclick="returnToActiveDesk()" class="w-full text-left p-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-950 font-black rounded-xl flex items-center gap-3 border border-emerald-300 mb-2">
@@ -1179,7 +1146,7 @@
           <button onclick="openSidebarDeskAction('madrasaQr')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-qrcode text-purple-700"></i> മദ്റസ QR കോഡുകൾ</button>
           <button onclick="openSidebarDeskAction('printBadges')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-print text-slate-800"></i> ബാഡ്ജുകൾ പ്രിന്റ്</button>
           <button onclick="openSidebarDeskAction('addStudent')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-user-plus text-emerald-700"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക</button>
-          <button onclick="openMuallimRegModal()" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-user-tie text-blue-700"></i> ഉസ്താദുമാരെ രജിസ്റ്റർ ചെയ്യുക</button>
+          <button onclick="openSidebarDeskAction('entryUstad')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-user-tie text-blue-700"></i> ഉസ്താദുമാരെ എൻട്രി ചെയ്യുക</button>
         `;
       }
 
@@ -1193,9 +1160,8 @@
         `;
       }
 
-      // Public Muallim login option in sidebar
       html += `
-        <button onclick="openMuallimLoginModal()" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3 text-emerald-800 border-t mt-2">
+        <button onclick="openMuallimLoginPrompt()" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3 text-emerald-800 border-t mt-2">
           <i class="fa-solid fa-id-card-clip text-emerald-700"></i> മുഅല്ലിം ലോഗിൻ & QR
         </button>
       `;
@@ -1212,104 +1178,76 @@
       } else if (action === 'addStudent') {
         const el = document.getElementById("deskAddMissingStudentForm");
         if(el) el.scrollIntoView({ behavior: 'smooth' });
+      } else if (action === 'entryUstad') {
+        // Open dedicated Ustad entry modal
+        const sel = document.getElementById("mualModalMadrasaSelect");
+        if(sel) {
+          sel.innerHTML = madrasasData.map(m => `<option value="${m.regNo}">${m.regNo} - ${m.name}</option>`).join("");
+        }
+        document.getElementById("muallimRegModal").classList.remove("hidden");
       }
-    };
-
-    // ================= MUALLIM REGISTRATION & PUBLIC LOGIN =================
-    window.openMuallimRegModal = function() {
-      const sel = document.getElementById("mualRegMadrasaSelect");
-      sel.innerHTML = '<option value="">മദ്റസ തിരഞ്ഞെടുക്കുക *</option>';
-      madrasasData.forEach(m => {
-        sel.innerHTML += `<option value="${m.name}" data-reg="${m.regNo}">${m.regNo} - ${m.name}</option>`;
-      });
-      document.getElementById("mualRegNameInp").value = "";
-      document.getElementById("mualRegPhoneInp").value = "";
-      document.getElementById("muallimRegModal").classList.remove("hidden");
     };
 
     window.closeMuallimRegModal = function() {
       document.getElementById("muallimRegModal").classList.add("hidden");
     };
 
-    window.saveMuallimRegistrationDetails = async function() {
-      const name = document.getElementById("mualRegNameInp").value.trim();
-      const sel = document.getElementById("mualRegMadrasaSelect");
-      const madrasaName = sel.value;
-      const regNo = sel.options[sel.selectedIndex]?.getAttribute("data-reg") || "";
-      const phone = cleanPhone(document.getElementById("mualRegPhoneInp").value);
+    window.saveMuallimEntryFromModal = async function() {
+      const reg = document.getElementById("mualModalMadrasaSelect").value;
+      const name = document.getElementById("mualModalName").value.trim();
+      const phone = document.getElementById("mualModalPhone").value.trim();
 
-      if(!name || !madrasaName || !phone) {
-        alert("എല്ലാ വിവരങ്ങളും നിർബന്ധമായും നൽകുക!");
+      if(!reg || !name || !phone) {
+        alert("എല്ലാ വിവരങ്ങളും നൽകുക!");
         return;
       }
 
-      ustadDataList.push({ name, madrasa: madrasaName, regNo, phone });
-      await setDoc(doc(db, "config", "ustads"), { list: ustadDataList });
-      
-      // Update Manager food count
-      markManagerFoodRedeemed();
-
-      closeMuallimRegModal();
-      alert(`${name} ഉസ്താദിന്റെ വിവരങ്ങളും ഭക്ഷണവും വിജയകരമായി രജിസ്റ്റർ ചെയ്തു!`);
-    };
-
-    window.openMuallimLoginModal = function() {
-      const sel = document.getElementById("mualPubMadrasaSelect");
-      sel.innerHTML = '<option value="">മദ്റസ തിരഞ്ഞെടുക്കുക *</option>';
-      madrasasData.forEach(m => {
-        sel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
-      });
-      document.getElementById("mualPubPhoneInp").value = "";
-      document.getElementById("mualQrDisplayCard").classList.add("hidden");
-      document.getElementById("muallimLoginModal").classList.remove("hidden");
-    };
-
-    window.closeMuallimLoginModal = function() {
-      document.getElementById("muallimLoginModal").classList.add("hidden");
-    };
-
-    window.verifyAndShowMuallimQR = function() {
-      const madrasaName = document.getElementById("mualPubMadrasaSelect").value;
-      const phone = cleanPhone(document.getElementById("mualPubPhoneInp").value);
-
-      if(!madrasaName || !phone) {
-        alert("മദ്റസയും രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പറും നൽകുക!");
-        return;
+      const m = madrasasData.find(x => x.regNo === reg);
+      if(m) {
+        m.managerName = name;
+        m.managerPhone = phone;
+        await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+        markManagerFoodRedeemed();
+        closeMuallimRegModal();
+        alert(`${name} ഉസ്താദിന്റെ രജിസ്ട്രേഷനും ഭക്ഷണവും രേഖപ്പെടുത്തി!`);
+        document.getElementById("mualModalName").value = "";
+        document.getElementById("mualModalPhone").value = "";
       }
+    };
 
-      // Check in registered ustads list or team managers list
-      const ustad = ustadDataList.find(u => u.madrasa === madrasaName && cleanPhone(u.phone) === phone) ||
-                    madrasasData.find(m => m.name === madrasaName && cleanPhone(m.managerPhone) === phone);
+    // Public Muallim Login with Madrasa Selection & Phone Verification
+    window.openMuallimLoginPrompt = function() {
+      const mOptions = madrasasData.map((m, idx) => `${idx + 1}. ${m.name} (${m.regNo})`).join("\n");
+      const choice = prompt(`മദ്റസ നമ്പർ തിരഞ്ഞെടുക്കുക (1 - ${madrasasData.length}):\n${mOptions}`);
+      if(!choice) return;
 
-      if(ustad) {
-        const ustadName = ustad.name || ustad.managerName || "ഉസ്താദ്";
-        const regNo = ustad.regNo || "";
-        document.getElementById("mualQrNameText").innerText = ustadName;
-        document.getElementById("mualQrMadrasaText").innerText = `${madrasaName} (Reg: ${regNo})`;
+      const selectedIdx = parseInt(choice, 10) - 1;
+      const m = madrasasData[selectedIdx];
 
-        const qrBox = document.getElementById("mualQrBoxHolder");
-        qrBox.innerHTML = "";
-        new QRCode(qrBox, { text: `USTAD:${ustadName}|MADRASA:${madrasaName}|REG:${regNo}`, width: 130, height: 130, correctLevel: QRCode.CorrectLevel.L });
-
-        document.getElementById("mualQrDisplayCard").classList.remove("hidden");
+      if(m) {
+        const phone = prompt(`${m.name} ൽ രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ നൽകുക:`);
+        if(phone) {
+          const cleanP = cleanPhone(phone);
+          if(cleanPhone(m.managerPhone) === cleanP && cleanP !== "") {
+            const printArea = document.getElementById("printableArea");
+            printArea.innerHTML = `
+              <div class="border-2 border-slate-900 bg-white p-4 rounded-2xl text-center space-y-2 max-w-sm mx-auto">
+                <h3 class="font-black text-slate-900">${m.name}</h3>
+                <p class="text-xs text-slate-600 font-bold">മുഅല്ലിം: ${m.managerName || 'ഉസ്താദ്'} (Reg: ${m.regNo})</p>
+                <div id="muallimQrBox" class="flex justify-center p-2"></div>
+                <button onclick="window.print()" class="no-print bg-slate-900 text-white text-xs px-4 py-2 rounded-xl">പ്രിന്റ് ചെയ്യുക</button>
+              </div>
+            `;
+            new QRCode(document.getElementById("muallimQrBox"), { text: `USTAD:${m.managerName || 'Ustad'}|MADRASA:${m.name}|REG:${m.regNo}`, width: 140, height: 140 });
+            alert("ഉസ്താദിന്റെ QR കോഡ് തയ്യാറായി! പ്രിന്റ് ചെയ്യാം.");
+            window.print();
+          } else {
+            alert("ഈ മദ്റസയിൽ ഈ ഫോൺ നമ്പർ രജിസ്റ്റർ ചെയ്തിട്ടില്ല! ഹെൽപ്പ് ഡെസ്കിൽ ബന്ധപ്പെടുക.");
+          }
+        }
       } else {
-        alert("ഈ മദ്റസയിൽ നൽകിയ ഫോൺ നമ്പറിൽ ഉസ്താദിനെ കണ്ടെത്തിയില്ല. സ്പോട്ട് ഡെസ്കിൽ രജിസ്റ്റർ ചെയ്തിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.");
+        alert("തെറ്റായ തെരഞ്ഞെടുപ്പ്!");
       }
-    };
-
-    window.printMuallimDirectQR = function() {
-      const ustadName = document.getElementById("mualQrNameText").innerText;
-      const meta = document.getElementById("mualQrMadrasaText").innerText;
-      const printArea = document.getElementById("printableArea");
-      printArea.innerHTML = `
-        <div class="border-2 border-slate-900 bg-white p-4 rounded-2xl text-center space-y-2 max-w-sm mx-auto">
-          <h3 class="font-black text-slate-900">${meta}</h3>
-          <p class="text-xs text-slate-600 font-bold">മുഅല്ലിം: ${ustadName}</p>
-          <div id="mualPrintQrHolder" class="flex justify-center p-2"></div>
-        </div>
-      `;
-      new QRCode(document.getElementById("mualPrintQrHolder"), { text: `USTAD:${ustadName}|${meta}`, width: 140, height: 140 });
-      setTimeout(() => { window.print(); }, 400);
     };
 
     function activatePortalView(id, title) {
@@ -1330,6 +1268,7 @@
 
       document.getElementById("sideUserLabel").classList.add("hidden");
       document.getElementById("sideLogoutBtn").classList.add("hidden");
+      document.getElementById("btnReturnToMyDesk").classList.add("hidden");
       document.getElementById("liveStatusBar").classList.add("hidden");
       
       stopFoodQRScanner();
@@ -1431,13 +1370,6 @@
         alert("ദയവായി മദ്റസ Reg No ഉം ഫോൺ നമ്പറും നൽകുക!"); 
         return; 
       }
-
-      try {
-        const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list) {
-          madrasasData = mSnap.data().list;
-        }
-      } catch(e) {}
 
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
@@ -1625,6 +1557,7 @@
       const snap = await getDoc(doc(db, "config", "managerFood"));
       const cur = snap.exists() ? (snap.data().count || 0) : 0;
       await setDoc(doc(db, "config", "managerFood"), { count: cur + 1 });
+      alert("മാനേജർ ഫുഡ് രേഖപ്പെടുത്തി!");
       refreshCounters();
     };
 
@@ -1719,9 +1652,9 @@
       if(printSel) printSel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
 
       madrasasData.forEach(m => {
-        if(sel) sel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
-        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
-        if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
+        if(sel) sel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
+        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
+        if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
       });
     }
 
@@ -1771,7 +1704,7 @@
             <button onclick="deskDeleteStudentPrompt('${s.id}')" class="text-red-600 p-1 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
-      `).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളെ കണ്ടെത്തിയില്ല.</td></tr>';
+      `).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളില്ല.</td></tr>';
     };
 
     window.toggleStudentEntryQuick = async function(id, val) {
@@ -2150,7 +2083,7 @@
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-1.5">
               <input type="text" id="mReg_${idx}" value="${m.regNo || ('M'+(idx+1))}" class="w-16 border p-1 rounded text-center font-bold bg-slate-50 uppercase">
-              <input type="text" id="mName_${idx}" value="${m.name}" class="w-48 sm:w-60 border p-1 rounded font-bold">
+              <input type="text" id="mName_${idx}" value="${m.name}" class="w-48 sm:w-64 border p-1 rounded font-bold">
             </div>
             <div class="flex items-center gap-1">
               <input type="number" id="mPoints_${idx}" value="${m.points || 0}" class="w-14 border p-1 rounded text-center font-bold">
@@ -2374,10 +2307,28 @@
     };
 
     // ================= SCHEDULE & LEADERBOARD =================
+    function isEventElapsed(timeStr, durMin) {
+      try {
+        const [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+        if (modifier === "PM" && hours < 12) hours += 12;
+        if (modifier === "AM" && hours === 12) hours = 0;
+
+        const now = new Date();
+        const evStart = new Date();
+        evStart.setHours(hours, minutes, 0, 0);
+
+        const evEnd = new Date(evStart.getTime() + (durMin || 20) * 60000);
+        return now > evEnd;
+      } catch (e) { return false; }
+    }
+
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      if(!container) return;
+      const liveBoxes = document.getElementById("publicLiveStageBoxes");
+      if(!container || !liveBoxes) return;
       container.innerHTML = "";
+      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
