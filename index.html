@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
-  <!-- Provided Vector SVG Logo Embedded as Data-URI -->
+  <!-- Provided Exact Vector SVG as High-Res Icon & Data-URI for True PWA App Icon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
 
@@ -42,7 +42,7 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50/70 via-slate-50 to-amber-50/40 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
+  <!-- ================= TOP HEADER ================= -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
       
@@ -70,13 +70,19 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
+      <!-- Action items -->
+      <div class="flex items-center gap-1.5">
+        <!-- Persistent Button to Return to User's Active Logged-in Desk -->
+        <button id="btnReturnToMyDesk" onclick="returnToActiveDesk()" class="hidden px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1">
+          <i class="fa-solid fa-arrow-left"></i> <span id="returnDeskNameText">ഡെസ്ക്</span>
+        </button>
+
         <button onclick="navRoute('secStages')" title="ഷെഡ്യൂൾ" class="px-2.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl border border-amber-400/40 text-xs font-bold flex items-center gap-1.5 shadow-xs">
           <i class="fa-solid fa-calendar-days text-amber-400"></i>
           <span class="text-[10px] sm:text-xs">ഷെഡ്യൂൾ</span>
         </button>
 
-        <button id="headerAuthBtn" onclick="handleHeaderAuthClick()" class="text-xs font-black px-3.5 py-1.5 rounded-xl shadow border transition bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 text-slate-950 border-amber-300">
+        <button id="headerAuthBtn" onclick="openLoginModal()" class="text-xs bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-slate-950 font-black px-3.5 py-1.5 rounded-xl shadow border border-amber-300">
           <span id="topRoleText">Login</span>
         </button>
       </div>
@@ -93,7 +99,7 @@
     </marquee>
   </div>
 
-  <!-- PROTECTED METRICS -->
+  <!-- PROTECTED LIVE METRICS BAR (ONLY VISIBLE TO ACTIVE LOGGED-IN ROLES) -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ വിദ്യാർത്ഥികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -116,16 +122,17 @@
           </svg>
         </div>
         <p class="text-xs font-black text-rose-300 mt-2 tracking-wider">KRJM MUSBQ 2026</p>
-        <p class="text-[10px] text-emerald-300">17 മദ്റസകൾ • 4 വേദികൾ</p>
       </div>
 
-      <nav class="p-3 space-y-1 text-xs font-bold text-slate-700" id="sidebarLinksContainer"></nav>
+      <nav class="p-3 space-y-1 text-xs font-bold text-slate-700" id="sidebarLinksContainer">
+        <!-- Rendered dynamically -->
+      </nav>
     </div>
 
     <div class="p-3 border-t bg-slate-50">
       <div id="sideUserLabel" class="hidden mb-2 p-2 bg-rose-100 border border-rose-300 rounded-xl text-xs text-rose-950 font-bold"></div>
       <button id="sideLogoutBtn" onclick="logoutApp()" class="hidden w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 rounded-xl">
-        ലോഗ് ഔട്ട് (Logout)
+        Logout
       </button>
     </div>
   </aside>
@@ -142,89 +149,93 @@
           <i class="fa-solid fa-satellite-dish text-red-400 animate-pulse"></i> വേദികളിൽ ഇപ്പോൾ നടക്കുന്നത് (Live Stage Status)
         </h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs" id="publicLiveStageBoxes">
-          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 1</span><span class="font-bold truncate block" id="liveNowStage1">ഷെഡ്യൂൾ ഉടൻ</span></div>
-          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 2</span><span class="font-bold truncate block" id="liveNowStage2">ഷെഡ്യൂൾ ഉടൻ</span></div>
-          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 3</span><span class="font-bold truncate block" id="liveNowStage3">ഷെഡ്യൂൾ ഉടൻ</span></div>
-          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 4</span><span class="font-bold truncate block" id="liveNowStage4">ഷെഡ്യൂൾ ഉടൻ</span></div>
+          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 1</span><span class="font-bold truncate block">മത്സരങ്ങൾ ഉടൻ</span></div>
+          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 2</span><span class="font-bold truncate block">മത്സരങ്ങൾ ഉടൻ</span></div>
+          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 3</span><span class="font-bold truncate block">മത്സരങ്ങൾ ഉടൻ</span></div>
+          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center"><span class="font-black text-amber-300 block text-[10px]">വേദി 4</span><span class="font-bold truncate block">മത്സരങ്ങൾ ഉടൻ</span></div>
         </div>
       </div>
 
       <!-- TWO-COLUMN COMPACT VIEW -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         
-        <!-- Student Verification Form -->
-        <div class="bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 text-rose-100 p-3.5 rounded-2xl shadow-md border border-rose-800 space-y-2">
-          <div class="flex items-center gap-1.5 border-b border-rose-800/50 pb-1.5">
-            <div class="w-6 h-6 rounded-lg bg-rose-800/60 flex items-center justify-center text-amber-300">
-              <i class="fa-solid fa-user-check text-xs"></i>
+        <!-- Student Verification Form: Light-Dark Rose -->
+        <div class="bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 text-rose-100 p-4 rounded-2xl shadow-md border-2 border-rose-800/80 space-y-2.5">
+          <div class="flex items-center gap-2 border-b border-rose-800/50 pb-2">
+            <div class="w-8 h-8 rounded-xl bg-rose-800/60 flex items-center justify-center text-amber-300 border border-rose-600/50">
+              <i class="fa-solid fa-user-check text-sm"></i>
             </div>
             <div>
-              <h3 class="text-xs font-black text-rose-100 uppercase tracking-wide leading-none">വിദ്യാർത്ഥികളുടെ ഫലങ്ങൾ</h3>
-              <p class="text-[9px] text-rose-300 leading-none mt-0.5">ഫലങ്ങളും വിവരങ്ങളും പരിശോധിക്കാം</p>
+              <h3 class="text-xs sm:text-sm font-black text-rose-100 uppercase tracking-wide">വിദ്യാർത്ഥികളുടെ ഫലങ്ങൾ</h3>
+              <p class="text-[10px] text-rose-300 leading-none">റിസൾട്ടും വിവരങ്ങളും പരിശോധിക്കാം</p>
             </div>
           </div>
           
-          <div class="space-y-1.5">
+          <div class="space-y-2 pt-0.5">
             <div>
-              <input type="text" id="stdCheckIdInput" placeholder="പേര് / ചെസ്റ്റ് നമ്പർ" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <label class="text-[10px] font-bold text-rose-300 block mb-0.5">പേര് / ചെസ്റ്റ് നമ്പർ</label>
+              <input type="text" id="stdCheckIdInput" placeholder="ഉദാ: 101 അല്ലെങ്കിൽ പേര്" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-2 text-xs rounded-xl focus:ring-1 focus:ring-amber-400 focus:outline-none">
             </div>
             <div>
-              <input type="password" id="stdCheckRegPassword" placeholder="പാസ്‌വേഡ് (മദ്റസ Reg No: M01)" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold">
+              <label class="text-[10px] font-bold text-rose-300 block mb-0.5">പാസ്‌വേഡ് (മദ്റസ Reg No)</label>
+              <input type="password" id="stdCheckRegPassword" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-2 text-xs rounded-xl uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold tracking-wider">
             </div>
-            <button onclick="verifyAndShowStudentDetails()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 text-slate-950 font-black text-xs py-1.5 rounded-lg shadow transition">
+            <button onclick="verifyAndShowStudentDetails()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-slate-950 font-black text-xs py-2.5 rounded-xl shadow-md transition">
               പരിശോധിക്കുക
             </button>
           </div>
 
-          <!-- Result Display Card -->
-          <div id="publicResultCard" class="hidden mt-1.5 border border-rose-500 bg-slate-950 rounded-xl p-2.5 space-y-1.5 relative shadow-lg">
-            <button onclick="closePublicSearchResult()" class="absolute top-1 right-1 text-rose-300 hover:text-white bg-rose-900/60 rounded-full w-5 h-5 flex items-center justify-center text-xs">✕</button>
+          <!-- Result Card Display -->
+          <div id="publicResultCard" class="hidden mt-2 border border-rose-500 bg-slate-950 rounded-xl p-3 space-y-2 relative shadow-lg">
+            <button onclick="closePublicSearchResult()" class="absolute top-2 right-2 text-rose-300 hover:text-white bg-rose-900/60 rounded-full w-5 h-5 flex items-center justify-center text-xs">✕</button>
 
-            <div class="border-b border-rose-800/80 pb-1 pr-6">
-              <h4 id="pubName" class="text-xs sm:text-sm font-bold text-amber-300"></h4>
-              <p id="pubMadrasa" class="text-[10px] font-semibold text-rose-200"></p>
-              <div class="flex flex-wrap gap-1 mt-0.5">
-                <span id="pubTokenBadge" class="bg-amber-400/20 text-amber-300 text-[8px] font-black px-1.5 py-0.2 rounded-full border border-amber-400/40"></span>
-                <span id="pubChestBadge" class="bg-rose-500/20 text-rose-300 text-[8px] font-black px-1.5 py-0.2 rounded-full border border-rose-500/40"></span>
+            <div class="border-b border-rose-800/80 pb-1.5 pr-6">
+              <h4 id="pubName" class="text-sm font-bold text-amber-300"></h4>
+              <p id="pubMadrasa" class="text-xs font-semibold text-rose-200"></p>
+              <div class="flex flex-wrap gap-1 mt-1">
+                <span id="pubTokenBadge" class="bg-amber-400/20 text-amber-300 text-[10px] font-black px-2 py-0.5 rounded-full border border-amber-400/40"></span>
+                <span id="pubChestBadge" class="bg-rose-500/20 text-rose-300 text-[10px] font-black px-2 py-0.5 rounded-full border border-rose-500/40"></span>
               </div>
             </div>
 
-            <div id="pubPrizeStatusAlert" class="p-1 rounded text-center text-[10px] font-black space-y-1"></div>
+            <div id="pubPrizeStatusAlert" class="p-2 rounded-lg text-center text-xs font-black space-y-1"></div>
 
-            <div class="grid grid-cols-2 gap-1 text-center text-[9px] font-bold">
-              <div id="pubEntryStatus" class="p-1 rounded border"></div>
-              <div id="pubFoodStatus" class="p-1 rounded border"></div>
+            <div class="grid grid-cols-2 gap-1.5 text-center text-[10px] font-bold">
+              <div id="pubEntryStatus" class="p-1.5 rounded-lg border"></div>
+              <div id="pubFoodStatus" class="p-1.5 rounded-lg border"></div>
             </div>
 
-            <div class="bg-white p-1.5 rounded-lg flex flex-col items-center">
-              <p class="text-[10px] font-black text-slate-900" id="pubQrTitleName"></p>
-              <p class="text-[8px] font-bold text-slate-600 mb-0.5" id="pubQrMetaLine"></p>
+            <div class="bg-white p-2 rounded-lg flex flex-col items-center">
+              <p class="text-[11px] font-black text-slate-900" id="pubQrTitleName"></p>
+              <p class="text-[9px] font-bold text-slate-600 mb-0.5" id="pubQrMetaLine"></p>
               <div id="pubQrcode" class="p-1 bg-white border border-slate-200 rounded"></div>
             </div>
           </div>
-          <p id="pubError" class="hidden text-[10px] text-amber-300 text-center font-bold"></p>
+          <p id="pubError" class="hidden text-xs text-amber-300 mt-1 text-center font-bold"></p>
         </div>
 
-        <!-- Team Manager Form -->
-        <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-blue-100 p-3.5 rounded-2xl shadow-md border border-blue-800 space-y-2">
-          <div class="flex items-center gap-1.5 border-b border-blue-800/50 pb-1.5">
-            <div class="w-6 h-6 rounded-lg bg-blue-800/60 flex items-center justify-center text-cyan-300">
-              <i class="fa-solid fa-user-tie text-xs"></i>
+        <!-- Team Manager Form: Light-Dark Blue -->
+        <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-blue-100 p-4 rounded-2xl shadow-md border-2 border-blue-800/80 space-y-2.5">
+          <div class="flex items-center gap-2 border-b border-blue-800/50 pb-2">
+            <div class="w-8 h-8 rounded-xl bg-blue-800/60 flex items-center justify-center text-cyan-300 border border-blue-600/50">
+              <i class="fa-solid fa-user-tie text-sm"></i>
             </div>
             <div>
-              <h4 class="text-xs font-black text-blue-100 uppercase tracking-wide leading-none">ടീം മാനേജർ ലോഗിൻ</h4>
-              <p class="text-[9px] text-blue-300 leading-none mt-0.5">മദ്റസ പരിശോധന & QR കോഡ്</p>
+              <h4 class="text-xs sm:text-sm font-black text-blue-100 uppercase tracking-wide">ടീം മാനേജർ ലോഗിൻ</h4>
+              <p class="text-[10px] text-blue-300 leading-none">മദ്റസ ടീം പരിശോധന & QR കോഡ്</p>
             </div>
           </div>
           
-          <div class="space-y-1.5">
+          <div class="space-y-2 pt-0.5">
             <div>
-              <input type="text" id="tmRegNoInput" placeholder="മദ്റസ Reg No (ഉദാ: M01)" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg uppercase font-bold focus:ring-1 focus:ring-cyan-400 focus:outline-none">
+              <label class="text-[10px] font-bold text-blue-300 block mb-0.5">മദ്റസ Reg No</label>
+              <input type="text" id="tmRegNoInput" placeholder="ഉദാ: M01" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-2 text-xs rounded-xl uppercase font-bold focus:ring-1 focus:ring-cyan-400 focus:outline-none tracking-wider">
             </div>
             <div>
-              <input type="tel" id="tmPhoneInput" placeholder="രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-cyan-400 focus:outline-none">
+              <label class="text-[10px] font-bold text-blue-300 block mb-0.5">ഫോൺ നമ്പർ</label>
+              <input type="tel" id="tmPhoneInput" placeholder="രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-2 text-xs rounded-xl focus:ring-1 focus:ring-cyan-400 focus:outline-none">
             </div>
-            <button onclick="authenticateTeamManager()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 text-slate-950 font-black text-xs py-1.5 rounded-lg shadow transition">
+            <button onclick="authenticateTeamManager()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-slate-950 font-black text-xs py-2.5 rounded-xl shadow-md transition">
               ടീം വിവരങ്ങൾ തുറക്കുക
             </button>
           </div>
@@ -233,14 +244,14 @@
       </div>
     </section>
 
-    <!-- 2. STAGE SCHEDULE VIEW -->
+    <!-- 2. STAGE SCHEDULE VIEW (ONLY USER-ADDED ITEMS, NO DUMMY ITEMS) -->
     <section id="secStages" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-calendar-check text-emerald-700"></i> മത്സര സമയക്രമം & വേദികൾ (Schedule)
+          <i class="fa-solid fa-calendar-check text-emerald-700"></i> സമയക്രമത്തിൽ ക്രമീകരിച്ച മത്സരങ്ങൾ (Schedule)
         </h2>
         <div class="space-y-2.5" id="stageScheduleContainer">
-          <p class="text-xs text-slate-400 text-center py-4">ഷെഡ്യൂൾ നൽകിയിട്ടില്ല.</p>
+          <p class="text-xs text-slate-400 text-center py-4">ഷെഡ്യൂളുകൾ നൽകിയിട്ടില്ല.</p>
         </div>
       </div>
     </section>
@@ -249,7 +260,7 @@
     <section id="secLeaderboard" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2 mb-3">
-          <i class="fa-solid fa-trophy text-amber-500"></i> 17 മദ്റസകളുടെ പോയിന്റ് നില
+          <i class="fa-solid fa-trophy text-amber-500"></i> 16 മദ്റസകളുടെ പോയിന്റ് നില
         </h2>
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
@@ -273,7 +284,7 @@
         <div class="border-b border-blue-100 pb-2 flex justify-between items-center">
           <div>
             <h2 class="text-base font-bold text-blue-900 flex items-center gap-2">
-              <i class="fa-solid fa-user-tie text-blue-700"></i> ടീം മാനേജർ ഡാഷ്‌ബോർഡ്
+              <i class="fa-solid fa-user-tie text-blue-700"></i> ടീം മാനേജർ
             </h2>
             <p class="text-xs text-slate-500">Team Manager Dashboard</p>
           </div>
@@ -281,23 +292,35 @@
         </div>
 
         <div id="tmDashboardBox" class="space-y-4">
-          <div class="bg-blue-50 border border-blue-200 p-3 sm:p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-3">
             <div>
               <span class="text-[10px] font-black bg-blue-200 text-blue-900 px-2 py-0.5 rounded-full" id="tmRegBadge"></span>
               <h3 class="text-sm font-black text-blue-950 mt-1" id="tmCurrentMadrasa"></h3>
               <p class="text-xs text-slate-600" id="tmCurrentManager"></p>
             </div>
             
-            <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-blue-200 shadow-xs">
+            <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-blue-200 shadow-xs">
               <div id="tmMadrasaQrBox"></div>
               <div class="text-center">
-                <p class="text-[10px] font-black text-blue-950" id="tmQrBoxLabel"></p>
+                <p class="text-[11px] font-black text-blue-950" id="tmQrBoxLabel"></p>
                 <p class="text-[9px] text-slate-500 font-bold" id="tmQrBoxRegLabel"></p>
-                <button onclick="downloadTmQrCode()" class="mt-1 text-[10px] bg-blue-600 text-white font-bold px-2 py-1 rounded flex items-center gap-1 mx-auto">
-                  <i class="fa-solid fa-download"></i> QR ഡൗൺലോഡ്
+                <button onclick="downloadTmQrCode()" class="mt-2 text-[10px] bg-blue-600 text-white font-bold px-2.5 py-1 rounded flex items-center gap-1 mx-auto">
+                  <i class="fa-solid fa-download"></i> സേവ്
                 </button>
               </div>
             </div>
+          </div>
+
+          <!-- Edit Profile Option for Team Manager -->
+          <div class="bg-white p-3.5 rounded-xl border border-blue-200 space-y-2 text-xs">
+            <span class="font-bold text-blue-950"><i class="fa-solid fa-user-pen"></i> മാനേജറുടെ വിവരങ്ങൾ തിരുത്തുക:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input type="text" id="tmEditSelfName" placeholder="മാനേജറുടെ പേര്" class="border p-2 rounded-xl">
+              <input type="tel" id="tmEditSelfPhone" placeholder="മൊബൈൽ നമ്പർ" class="border p-2 rounded-xl">
+            </div>
+            <button onclick="saveTeamManagerProfileSelf()" class="bg-blue-700 hover:bg-blue-800 text-white font-bold px-4 py-1.5 rounded-xl shadow-xs">
+              സേവ് ചെയ്യുക ✓
+            </button>
           </div>
 
           <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
@@ -342,10 +365,10 @@
           <div id="qrReader" class="w-full max-w-xs mx-auto overflow-hidden rounded-2xl border border-slate-300"></div>
           <div class="flex justify-center gap-2">
             <button onclick="startFoodQRScanner()" id="btnStartScan" class="bg-slate-800 text-white text-xs px-4 py-2 rounded-xl font-bold flex items-center gap-1 shadow">
-              <i class="fa-solid fa-camera"></i> സ്കാനർ ഓൺ
+              <i class="fa-solid fa-camera"></i> ക്യാമറ സ്കാനർ ഓൺ
             </button>
             <button onclick="stopFoodQRScanner()" id="btnStopScan" class="hidden bg-slate-600 text-white text-xs px-4 py-2 rounded-xl font-bold">
-              ഓഫ്
+              ക്യാമറ ഓഫ്
             </button>
           </div>
         </div>
@@ -420,23 +443,10 @@
           </div>
         </div>
 
-        <!-- Add Missing Student Section -->
-        <div id="deskAddMissingStudentForm" class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2">
-          <span class="text-xs font-bold text-emerald-950"><i class="fa-solid fa-user-plus"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക:</span>
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
-            <select id="deskAddMadrasa" class="border p-1.5 rounded bg-white font-bold"><option value="">മദ്റസ *</option></select>
-            <input type="text" id="deskAddChest" placeholder="ചെസ്റ്റ് നമ്പർ *" class="border p-1.5 rounded font-bold">
-            <input type="text" id="deskAddName" placeholder="പേര് *" class="border p-1.5 rounded font-bold">
-            <input type="text" id="deskAddClass" placeholder="ക്ലാസ്സ്" class="border p-1.5 rounded">
-            <input type="text" id="deskAddItem" placeholder="ഇനം" class="border p-1.5 rounded">
-          </div>
-          <button onclick="deskAddMissingStudentAction()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-1.5 rounded-lg">ആഡ് ചെയ്യുക ✓</button>
-        </div>
-
         <div class="space-y-2 pt-2 border-t">
           <div class="flex justify-between items-center">
             <h4 class="text-xs font-bold text-slate-800 uppercase">രജിസ്ട്രേഷൻ ലിസ്റ്റ്</h4>
-            <select id="deskFilterMadrasa" onchange="renderDeskStudentsTable()" class="border p-1 text-xs rounded-lg bg-slate-50 font-bold">
+            <select id="deskFilterMadrasa" onchange="renderDeskStudentsTable()" class="border p-1 text-xs rounded-lg bg-slate-50">
               <option value="">എല്ലാ മദ്റസകളും</option>
             </select>
           </div>
@@ -614,7 +624,7 @@
         <div class="border-b pb-2 flex justify-between items-center">
           <div>
             <h2 class="text-sm font-bold text-slate-900">സ്റ്റേജ് മാനേജർ പോർട്ടൽ</h2>
-            <p class="text-xs text-slate-500">മത്സരങ്ങൾ, സമയം എന്നിവ ക്രമീകരിക്കുക</p>
+            <p class="text-xs text-slate-500">മത്സരങ്ങൾ, സമയം, ബ്രേക്ക് എന്നിവ നിയന്ത്രിക്കുക</p>
           </div>
           <div class="flex gap-1 text-xs font-bold">
             <button onclick="selectStageView('Stage 1')" id="stgBtn1" class="px-2.5 py-1 rounded-lg border bg-slate-800 text-white">Stage 1</button>
@@ -625,12 +635,16 @@
         </div>
 
         <div class="bg-slate-50 p-3 rounded-xl border space-y-2 text-xs">
-          <span class="font-bold text-slate-800">+ പുതിയ മത്സരം ഷെഡ്യൂൾ ചെയ്യുക:</span>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input type="text" id="stgAddProgName" placeholder="മത്സര ഇനം" class="border p-1.5 rounded col-span-2">
-            <input type="text" id="stgAddProgTime" placeholder="സമയം (e.g. 09:30 AM)" class="border p-1.5 rounded">
+          <span class="font-bold text-slate-800">+ പുതിയ മത്സരം അല്ലെങ്കിൽ ബ്രേക്ക് ഷെഡ്യൂൾ ചെയ്യുക:</span>
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+            <input type="text" id="stgAddProgName" placeholder="ഇനം (ഉദാ: ഖിറാഅത്ത് അല്ലെങ്കിൽ Break)" class="border p-1.5 rounded col-span-2">
+            <input type="text" id="stgAddProgTime" placeholder="ആരംഭ സമയം (e.g. 09:30 AM)" class="border p-1.5 rounded">
+            <input type="number" id="stgAddProgDuration" placeholder="ദൈർഘ്യം (മിനിറ്റ്)" value="20" class="border p-1.5 rounded">
           </div>
-          <button onclick="stageManagerAddEvent()" class="bg-emerald-700 text-white font-bold rounded p-1.5 text-xs">ആഡ് ചെയ്യുക ✓</button>
+          <div class="flex gap-2">
+            <button onclick="stageManagerAddEvent(false)" class="bg-emerald-700 text-white font-bold rounded p-1.5 text-xs">മത്സരം ചേർക്കുക ✓</button>
+            <button onclick="stageManagerAddEvent(true)" class="bg-amber-600 text-white font-bold rounded p-1.5 text-xs">ബ്രേക്ക് ചേർക്കുക (Break) ☕</button>
+          </div>
         </div>
 
         <div class="space-y-3">
@@ -648,12 +662,12 @@
         <div class="flex items-center justify-between border-b pb-2">
           <div>
             <h2 class="text-base font-black text-slate-900 flex items-center gap-2"><i class="fa-solid fa-shield-halved text-rose-800"></i> Master Control Room</h2>
-            <p class="text-xs text-slate-500">17 മദ്റസകൾ, CSV ഫയൽ, പ്രിന്റിംഗ് & ഡിലീറ്റ്</p>
+            <p class="text-xs text-slate-500">16 മദ്റസകൾ, CSV ഫയൽ, പ്രിന്റിംഗ് & ഡിലീറ്റ്</p>
           </div>
           <span class="text-xs bg-rose-100 text-rose-950 font-bold px-2 py-0.5 rounded-full" id="adminBadgeTitle">Admin Panel</span>
         </div>
 
-        <!-- Announcement Creator -->
+        <!-- Announcement Creator for Desks -->
         <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
           <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
           <div class="flex gap-2">
@@ -662,35 +676,44 @@
           </div>
         </div>
 
-        <!-- Navigation Tabs inside Admin -->
+        <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs">
+          <div>
+            <h4 class="font-bold text-amber-950">Public Contact & Phone Visibility</h4>
+            <p class="text-[10px] text-slate-600">ഇത് ഓൺ ആക്കിയാൽ മാത്രമേ പൊതുജനങ്ങൾക്ക് അഡ്മിൻ നമ്പറുകളും വാട്സാപ്പും കാണാൻ കഴിയൂ.</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="admContactVisibilityToggle" onchange="toggleContactVisibility()" class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+          </label>
+        </div>
+
         <div class="flex flex-wrap gap-1.5 border-b pb-2 text-xs font-bold">
-          <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">17 മദ്റസകൾ & CSV</button>
-          <button onclick="switchAdminTab('admTabScheduleCsv')" class="px-3 py-1.5 bg-amber-600 text-white rounded-lg">ഷെഡ്യൂൾ CSV അപ്‌ലോഡ്</button>
+          <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">16 മദ്റസകൾ & CSV</button>
+          <button onclick="switchAdminTab('admTabProgramsCsv')" class="px-3 py-1.5 bg-purple-800 text-white rounded-lg">മത്സര ഇനങ്ങൾ CSV</button>
           <button onclick="switchAdminTab('admTabBulkPrint')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg"><i class="fa-solid fa-print"></i> ബാഡ്ജുകൾ പ്രിന്റ്</button>
           <button onclick="switchAdminTab('admTabContactsAbout')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">About & Contacts</button>
           <button onclick="switchAdminTab('admTabRoles')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">സ്റ്റാഫ് പാസ്‌വേഡ്</button>
         </div>
 
-        <!-- TAB 1: 17 Madrasas & CSV Upload -->
+        <!-- TAB 1: 16 Madrasas & CSV -->
         <div id="admTabMadrasasFiles" class="space-y-3">
           <div class="flex flex-wrap justify-between items-center gap-2">
-            <h3 class="text-xs font-bold text-slate-800 uppercase">17 മദ്റസകൾ & വിദ്യാർത്ഥി ഫയൽ അപ്‌ലോഡ്</h3>
+            <h3 class="text-xs font-bold text-slate-800 uppercase">16 മദ്റസകൾ & വിദ്യാർത്ഥി ഫയൽ അപ്‌ലോഡ്</h3>
             <div class="flex gap-2">
               <button onclick="printAllMadrasaMasterQRs()" class="bg-purple-800 text-white text-[10px] px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-qrcode"></i> മദ്റസ QR പ്രിന്റ്</button>
+              <!-- Global Clear All Button (Shown ONLY for Super Admin) -->
               <button id="btnSuperAdminClearAll" onclick="clearAllStudentsDataPrompt()" class="bg-red-600 text-white text-[10px] px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-trash"></i> മുഴുവൻ കുട്ടികളെയും ഡിലീറ്റ് ചെയ്യുക</button>
             </div>
           </div>
-          <!-- 17 Madrasas list populated directly -->
           <div id="admin16MadrasasList" class="space-y-2.5"></div>
         </div>
 
-        <!-- TAB 2: Schedule CSV Upload -->
-        <div id="admTabScheduleCsv" class="hidden space-y-3 text-xs">
-          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl space-y-2">
-            <span class="font-bold text-amber-950"><i class="fa-solid fa-file-csv"></i> മത്സര ഷെഡ്യൂൾ CSV ഫയൽ അപ്‌ലോഡ് ചെയ്യുക (Stage, Time, Item):</span>
-            <input type="file" id="scheduleCsvFileInput" accept=".csv" class="w-full text-xs">
-            <button onclick="uploadScheduleCsvFile()" class="bg-amber-700 text-white font-bold px-3 py-1.5 rounded-lg shadow-xs">ഷെഡ്യൂൾ അപ്‌ലോഡ് ചെയ്യുക ✓</button>
-            <p class="text-[10px] text-slate-500">CSV ഫോർമാറ്റ്: Stage, Time, Item Name (ഉദാ: Stage 1, 09:00 AM, ഖിറാഅത്ത് സബ് ജൂനിയർ)</p>
+        <!-- TAB 2: Programs CSV Upload -->
+        <div id="admTabProgramsCsv" class="hidden space-y-3 text-xs">
+          <div class="bg-purple-50 border border-purple-200 p-3 rounded-xl space-y-2">
+            <span class="font-bold text-purple-950">മത്സര ഇനങ്ങളുടെ CSV ഫയൽ അപ്‌ലോഡ് ചെയ്യുക (Item Name, Type, Code):</span>
+            <input type="file" id="programsCsvFileInput" accept=".csv" class="w-full text-xs">
+            <button onclick="uploadProgramsCsvFile()" class="bg-purple-800 text-white font-bold px-3 py-1.5 rounded-lg">CSV അപ്‌ലോഡ് ചെയ്യുക ✓</button>
           </div>
         </div>
 
@@ -758,7 +781,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL -->
+  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -783,6 +806,7 @@
         <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center">
       </div>
 
+      <!-- Action Buttons: Cancel on LEFT, Login on RIGHT -->
       <div class="flex gap-2 pt-2">
         <button onclick="closeLoginModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
           ക്യാൻസൽ
@@ -826,8 +850,7 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    // 17 Complete Madrasas list
-    const DEFAULT_17_MADRASAS = [
+    let madrasasData = [
       { regNo: "M01", name: "നൂറുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
       { regNo: "M02", name: "സിറാജുൽ ഹുദാ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
       { regNo: "M03", name: "ഹിദായത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
@@ -843,11 +866,9 @@
       { regNo: "M13", name: "ഫലാഹിയ്യ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
       { regNo: "M14", name: "ഖുവ്വത്തുൽ ഇസ്ലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" },
       { regNo: "M15", name: "നൂർജഹാൻ മദ്റസ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M16", name: "അൽ മദ്റസത്തുൽ ഇസ്ലാമിയ്യ", points: 0, managerName: "", managerPhone: "" },
-      { regNo: "M17", name: "ദാറുസ്സലാം മദ്റസ", points: 0, managerName: "", managerPhone: "" }
+      { regNo: "M16", name: "അൽ മദ്റസത്തുൽ ഇസ്ലാമിയ്യ", points: 0, managerName: "", managerPhone: "" }
     ];
 
-    let madrasasData = [...DEFAULT_17_MADRASAS];
     let programsList = [];
     let scheduleData = [];
     let contactList = [];
@@ -869,13 +890,11 @@
       return cleaned.slice(-10);
     }
 
-    // Restore persistent session
-    function restorePersistentSession() {
+    // Retain and restore active session across page refreshes
+    async function restorePersistentSession() {
       const savedRole = localStorage.getItem("krjm_active_role");
       if(savedRole) {
         applyRoleSession(savedRole, false);
-      } else {
-        buildSidebarMenuForRole(null);
       }
     }
 
@@ -885,26 +904,13 @@
       }
     };
 
-    window.handleHeaderAuthClick = function() {
-      if (currentUserRole) {
-        logoutApp();
-      } else {
-        openLoginModal();
-      }
-    };
-
     async function initSystem() {
       try {
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length >= 17) {
-          madrasasData = mSnap.data().list;
-        } else {
-          await setDoc(doc(db, "config", "madrasas"), { list: DEFAULT_17_MADRASAS });
-          madrasasData = [...DEFAULT_17_MADRASAS];
-        }
+        if(mSnap.exists()) madrasasData = mSnap.data().list;
 
         const pSnap = await getDoc(doc(db, "config", "programs"));
         if(pSnap.exists()) programsList = pSnap.data().list;
@@ -934,9 +940,9 @@
         renderLeaderboard();
         loadAllStudentsCache();
         renderSavedProgramsList();
-        render16MadrasasAdmin();
 
         restorePersistentSession();
+        setInterval(renderScheduleTimetable, 30000);
       } catch (e) { console.error(e); }
     }
     initSystem();
@@ -997,8 +1003,9 @@
       document.getElementById(secId).classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
+      // Manage Desk Back Button Visibility
       const returnBtn = document.getElementById("btnReturnToMyDesk");
-      if(currentUserRole && secId !== 'portalRoleDesk' && secId !== 'portalFood' && secId !== 'portalPrize' && secId !== 'portalStage' && secId !== 'portalAdmin') {
+      if(currentUserRole) {
         returnBtn.classList.remove("hidden");
         document.getElementById("returnDeskNameText").innerText = getRoleShortTitle(currentUserRole);
       } else {
@@ -1049,15 +1056,12 @@
         localStorage.setItem("krjm_active_role", role);
       }
 
+      document.getElementById("btnReturnToMyDesk").classList.remove("hidden");
+      document.getElementById("returnDeskNameText").innerText = getRoleShortTitle(role);
       document.getElementById("liveStatusBar").classList.remove("hidden");
       buildSidebarMenuForRole(role);
 
-      // Header button becomes red Logout button
-      const authBtn = document.getElementById("headerAuthBtn");
-      authBtn.className = "text-xs bg-red-600 hover:bg-red-700 text-white font-black px-3.5 py-1.5 rounded-xl shadow border border-red-500 transition";
-      document.getElementById("topRoleText").innerText = "Logout";
-
-      // Super Admin vs Co-Admin controls
+      // Disable Global Clear All for Co-Admin
       const clearAllBtn = document.getElementById("btnSuperAdminClearAll");
       if(clearAllBtn) {
         clearAllBtn.style.display = (role === 'admin') ? "inline-block" : "none";
@@ -1089,14 +1093,6 @@
         <button onclick="navRoute('secLeaderboard')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-trophy text-amber-500"></i> പോയിന്റ് നില</button>
         <button onclick="navRoute('secContactsAboutView')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-circle-info text-blue-600"></i> About & Contacts</button>
       `;
-
-      if(role) {
-        html = `
-          <button onclick="returnToActiveDesk()" class="w-full text-left p-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-950 font-black rounded-xl flex items-center gap-3 border border-emerald-300 mb-2">
-            <i class="fa-solid fa-arrow-left text-emerald-700"></i> തിരികെ ${getRoleShortTitle(role)}ലേക്ക്
-          </button>
-        ` + html;
-      }
 
       if(role === 'desk') {
         html += `
@@ -1132,9 +1128,6 @@
         printAllMadrasaMasterQRs();
       } else if (action === 'printBadges') {
         generateAndPrintStudentCards();
-      } else if (action === 'addStudent') {
-        const el = document.getElementById("deskAddMissingStudentForm");
-        if(el) el.scrollIntoView({ behavior: 'smooth' });
       } else if (action === 'entryUstad') {
         const reg = prompt("ഉസ്താദിന്റെ മദ്റസ Reg No നൽകുക (e.g. M01):");
         const name = prompt("ഉസ്താദിന്റെ പേര് നൽകുക:");
@@ -1170,7 +1163,8 @@
 
     function activatePortalView(id, title) {
       navRoute(id);
-      document.getElementById("topRoleText").innerText = "Logout";
+      document.getElementById("topRoleText").innerText = title;
+      document.getElementById("headerAuthBtn").onclick = logoutApp;
       document.getElementById("sideUserLabel").innerText = "Logged in: " + title;
       document.getElementById("sideUserLabel").classList.remove("hidden");
       document.getElementById("sideLogoutBtn").classList.remove("hidden");
@@ -1179,16 +1173,12 @@
     window.logoutApp = function() {
       localStorage.removeItem("krjm_active_role");
       currentUserRole = null;
-      
-      const authBtn = document.getElementById("headerAuthBtn");
-      authBtn.className = "text-xs bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 text-slate-950 font-black px-3.5 py-1.5 rounded-xl shadow border border-amber-300";
       document.getElementById("topRoleText").innerText = "Login";
-
+      document.getElementById("headerAuthBtn").onclick = openLoginModal;
       document.getElementById("sideUserLabel").classList.add("hidden");
       document.getElementById("sideLogoutBtn").classList.add("hidden");
       document.getElementById("btnReturnToMyDesk").classList.add("hidden");
       document.getElementById("liveStatusBar").classList.add("hidden");
-      
       stopFoodQRScanner();
       stopDeskQRScanner();
       stopPrizeQRScanner();
@@ -1291,7 +1281,7 @@
 
       try {
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list) {
+        if(mSnap.exists()) {
           madrasasData = mSnap.data().list;
         }
       } catch(e) {}
@@ -1311,6 +1301,9 @@
         document.getElementById("tmQrBoxLabel").innerText = found.name;
         document.getElementById("tmQrBoxRegLabel").innerText = "Reg: " + found.regNo;
 
+        document.getElementById("tmEditSelfName").value = found.managerName || "";
+        document.getElementById("tmEditSelfPhone").value = found.managerPhone || "";
+
         const qrBox = document.getElementById("tmMadrasaQrBox");
         qrBox.innerHTML = "";
         new QRCode(qrBox, { text: `MADRASA:${found.name}|REG:${found.regNo}`, width: 90, height: 90, correctLevel: QRCode.CorrectLevel.L });
@@ -1319,6 +1312,22 @@
       } else { 
         alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്."); 
       }
+    };
+
+    window.saveTeamManagerProfileSelf = async function() {
+      const name = document.getElementById("tmEditSelfName").value.trim();
+      const phone = document.getElementById("tmEditSelfPhone").value.trim();
+      if(!name || !phone) {
+        alert("പേരും ഫോൺ നമ്പറും നൽകുക!");
+        return;
+      }
+
+      currentLoggedInMadrasa.managerName = name;
+      currentLoggedInMadrasa.managerPhone = phone;
+
+      await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+      document.getElementById("tmCurrentManager").innerText = `മാനേജർ: ${name} (${phone})`;
+      alert("പ്രൊഫൈൽ വിവരങ്ങൾ സേവ് ചെയ്തു!");
     };
 
     function renderTeamManagerStudents() {
@@ -1583,7 +1592,7 @@
       });
     }
 
-    window.deskAddMissingStudentAction = async function() {
+    window.deskAddMissingStudent = async function() {
       const mName = document.getElementById("deskAddMadrasa").value;
       const chest = document.getElementById("deskAddChest").value.trim();
       const name = document.getElementById("deskAddName").value.trim();
@@ -1601,7 +1610,7 @@
         entryRegistered: true, foodGiven: false
       });
 
-      alert(`${name} എന്ന കുട്ടിയെ എൻട്രി ചെയ്ത് ആഡ് ചെയ്തു!`);
+      alert(`${name} എന്ന കുട്ടിയെ ആഡ് ചെയ്തു!`);
       document.getElementById("deskAddChest").value = "";
       document.getElementById("deskAddName").value = "";
       loadAllStudentsCache();
@@ -1684,7 +1693,7 @@
 
       closeStudentEditModal();
       renderDeskStudentsTable();
-      alert("വിവരങ്ങൾ സേവ് ചെയ്തു!");
+      alert("വിവരങ്ങൾ വിജയകരമായി സേവ് ചെയ്തു!");
     };
 
     window.deskDeleteStudentPrompt = async function(id) {
@@ -1754,7 +1763,7 @@
 
       renderSavedProgramsList();
       renderLeaderboard();
-      alert("മത്സരവും ഫലങ്ങളും സേവ് ചെയ്തു!");
+      alert("മത്സരവും ഫലങ്ങളും സേവ് ചെയ്തു! അടുത്ത മത്സരം ചേർക്കാം.");
     };
 
     async function applyPointsToMadrasa(chestNo, pts) {
@@ -1912,39 +1921,34 @@
     function renderStageEventsList() {
       const container = document.getElementById("stageManagerEventsList");
       const events = scheduleData.filter(st => st.stage === currentSelectedStage);
-      if(events.length === 0) {
-        container.innerHTML = '<p class="text-xs text-slate-400 text-center py-2">മത്സരങ്ങൾ ഷെഡ്യൂൾ ചെയ്തിട്ടില്ല.</p>';
-        return;
-      }
       container.innerHTML = events.map((ev, i) => `
-        <div class="p-2.5 rounded-xl border flex justify-between items-center text-xs bg-slate-50 border-slate-200">
+        <div class="p-2.5 rounded-xl border flex justify-between items-center text-xs ${ev.isBreak ? 'bg-amber-100/60 border-amber-300' : 'bg-slate-50 border-slate-200'}">
           <div>
-            <span class="font-black text-slate-900">${ev.time}</span>
-            <p class="font-bold text-slate-800">${ev.item}</p>
+            <span class="font-black text-slate-900">${ev.time} (${ev.duration || 20}m)</span>
+            <p class="font-bold ${ev.isBreak ? 'text-amber-900' : 'text-slate-800'}">${ev.item} ${ev.isBreak ? '☕ (ഇടവേള)' : ''}</p>
           </div>
           <div class="flex items-center gap-1.5">
             <button onclick="editStageEvent(${i})" class="text-blue-600 p-1"><i class="fa-solid fa-pen"></i></button>
             <button onclick="deleteStageEvent(${i})" class="text-red-600 p-1"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
-      `).join("");
+      `).join("") || '<p class="text-xs text-slate-400">മത്സരങ്ങൾ ഷെഡ്യൂൾ ചെയ്തിട്ടില്ല.</p>';
     }
 
-    window.stageManagerAddEvent = async function() {
+    window.stageManagerAddEvent = async function(isBreak) {
       const nameInp = document.getElementById("stgAddProgName");
       const timeInp = document.getElementById("stgAddProgTime");
+      const durInp = document.getElementById("stgAddProgDuration");
 
-      const name = nameInp.value.trim();
+      const name = nameInp.value.trim() || (isBreak ? "Break" : "മത്സരം");
       const time = timeInp.value.trim() || "09:30 AM";
+      const dur = Number(durInp.value) || 20;
 
-      if(!name) { alert("മത്സര ഇനം നൽകുക!"); return; }
-
-      scheduleData.push({ stage: currentSelectedStage, time: time, item: name });
+      scheduleData.push({ stage: currentSelectedStage, time: time, duration: dur, item: name, isBreak: !!isBreak });
       await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
       renderScheduleTimetable();
       renderStageEventsList();
       nameInp.value = "";
-      timeInp.value = "";
     };
 
     window.editStageEvent = async function(idx) {
@@ -1972,7 +1976,7 @@
 
     // ================= SUPER ADMIN CONTROLS =================
     window.switchAdminTab = function(tabId) {
-      ['admTabMadrasasFiles', 'admTabScheduleCsv', 'admTabBulkPrint', 'admTabContactsAbout', 'admTabRoles'].forEach(t => {
+      ['admTabMadrasasFiles', 'admTabProgramsCsv', 'admTabBulkPrint', 'admTabContactsAbout', 'admTabRoles'].forEach(t => {
         const el = document.getElementById(t);
         if(el) el.classList.add("hidden");
       });
@@ -2001,8 +2005,6 @@
 
     function render16MadrasasAdmin() {
       const container = document.getElementById("admin16MadrasasList");
-      if(!container) return;
-      
       container.innerHTML = madrasasData.map((m, idx) => `
         <div class="bg-white p-3 rounded-xl border shadow-xs space-y-2 text-xs">
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -2045,6 +2047,7 @@
       }
     };
 
+    // FAST BATCH CSV PARSER WITH STRICT CONTINUOUS TOKEN INCREMENT
     window.uploadCsvForMadrasa = async function(idx) {
       const fileInput = document.getElementById(`mCsvFile_${idx}`);
       const file = fileInput.files[0];
@@ -2110,7 +2113,8 @@
         }
 
         await batch.commit();
-        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${maxExisting + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അപ്‌ലോഡ് ചെയ്തു!`);
+
+        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${maxExisting + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അതിവേഗം അപ്‌ലോഡ് ചെയ്തു!`);
         fileInput.value = "";
         await loadAllStudentsCache();
       };
@@ -2128,9 +2132,9 @@
       alert("മദ്റസ വിവരങ്ങളും മാനേജറുടെ നമ്പറും സേവ് ചെയ്തു!");
     };
 
-    // SCHEDULE CSV UPLOAD
-    window.uploadScheduleCsvFile = function() {
-      const fileInput = document.getElementById("scheduleCsvFileInput");
+    // CSV PARSER FOR PROGRAMS
+    window.uploadProgramsCsvFile = function() {
+      const fileInput = document.getElementById("programsCsvFileInput");
       const file = fileInput.files[0];
       if (!file) { alert("ഫയൽ തിരഞ്ഞെടുക്കുക."); return; }
 
@@ -2138,30 +2142,26 @@
       reader.onload = async function(e) {
         const lines = e.target.result.split("\n");
         let count = 0;
-        scheduleData = [];
-
         for (let i = 1; i < lines.length; i++) {
           const l = lines[i].trim();
           if(!l) continue;
           const c = l.split(",").map(x => x.trim().replace(/^"|"$/g, ''));
-          if (c[0] && c[1]) {
-            scheduleData.push({
-              stage: c[0] || "Stage 1",
-              time: c[1] || "09:30 AM",
-              item: c[2] || "മത്സരം"
-            });
+          if (c[0]) {
+            const name = c[0];
+            const type = (c[1] && c[1].toLowerCase().includes("group")) ? "group" : "individual";
+            const code = c[2] || ("P" + (programsList.length + 1));
+            programsList.push({ id: code, name, type, results: [] });
             count++;
           }
         }
-        await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
-        renderScheduleTimetable();
-        alert(`${count} മത്സരങ്ങൾ ഷെഡ്യൂളിലേക്ക് വിജയകരമായി അപ്‌ലോഡ് ചെയ്തു!`);
-        fileInput.value = "";
+        await setDoc(doc(db, "config", "programs"), { list: programsList });
+        renderSavedProgramsList();
+        alert(`${count} മത്സര ഇനങ്ങൾ വിജയകരമായി അപ്‌ലോഡ് ചെയ്തു!`);
       };
       reader.readAsText(file);
     };
 
-    // ================= BULK PRINTING =================
+    // ================= BULK PRINTING (EXACT 12 BADGES PER A4 SHEET) =================
     window.executeSelectedBulkPrinting = function() {
       const type = document.getElementById("printFilterType").value;
       if (type === 'madrasa') {
@@ -2232,10 +2232,28 @@
     };
 
     // ================= SCHEDULE & LEADERBOARD =================
+    function isEventElapsed(timeStr, durMin) {
+      try {
+        const [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+        if (modifier === "PM" && hours < 12) hours += 12;
+        if (modifier === "AM" && hours === 12) hours = 0;
+
+        const now = new Date();
+        const evStart = new Date();
+        evStart.setHours(hours, minutes, 0, 0);
+
+        const evEnd = new Date(evStart.getTime() + (durMin || 20) * 60000);
+        return now > evEnd;
+      } catch (e) { return false; }
+    }
+
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      if(!container) return;
+      const liveBoxes = document.getElementById("publicLiveStageBoxes");
+      if(!container || !liveBoxes) return;
       container.innerHTML = "";
+      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
@@ -2243,12 +2261,16 @@
         grouped[item.stage].push(item);
       });
 
-      ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4'].forEach((stg, i) => {
-        const el = document.getElementById(`liveNowStage${i+1}`);
-        if(el) {
-          const events = grouped[stg] || [];
-          el.innerText = events.length > 0 ? events[0].item : 'ഷെഡ്യൂൾ ഉടൻ';
-        }
+      ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4'].forEach(stg => {
+        const events = grouped[stg] || [];
+        const activeItem = events.find(x => !isEventElapsed(x.time, x.duration)) || null;
+
+        liveBoxes.innerHTML += `
+          <div class="bg-white/10 p-2 rounded-xl border border-white/20">
+            <span class="font-black text-amber-300 block text-[10px]">${stg}</span>
+            <span class="font-bold truncate block">${activeItem ? (activeItem.item + (activeItem.isBreak ? ' ☕' : '')) : 'മത്സരങ്ങൾ ഉടൻ'}</span>
+          </div>
+        `;
       });
 
       if(scheduleData.length === 0) {
@@ -2263,9 +2285,9 @@
             <table class="w-full text-xs text-left">
               <thead class="bg-slate-100 text-slate-700 font-bold"><tr><th class="p-2">സമയം</th><th class="p-2">മത്സര ഇനം</th></tr></thead>
               <tbody>${grouped[stage].map(r => `
-                <tr class="border-b">
+                <tr class="border-b ${r.isBreak ? 'bg-amber-50 text-amber-900 font-bold' : ''}">
                   <td class="p-2 font-black">${r.time}</td>
-                  <td class="p-2">${r.item}</td>
+                  <td class="p-2">${r.item}${r.isBreak ? '☕ (ഇടവേള)' : ''}</td>
                 </tr>
               `).join("")}</tbody>
             </table>
@@ -2309,7 +2331,7 @@
       alert("ലൈവ് അനൗൺസ്‌മെന്റ് അപ്‌ഡേറ്റ് ചെയ്തു!");
     };
 
-    // ================= ABOUT & CONTACTS MANAGEMENT =================
+    // ================= ABOUT & CONTACTS VISIBILITY MANAGEMENT =================
     window.toggleContactVisibility = async function() {
       isContactPublicVisible = document.getElementById("admContactVisibilityToggle").checked;
       await setDoc(doc(db, "config", "contactVisibility"), { visible: isContactPublicVisible });
@@ -2346,7 +2368,7 @@
       if(!c) return;
 
       if(!isContactPublicVisible && currentUserRole !== 'admin') {
-        c.innerHTML = '<p class="text-xs text-amber-800 font-bold bg-amber-50 p-2.5 rounded-xl border border-amber-200">ഔദ്യോഗിക നമ്പറുകൾ ലഭ്യമാക്കിയിട്ടില്ല.</p>';
+        c.innerHTML = '<p class="text-xs text-amber-800 font-bold bg-amber-50 p-2.5 rounded-xl border border-amber-200">ഔദ്യോഗിക നമ്പറുകൾ നിലവിൽ ലഭ്യമാക്കിയിട്ടില്ല.</p>';
         return;
       }
 
@@ -2366,7 +2388,7 @@
       `).join("");
     }
 
-    // PWA Service Worker Registration
+    // Auto-Register Service Worker for PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7fSk7').catch(() => {});
