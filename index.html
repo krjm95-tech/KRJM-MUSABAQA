@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KRJM MUSBQ 2026</title>
-  <meta name="theme-color" content="#831843">
+  
+  <meta name="theme-color" content="#ffffff">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
-  <!-- Logo Embedded directly for Favicon and Homescreen App Icon -->
+  <!-- Official Vector SVG Logo Embedded as Data-URI -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
+
   <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS1JKTSBNdXNhYmFxYSAyMDI2Iiwic2hvcnRfbmFtZSI6IktSSk0gTVVTQlEiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiM4MzE4NDMiLCJ0aGVtZV9jb2xvciI6IiM4MzE4NDMiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO3V0ZjgsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MDAgNTYwJz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPScjZmZmZmZmJy8+PGNpcmNsZSBjeD0nMjUwJyBjeT0nOTUnIHI9JzQ1JyBmaWxsPScjM2VhMWRiJy8+PHBhdGggZD0nTTEyMCAxMjAgQyAxNzUgMTIwIDIyMCAxNDUgMjM1IDIwMCBMMjM1IDI3MCBDIDIzNSAyODUgMjQyIDI5MCAyNTAgMjkwIEMgMjU4IDI5MCAyNjUgMjg1IDI2NSAyNzAgTDI2NSAyMDAgQyAyODAgMTQ1IDMyNSAxMjAgMzgwIDEyMCBDIDQwMCAxMjAgNDA1IDEzNSAzOTAgMTQ4IEMgMzQ1IDE4NSAzMTUgMjIwIDMxNSAyODUgTDMxNSAyOTUgQyAzMTUgMzEwIDMwMCAzMTggMjgwIDMxOCBMMjIwIDMxOCBDIDIwMCAzMTggMTg1IDMxMCAxODUgMjk1IEwxODUgMjg1IEMgMTg1IDIyMCAxNTUgMTg1IDExMCAxNDggQyA5NSAxMzUgMTAwIDEyMCAxMjAgMTIwIFonIGZpbGw9JyMwMGE4NDMnLz48cmVjdCB4PScxMzUnIHk9JzE3MCcgd2lkdGg9JzUwJyBoZWlnaHQ9JzExMCcgcng9JzI1JyBmaWxsPScjYmEyMzJiJy8+PHJlY3QgeD0nMzE1JyB5PScxNzAnIHdpZHRoPSc1MCcgaGVpZ2h0PScxMTAnIHJ4PScownerIGZpbGw9JyNiYTIzMmInLz48dGV4dCB4PScyNTAnIHk9JzM5MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc5MDAnIGZvbnQtc2l6ZT0nNjQnIGZpbGw9JyMwNTA1MDUnPtmF2LPYp9io2YLYqTwvdGV4dD48dGV4dCB4PScyNTAnIHk9JzQ3NScgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc1MicgbGV0dGVyLXNwYWNpbmc9JzQnIGZpbGw9JyMxMTExMTEnPktSSk08L3RleHQ+PC9zdmc+Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn1dfQ==">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
 
@@ -39,9 +42,10 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50/70 via-slate-50 to-amber-50/40 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
+  <!-- ================= TOP HEADER ================= -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
+      
       <div class="flex items-center gap-2">
         <button onclick="toggleSidebar()" class="p-2 text-rose-200 hover:bg-white/10 rounded-xl">
           <i class="fa-solid fa-bars text-xl"></i>
@@ -79,7 +83,17 @@
     </div>
   </header>
 
-  <!-- LIVE METRICS BAR -->
+  <!-- LIVE ROTATING TICKER -->
+  <div class="bg-gradient-to-r from-rose-900 via-purple-950 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex items-center shadow-xs no-print overflow-hidden">
+    <span class="bg-amber-400 text-slate-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md mr-2 shrink-0 border border-amber-300 flex items-center gap-1">
+      <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
+    </span>
+    <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
+      KRJM റേഞ്ച് തല മുസാബഖ 2026 കടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. ഫലങ്ങൾ തത്സമയം ലഭ്യമാണ്.
+    </marquee>
+  </div>
+
+  <!-- PROTECTED METRICS -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ കുട്ടികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -117,9 +131,9 @@
   </aside>
 
   <!-- ================= MAIN VIEWPORTS ================= -->
-  <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 no-print">
+  <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL (COMPACT VIEW) -->
+    <!-- 1. PUBLIC PORTAL -->
     <section id="portalPublic" class="space-y-3">
       
       <!-- Stage Live Status -->
@@ -225,7 +239,9 @@
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
           <i class="fa-solid fa-calendar-check text-emerald-700"></i> മത്സര സമയക്രമം & വേദികൾ (Schedule)
         </h2>
-        <div class="space-y-2.5" id="stageScheduleContainer"></div>
+        <div class="space-y-2.5" id="stageScheduleContainer">
+          <p class="text-xs text-slate-400 text-center py-4">ഷെഡ്യൂൾ നൽകിയിട്ടില്ല.</p>
+        </div>
       </div>
     </section>
 
@@ -275,26 +291,31 @@
             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-blue-200 shadow-xs">
               <div id="tmMadrasaQrBox"></div>
               <div class="text-center">
-                <p class="text-[10px] font-black text-blue-950" id="tmQrBoxLabel"></p>
+                <p class="text-[11px] font-black text-blue-950" id="tmQrBoxLabel"></p>
                 <p class="text-[9px] text-slate-500 font-bold" id="tmQrBoxRegLabel"></p>
-                <button onclick="downloadTmQrCode()" class="mt-1 text-[10px] bg-blue-600 text-white font-bold px-2 py-1 rounded flex items-center gap-1 mx-auto">
+                <button onclick="downloadTmQrCode()" class="mt-1 text-[10px] bg-blue-600 text-white font-bold px-2.5 py-1 rounded flex items-center gap-1 mx-auto">
                   <i class="fa-solid fa-download"></i> QR ഡൗൺലോഡ്
                 </button>
               </div>
             </div>
           </div>
 
+          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs space-y-2">
+            <h4 class="font-black text-amber-950 uppercase"><i class="fa-solid fa-award"></i> സമ്മാന വിവരങ്ങൾ (Prizes Overview)</h4>
+            <div id="tmPrizeOverviewList" class="space-y-1"></div>
+          </div>
+
           <div class="overflow-x-auto">
             <table class="w-full text-xs text-left border">
               <thead class="bg-slate-100 font-bold border-b">
                 <tr>
+                  <th class="p-2">ക്രമം (Sl No)</th>
                   <th class="p-2">ടോക്കൺ</th>
                   <th class="p-2">ചെസ്റ്റ്</th>
                   <th class="p-2">പേര്</th>
                   <th class="p-2">ക്ലാസ്സ്</th>
                   <th class="p-2">ഇനം</th>
                   <th class="p-2">സമ്മാനം</th>
-                  <th class="p-2 text-right">എഡിറ്റ്</th>
                 </tr>
               </thead>
               <tbody id="tmStudentsTable"></tbody>
@@ -377,7 +398,7 @@
         <div class="flex items-center justify-between border-b pb-2">
           <div>
             <h2 id="roleDeskTitle" class="text-sm font-bold text-slate-800">Spot Registration Desk</h2>
-            <p class="text-[11px] text-slate-500">മദ്റസ QR കോഡ് സ്കാൻ ചെയ്തോ റെജി. നമ്പറോ ഉപയോഗിച്ച് എൻട്രി ചെയ്യാം.</p>
+            <p class="text-[11px] text-slate-500">മദ്റസ QR കോഡ് സ്കാൻ ചെയ്തോ റെജി. നമ്പറോ ഉപയോഗിച്ച് ബൾക്ക് എൻട്രി ചെയ്യാം.</p>
           </div>
           <span class="text-xs bg-emerald-100 text-emerald-900 font-bold px-2.5 py-1 rounded-lg">രജിസ്ട്രേഷൻ</span>
         </div>
@@ -422,6 +443,7 @@
             <table class="w-full text-xs text-left">
               <thead class="bg-slate-100 font-bold border-b sticky top-0">
                 <tr>
+                  <th class="p-2">ക്രമം (Sl)</th>
                   <th class="p-2">ടോക്കൺ</th>
                   <th class="p-2">ചെസ്റ്റ്</th>
                   <th class="p-2">പേര്</th>
@@ -437,6 +459,50 @@
         </div>
       </div>
     </section>
+
+    <!-- PROFESSIONAL STUDENT EDIT MODAL POPUP FOR SPOT DESK -->
+    <div id="studentEditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
+      <div class="bg-white rounded-2xl p-5 w-full max-w-md space-y-3 shadow-2xl border border-slate-200">
+        <div class="flex justify-between items-center border-b pb-2">
+          <h3 class="text-sm font-bold text-slate-900"><i class="fa-solid fa-user-pen text-blue-600"></i> വിദ്യാർത്ഥിയുടെ വിവരങ്ങൾ എഡിറ്റ് ചെയ്യുക</h3>
+          <button onclick="closeStudentEditModal()" class="text-slate-400 hover:text-slate-700 font-bold text-base">✕</button>
+        </div>
+
+        <input type="hidden" id="editModalStudentId">
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ചെസ്റ്റ് നമ്പർ</label>
+            <input type="text" id="editModalChest" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ടോക്കൺ നമ്പർ</label>
+            <input type="text" id="editModalToken" disabled class="w-full border p-2 rounded-xl bg-slate-100 font-bold">
+          </div>
+          <div class="col-span-2">
+            <label class="font-bold text-slate-600 block mb-0.5">വിദ്യാർത്ഥിയുടെ പേര്</label>
+            <input type="text" id="editModalName" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">ക്ലാസ്സ്</label>
+            <input type="text" id="editModalClass" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-slate-600 block mb-0.5">മത്സര ഇനം</label>
+            <input type="text" id="editModalCategory" class="w-full border p-2 rounded-xl focus:ring-1 focus:ring-blue-600 font-bold">
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button onclick="saveStudentEditModalChanges()" class="w-1/2 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-xl text-xs font-bold shadow">
+            സേവ് ചെയ്യുക ✓
+          </button>
+          <button onclick="closeStudentEditModal()" class="w-1/2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold">
+            ക്ലോസ്
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- 7. PRIZE DISTRIBUTION DESK -->
     <section id="portalPrize" class="hidden space-y-4">
@@ -469,7 +535,7 @@
           <div id="prizeStudentCard" class="hidden bg-white border border-amber-200 rounded-xl p-3 space-y-2"></div>
         </div>
 
-        <!-- Add/Edit Program Results -->
+        <!-- Add/Edit Program With Exact Point Logic & Without Grade Option -->
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-xs font-bold text-slate-800"><i class="fa-solid fa-trophy"></i> പുതിയ മത്സരം / വിജയികളെ രേഖപ്പെടുത്തുക:</span>
@@ -569,7 +635,9 @@
 
         <div class="space-y-3">
           <h3 class="text-xs font-bold text-slate-700 uppercase" id="selectedStageTitleHeading">Stage 1 ലെ മത്സരങ്ങൾ</h3>
-          <div id="stageManagerEventsList" class="space-y-2"></div>
+          <div id="stageManagerEventsList" class="space-y-2">
+            <p class="text-xs text-slate-400 text-center py-2">മത്സരങ്ങൾ ഷെഡ്യൂൾ ചെയ്തിട്ടില്ല.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -585,6 +653,16 @@
           <span class="text-xs bg-rose-100 text-rose-950 font-bold px-2 py-0.5 rounded-full" id="adminBadgeTitle">Admin Panel</span>
         </div>
 
+        <!-- Announcement Creator -->
+        <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
+          <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
+          <div class="flex gap-2">
+            <input type="text" id="admNoticeTextInp" placeholder="പുതിയ അറിയിപ്പ് നൽകുക..." class="w-full border p-1.5 rounded-xl bg-white">
+            <button onclick="updateLiveNoticeTicker()" class="bg-rose-900 text-white px-4 py-1.5 rounded-xl font-bold shrink-0">Update</button>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs inside Admin -->
         <div class="flex flex-wrap gap-1.5 border-b pb-2 text-xs font-bold">
           <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">17 മദ്റസകൾ & CSV</button>
           <button onclick="switchAdminTab('admTabScheduleCsv')" class="px-3 py-1.5 bg-amber-600 text-white rounded-lg">ഷെഡ്യൂൾ CSV അപ്‌ലോഡ്</button>
@@ -592,7 +670,7 @@
           <button onclick="switchAdminTab('admTabRoles')" class="px-3 py-1.5 bg-slate-200 text-slate-700 rounded-lg">സ്റ്റാഫ് പാസ്‌വേഡ്</button>
         </div>
 
-        <!-- TAB 1: 17 Madrasas & CSV Upload -->
+        <!-- TAB 1: 17 Real Madrasas & CSV Upload -->
         <div id="admTabMadrasasFiles" class="space-y-3">
           <div class="flex flex-wrap justify-between items-center gap-2">
             <h3 class="text-xs font-bold text-slate-800 uppercase">17 മദ്റസകൾ & വിദ്യാർത്ഥി ഫയൽ അപ്‌ലോഡ്</h3>
@@ -638,7 +716,7 @@
           <div id="cardsPreviewStatus" class="text-xs text-slate-500 font-bold"></div>
         </div>
 
-        <!-- TAB 4: Staff Passwords (Fixed Persistence) -->
+        <!-- TAB 4: Staff Passwords -->
         <div id="admTabRoles" class="hidden space-y-3">
           <h3 class="text-xs font-bold text-slate-800 uppercase">സ്റ്റാഫ് പാസ്‌വേഡുകൾ മാറ്റുക</h3>
           <div id="adminRolesList" class="space-y-2"></div>
@@ -661,7 +739,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT) -->
+  <!-- UNIVERSAL LOGIN MODAL -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -729,8 +807,8 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    // Exact 17 Madrasas
-    const DEFAULT_17_MADRASAS = [
+    // EXACT 17 MADRASAS WITH OFFICIAL REGISTER NUMBERS
+    const OFFICIAL_17_MADRASAS = [
       { regNo: "698", name: "MADRASATHUL MUHAMMADIYYA", points: 0, managerName: "", managerPhone: "" },
       { regNo: "1592", name: "NOORUL ISLAM MADRASA", points: 0, managerName: "", managerPhone: "" },
       { regNo: "673", name: "HIDAYATHUL ISLAM CHANGAROTH", points: 0, managerName: "", managerPhone: "" },
@@ -750,7 +828,7 @@
       { regNo: "5196", name: "KOUSARUL ULOOM", points: 0, managerName: "", managerPhone: "" }
     ];
 
-    let madrasasData = [...DEFAULT_17_MADRASAS];
+    let madrasasData = [...OFFICIAL_17_MADRASAS];
     let programsList = [];
     let scheduleData = [];
     let contactList = [];
@@ -772,26 +850,44 @@
       return cleaned.slice(-10);
     }
 
+    // History Back Navigation
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.page) {
+        navRoute(e.state.page, false);
+      } else {
+        navRoute('portalPublic', false);
+      }
+    });
+
     async function initSystem() {
       try {
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
-        // 1. Fetch Students from Firestore
+        // 1. Fetch Students
         await loadAllStudentsCache();
 
-        // 2. Load Real 17 Madrasas directly and sync
+        // 2. Strict Madrasa Synchronization (Overrides any old M01 demo list)
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
-        if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
-          const firstEntry = mSnap.data().list[0];
-          if(firstEntry && firstEntry.regNo && firstEntry.regNo.startsWith("M0")) {
-            madrasasData = [...DEFAULT_17_MADRASAS];
+        if (mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
+          const listInDb = mSnap.data().list;
+          const isOldDemo = listInDb.some(m => m.regNo && m.regNo.startsWith("M0"));
+          
+          if (isOldDemo) {
+            // Overwrite and wipe out old demo list
+            madrasasData = [...OFFICIAL_17_MADRASAS];
             await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
           } else {
-            madrasasData = mSnap.data().list;
+            madrasasData = listInDb;
+            // Ensure all 17 are included
+            OFFICIAL_17_MADRASAS.forEach(om => {
+              if(!madrasasData.some(m => m.regNo === om.regNo)) {
+                madrasasData.push(om);
+              }
+            });
           }
         } else {
-          madrasasData = [...DEFAULT_17_MADRASAS];
+          madrasasData = [...OFFICIAL_17_MADRASAS];
           await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
         }
 
@@ -866,10 +962,6 @@
       document.getElementById("statTotalCheckedIn").innerText = checkedInCount;
       document.getElementById("statTotalFoodStudents").innerText = foodStudentsCount;
       document.getElementById("statTotalStudentsCount").innerText = allStudentsCache.length;
-
-      const mSnap = await getDoc(doc(db, "config", "managerFood"));
-      const mgrCount = mSnap.exists() ? (mSnap.data().count || 0) : 0;
-      document.getElementById("statTotalFoodManagers").innerText = mgrCount;
     }
 
     // ================= NAVIGATION =================
@@ -1086,7 +1178,7 @@
 
       const student = allStudentsCache.find(s => 
         (s.id.toLowerCase() === q || (s.name && s.name.toLowerCase().includes(q))) &&
-        s.madrasa === madrasaObj.name
+        (s.madrasa === madrasaObj.name || s.madrasaReg === madrasaObj.regNo)
       );
 
       if(student) {
@@ -1178,15 +1270,15 @@
 
         renderTeamManagerStudents();
       } else { 
-        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ കൃത്യമായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
+        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
       }
     };
 
     function renderTeamManagerStudents() {
-      const teamStudents = allStudentsCache.filter(s => s.madrasa === currentLoggedInMadrasa.name);
+      const teamStudents = allStudentsCache.filter(s => s.madrasa === currentLoggedInMadrasa.name || s.madrasaReg === currentLoggedInMadrasa.regNo);
       const tbody = document.getElementById("tmStudentsTable");
       
-      tbody.innerHTML = teamStudents.map(s => {
+      tbody.innerHTML = teamStudents.map((s, idx) => {
         const wonPrizes = [];
         programsList.forEach(p => {
           if (p.results) {
@@ -1200,31 +1292,17 @@
 
         return `
           <tr class="border-b">
+            <td class="p-2 font-bold text-slate-700">${s.madrasaSl || (idx + 1)}</td>
             <td class="p-2 font-black text-amber-900">${s.tokenNo || '-'}</td>
             <td class="p-2 font-bold">${s.id}</td>
-            <td class="p-2">${s.name}</td>
-            <td class="p-2 font-semibold text-slate-700">${s.class || '-'}</td>
+            <td class="p-2 font-semibold">${s.name}</td>
+            <td class="p-2 text-slate-600">${s.class || '-'}</td>
             <td class="p-2 text-slate-500">${s.category || '-'}</td>
             <td class="p-2">${wonPrizes.length > 0 ? wonPrizes.join('<br>') : '-'}</td>
-            <td class="p-2 text-right">
-              <button onclick="tmEditClass('${s.id}')" class="text-blue-600 hover:underline"><i class="fa-solid fa-pen-to-square"></i></button>
-            </td>
           </tr>
         `;
       }).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളെ ചേർത്തിട്ടില്ല.</td></tr>';
     }
-
-    window.tmEditClass = async function(id) {
-      const s = allStudentsCache.find(x => x.id === id);
-      if(!s) return;
-      const newClass = prompt(`${s.name} ന്റെ ക്ലാസ്സ് തിരുത്തുക:`, s.class || "");
-      if(newClass !== null) {
-        await updateDoc(doc(db, "students", id), { class: newClass });
-        s.class = newClass;
-        renderTeamManagerStudents();
-        alert("ക്ലാസ്സ് തിരുത്തി!");
-      }
-    };
 
     window.downloadTmQrCode = function() {
       const img = document.querySelector("#tmMadrasaQrBox img");
@@ -1304,7 +1382,7 @@
       document.getElementById("bulkFoodMadrasaName").innerText = madrasaName;
       bulkBox.classList.remove("hidden");
 
-      const list = allStudentsCache.filter(s => s.madrasa === madrasaName);
+      const list = allStudentsCache.filter(s => s.madrasa === madrasaName || s.madrasaReg === madrasaName);
       listEl.innerHTML = list.map(s => {
         const isEligible = s.entryRegistered && !s.foodGiven;
         return `
@@ -1354,7 +1432,7 @@
       document.getElementById("btnStartScan").classList.add("hidden");
       document.getElementById("btnStopScan").classList.remove("hidden");
       html5QrScanner = new Html5Qrcode("qrReader");
-      html5QrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 220, height: 220 } },
+      html5QrScanner.start({ facingMode: "environment" }, { fps: 20, qrbox: { width: 220, height: 220 } },
         (decodedText) => { document.getElementById("foodChestInput").value = decodedText; verifyFoodAction(decodedText); }, () => {}).catch(err => { alert("ക്യാമറ എറർ: " + err); stopFoodQRScanner(); });
     };
 
@@ -1373,7 +1451,7 @@
       document.getElementById("btnStartDeskScan").classList.add("hidden");
       document.getElementById("btnStopDeskScan").classList.remove("hidden");
       deskQrScanner = new Html5Qrcode("deskQrReader");
-      deskQrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 220, height: 220 } },
+      deskQrScanner.start({ facingMode: "environment" }, { fps: 20, qrbox: { width: 220, height: 220 } },
         (decodedText) => { handleDeskQrScanResult(decodedText); }, () => {}).catch(err => { alert("ക്യാമറ എറർ: " + err); stopDeskQRScanner(); });
     };
 
@@ -1408,7 +1486,7 @@
       if(confirm(`${madrasaName} യിലെ മുഴുവൻ കുട്ടികളെയും എൻട്രി ചെയ്യണോ?`)) {
         let count = 0;
         for(let s of allStudentsCache) {
-          if(s.madrasa === madrasaName) {
+          if(s.madrasa === madrasaName || s.madrasaReg === madrasaName) {
             await updateDoc(doc(db, "students", s.id), { entryRegistered: true });
             s.entryRegistered = true;
             count++;
@@ -1430,9 +1508,9 @@
       if(printSel) printSel.innerHTML = '<option value="">എല്ലാ മദ്റസകളും</option>';
 
       madrasasData.forEach(m => {
-        if(sel) sel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
-        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
-        if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.name}</option>`;
+        if(sel) sel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
+        if(addSel) addSel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
+        if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
       });
     }
 
@@ -1448,13 +1526,17 @@
         return;
       }
 
+      const mObj = madrasasData.find(m => m.name === mName);
+      const existingInMadrasa = allStudentsCache.filter(s => s.madrasa === mName);
+      const madrasaSl = existingInMadrasa.length + 1;
       const tokenNo = "S-" + (allStudentsCache.length + 1);
+
       await setDoc(doc(db, "students", chest), {
-        name, madrasa: mName, class: cls, category: item, tokenNo,
+        name, madrasa: mName, madrasaReg: mObj ? mObj.regNo : "", madrasaSl, class: cls, category: item, tokenNo,
         entryRegistered: true, foodGiven: false
       });
 
-      alert(`${name} എന്ന കുട്ടിയെ എൻട്രി ചെയ്ത് ആഡ് ചെയ്തു!`);
+      alert(`${name} എന്ന കുട്ടിയെ ആഡ് ചെയ്തു!`);
       document.getElementById("deskAddChest").value = "";
       document.getElementById("deskAddName").value = "";
       loadAllStudentsCache();
@@ -1463,10 +1545,11 @@
     window.renderDeskStudentsTable = function() {
       const filter = document.getElementById("deskFilterMadrasa").value;
       const tbody = document.getElementById("deskStudentsTableBody");
-      const list = filter ? allStudentsCache.filter(s => s.madrasa === filter) : allStudentsCache;
+      const list = filter ? allStudentsCache.filter(s => s.madrasa === filter || s.madrasaReg === filter) : allStudentsCache;
 
-      tbody.innerHTML = list.map(s => `
+      tbody.innerHTML = list.map((s, idx) => `
         <tr class="border-b">
+          <td class="p-2 font-bold text-slate-700">${s.madrasaSl || (idx + 1)}</td>
           <td class="p-2 font-black text-amber-900">${s.tokenNo || '-'}</td>
           <td class="p-2 font-bold">${s.id}</td>
           <td class="p-2 font-semibold">${s.name}</td>
@@ -1482,7 +1565,7 @@
             <button onclick="deskDeleteStudentPrompt('${s.id}')" class="text-red-600 p-1 hover:text-red-800"><i class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
-      `).join("") || '<tr><td colspan="7" class="p-3 text-center text-slate-400">കുട്ടികളില്ല.</td></tr>';
+      `).join("") || '<tr><td colspan="8" class="p-3 text-center text-slate-400">കുട്ടികളെ ചേർത്തിട്ടില്ല.</td></tr>';
     };
 
     window.toggleStudentEntryQuick = async function(id, val) {
@@ -1556,7 +1639,7 @@
         if (place === '1st') return grade === 'A' ? 10 : grade === 'B' ? 8 : 6;
         if (place === '2nd') return grade === 'A' ? 8 : grade === 'B' ? 6 : 4;
         if (place === '3rd') return grade === 'A' ? 6 : grade === 'B' ? 4 : 2;
-      } else { // group
+      } else {
         if (place === '1st') return grade === 'A' ? 15 : grade === 'B' ? 13 : 11;
         if (place === '2nd') return grade === 'A' ? 10 : grade === 'B' ? 8 : 6;
         if (place === '3rd') return grade === 'A' ? 8 : grade === 'B' ? 6 : 4;
@@ -1613,7 +1696,7 @@
     async function applyPointsToMadrasa(chestNo, pts) {
       const s = allStudentsCache.find(x => x.id === chestNo);
       if(s) {
-        const m = madrasasData.find(x => x.name === s.madrasa);
+        const m = madrasasData.find(x => x.name === s.madrasa || x.regNo === s.madrasaReg);
         if(m) {
           m.points = (m.points || 0) + pts;
           await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
@@ -1663,7 +1746,7 @@
       document.getElementById("btnStartPrizeScan").classList.add("hidden");
       document.getElementById("btnStopPrizeScan").classList.remove("hidden");
       prizeQrScanner = new Html5Qrcode("prizeQrReader");
-      prizeQrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 220, height: 220 } },
+      prizeQrScanner.start({ facingMode: "environment" }, { fps: 20, qrbox: { width: 220, height: 220 } },
         (decodedText) => { fetchPrizeStudent(decodedText); }, () => {}).catch(err => { alert("ക്യാമറ എറർ: " + err); stopPrizeQRScanner(); });
     };
 
@@ -1726,7 +1809,7 @@
               <div class="p-2 rounded-lg border flex justify-between items-center ${w.received ? 'bg-slate-50 border-slate-200' : 'bg-emerald-50 border-emerald-300'}">
                 <div>
                   <span class="font-bold text-slate-900">${w.programName}</span>
-                  <p class="text-[10px] text-emerald-800 font-black">${w.place} (${w.grade === 'NONE' ? 'No Grade' : w.grade + ' Grade'},${w.points} pts)</p>
+                  <p class="text-[10px] text-emerald-800 font-black">${w.place} (${w.grade === 'NONE' ? 'No Grade' : w.grade + ' Grade'}, ${w.points} pts)</p>
                 </div>
                 <button onclick="toggleSinglePrizeReception('${w.programId}', '${student.id}')" class="text-xs font-bold px-3 py-1.5 rounded-lg ${w.received ? 'bg-slate-400 text-white' : 'bg-emerald-700 text-white shadow'}">
                   ${w.received ? 'സ്വീകരിച്ചു ✓ (മാറ്റുക)' : 'സമ്മാനം നൽകുക ✓'}
@@ -1848,6 +1931,7 @@
         allStudentsCache = [];
         alert("പഴയ ഡാറ്റ പൂർണ്ണമായി നീക്കം ചെയ്തു!");
         refreshCounters();
+        render16MadrasasAdmin();
       }
     };
 
@@ -1855,53 +1939,74 @@
       const container = document.getElementById("admin16MadrasasList");
       if(!container) return;
       
-      container.innerHTML = madrasasData.map((m, idx) => `
-        <div class="bg-white p-3 rounded-xl border shadow-xs space-y-2 text-xs">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-1.5">
-              <input type="text" id="mReg_${idx}" value="${m.regNo}" class="w-16 border p-1 rounded text-center font-bold bg-slate-50 uppercase">
-              <input type="text" id="mName_${idx}" value="${m.name}" class="w-48 sm:w-64 border p-1 rounded font-bold">
+      container.innerHTML = madrasasData.map((m, idx) => {
+        const hasStudents = allStudentsCache.some(s => s.madrasa === m.name || s.madrasaReg === m.regNo);
+        const studentCount = allStudentsCache.filter(s => s.madrasa === m.name || s.madrasaReg === m.regNo).length;
+
+        return `
+          <div class="bg-white p-3 rounded-xl border shadow-xs space-y-2 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5">
+                <input type="text" id="mReg_${idx}" value="${m.regNo}" readonly class="w-16 border p-1 rounded text-center font-bold bg-slate-100 uppercase">
+                <input type="text" id="mName_${idx}" value="${m.name}" readonly class="w-48 sm:w-64 border p-1 rounded font-bold bg-slate-100">
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="text-[10px] text-slate-500 font-bold">Pts:</span>
+                <input type="number" id="mPoints_${idx}" value="${m.points || 0}" class="w-14 border p-1 rounded text-center font-bold">
+                <button onclick="saveSingleMadrasaRow(${idx})" class="bg-slate-800 text-white px-2.5 py-1 rounded font-bold">Save</button>
+                <button onclick="deleteSingleMadrasaStudents('${m.name}')" class="bg-red-600 text-white px-2 py-1 rounded font-bold" title="ഈ മദ്റസയിലെ കുട്ടികളെ മാത്രം ഡിലീറ്റ് ചെയ്യുക"><i class="fa-solid fa-trash"></i></button>
+              </div>
             </div>
-            <div class="flex items-center gap-1">
-              <input type="number" id="mPoints_${idx}" value="${m.points || 0}" class="w-14 border p-1 rounded text-center font-bold">
-              <button onclick="saveSingleMadrasaRow(${idx})" class="bg-slate-800 text-white px-2.5 py-1 rounded font-bold">Save</button>
-              <button onclick="deleteSingleMadrasaStudents('${m.name}')" class="bg-red-600 text-white px-2 py-1 rounded font-bold" title="ഈ മദ്റസയിലെ കുട്ടികളെ മാത്രം ഡിലീറ്റ് ചെയ്യുക"><i class="fa-solid fa-trash"></i></button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 border-t">
+              <div class="flex gap-1 items-center">
+                <input type="text" id="mManagerName_${idx}" value="${m.managerName || ''}" placeholder="മാനേജർ പേര്" class="w-1/2 border p-1 rounded text-[11px]">
+                <input type="tel" id="mManagerPhone_${idx}" value="${m.managerPhone || ''}" placeholder="ഫോൺ നമ്പർ" class="w-1/2 border p-1 rounded text-[11px]">
+              </div>
+              <div class="flex gap-1 items-center">
+                ${hasStudents ? 
+                  `<span class="text-emerald-700 font-black text-xs bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200">✓ ഫയൽ നിലവിലുണ്ട് (${studentCount} കുട്ടികൾ)</span>` : 
+                  `<input type="file" id="mCsvFile_${idx}" accept=".csv" class="w-full text-[10px] file:py-0.5 file:px-2 file:rounded file:border-0 file:bg-slate-800 file:text-white">
+                   <button onclick="uploadCsvForMadrasa(${idx})" class="bg-emerald-800 text-white text-[10px] font-bold px-2 py-1 rounded shrink-0">Upload CSV</button>`
+                }
+              </div>
             </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 border-t">
-            <div class="flex gap-1 items-center">
-              <input type="text" id="mManagerName_${idx}" value="${m.managerName || ''}" placeholder="മാനേജർ പേര്" class="w-1/2 border p-1 rounded text-[11px]">
-              <input type="tel" id="mManagerPhone_${idx}" value="${m.managerPhone || ''}" placeholder="ഫോൺ നമ്പർ" class="w-1/2 border p-1 rounded text-[11px]">
-            </div>
-            <div class="flex gap-1 items-center">
-              <input type="file" id="mCsvFile_${idx}" accept=".csv" class="w-full text-[10px] file:py-0.5 file:px-2 file:rounded file:border-0 file:bg-slate-800 file:text-white">
-              <button onclick="uploadCsvForMadrasa(${idx})" class="bg-emerald-800 text-white text-[10px] font-bold px-2 py-1 rounded shrink-0">Upload CSV</button>
-            </div>
-          </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
     }
 
     window.deleteSingleMadrasaStudents = async function(madrasaName) {
       if(confirm(`${madrasaName} യിലെ വിദ്യാർത്ഥികളുടെ വിവരങ്ങൾ മാത്രം ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?`)) {
-        const toDelete = allStudentsCache.filter(s => s.madrasa === madrasaName);
+        const toDelete = allStudentsCache.filter(s => s.madrasa === madrasaName || s.madrasaReg === madrasaName);
         const batch = writeBatch(db);
         for(let s of toDelete) {
           batch.delete(doc(db, "students", s.id));
         }
         await batch.commit();
 
-        allStudentsCache = allStudentsCache.filter(s => s.madrasa !== madrasaName);
-        alert(`${madrasaName} ലെ കുട്ടികളെ നീക്കം ചെയ്തു!`);
+        allStudentsCache = allStudentsCache.filter(s => s.madrasa !== madrasaName && s.madrasaReg !== madrasaName);
+        alert(`${madrasaName} ലെ കുട്ടികളെ നീക്കം ചെയ്തു! ഇനി പുതിയ ഫയൽ അപ്‌ലോഡ് ചെയ്യാം.`);
         refreshCounters();
+        render16MadrasasAdmin();
       }
     };
 
+    // CSV PARSER WITH CONTINUOUS TOKEN AND SL NO PER MADRASA
     window.uploadCsvForMadrasa = async function(idx) {
       const fileInput = document.getElementById(`mCsvFile_${idx}`);
       const file = fileInput.files[0];
-      const madrasaName = madrasasData[idx].name;
+      const madrasaObj = madrasasData[idx];
+      const madrasaName = madrasaObj.name;
+      const madrasaReg = madrasaObj.regNo;
+
       if (!file) { alert("ഫയൽ തിരഞ്ഞെടുക്കുക."); return; }
+
+      // Check if already uploaded
+      const alreadyUploaded = allStudentsCache.some(s => s.madrasa === madrasaName || s.madrasaReg === madrasaReg);
+      if (alreadyUploaded) {
+        alert("ഈ മദ്റസയുടെ ഫയൽ ഇതിനകം അപ്‌ലോഡ് ചെയ്തതാണ്! മാറ്റം വരുത്താൻ ആദ്യം ഡിലീറ്റ് ചെയ്യുക.");
+        return;
+      }
 
       const reader = new FileReader();
       reader.onload = async function(e) {
@@ -1945,11 +2050,14 @@
             const cls = c[classIdx] || "General";
             const items = c[itemIdx] || "";
             const tokenNo = "S-" + (nextTokenNum++);
+            const madrasaSl = count + 1;
 
             const docRef = doc(db, "students", chestNo);
             batch.set(docRef, {
               name: studentName,
               madrasa: madrasaName,
+              madrasaReg: madrasaReg,
+              madrasaSl: madrasaSl,
               class: cls,
               category: items,
               tokenNo: tokenNo,
@@ -1962,16 +2070,15 @@
         }
 
         await batch.commit();
-        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ S-${maxExisting + 1} മുതൽ S-${nextTokenNum - 1} വരെയുള്ള ടോക്കൺ നമ്പറുകളോടെ അപ്‌ലോഡ് ചെയ്തു!`);
+        alert(`${madrasaName} ലെ ${count} കുട്ടികളെ ടോക്കൺ നമ്പറും ക്രമനമ്പറും (Sl No 1-${count}) നൽകി വിജയകരമായി അപ്‌ലോഡ് ചെയ്തു!`);
         fileInput.value = "";
         await loadAllStudentsCache();
+        render16MadrasasAdmin();
       };
       reader.readAsText(file);
     };
 
     window.saveSingleMadrasaRow = async function(idx) {
-      madrasasData[idx].regNo = document.getElementById(`mReg_${idx}`).value.trim().toUpperCase();
-      madrasasData[idx].name = document.getElementById(`mName_${idx}`).value.trim();
       madrasasData[idx].points = parseInt(document.getElementById(`mPoints_${idx}`).value) || 0;
       madrasasData[idx].managerName = document.getElementById(`mManagerName_${idx}`).value.trim();
       madrasasData[idx].managerPhone = document.getElementById(`mManagerPhone_${idx}`).value.trim();
@@ -2030,7 +2137,7 @@
 
       let list = allStudentsCache;
       if(filterMadrasa) {
-        list = allStudentsCache.filter(s => s.madrasa === filterMadrasa);
+        list = allStudentsCache.filter(s => s.madrasa === filterMadrasa || s.madrasaReg === filterMadrasa);
       }
 
       if(list.length === 0) { alert("കുട്ടികളില്ല!"); return; }
@@ -2086,10 +2193,8 @@
     // ================= SCHEDULE & LEADERBOARD =================
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      const liveBoxes = document.getElementById("publicLiveStageBoxes");
-      if(!container || !liveBoxes) return;
+      if(!container) return;
       container.innerHTML = "";
-      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
@@ -2106,7 +2211,7 @@
       });
 
       if(scheduleData.length === 0) {
-        container.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">ഷെഡ്യൂളുകൾ ലഭ്യമാക്കിയിട്ടില്ല.</p>';
+        container.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">ഷെഡ്യൂളുകൾ ലഭ്യമല്ല.</p>';
         return;
       }
 
@@ -2141,10 +2246,10 @@
       if(!container) return;
       container.innerHTML = Object.keys(rolesConfig).map(k => `
         <div class="bg-white p-2.5 rounded-xl border flex items-center justify-between text-xs">
-          <span class="font-bold">${rolesConfig[k].title} (${k})</span>
+          <span class="font-bold text-slate-800">${rolesConfig[k].title} (${k})</span>
           <div class="flex items-center gap-1">
-            <input type="text" id="admPass_${k}" value="${rolesConfig[k].pass}" class="border p-1 rounded w-28 text-center font-bold">
-            <button onclick="saveAdminRoleConfig('${k}')" class="bg-slate-800 text-white px-3 py-1 rounded font-bold">Save</button>
+            <input type="text" id="admPass_${k}" value="${rolesConfig[k].pass}" class="border p-1.5 rounded-xl w-32 text-center font-bold">
+            <button onclick="saveAdminRoleConfig('${k}')" class="bg-slate-800 text-white px-3 py-1.5 rounded-xl font-bold">Save</button>
           </div>
         </div>
       `).join("");
