@@ -11,6 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
+  <!-- Official Vector SVG Logo Embedded as Data-URI -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
 
@@ -41,7 +42,7 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50/70 via-slate-50 to-amber-50/40 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
+  <!-- ================= TOP HEADER ================= -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
       
@@ -92,11 +93,11 @@
     </marquee>
   </div>
 
-  <!-- PROTECTED LIVE METRICS BAR -->
+  <!-- PROTECTED METRICS -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ വിദ്യാർത്ഥികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
-    <div><span>ഭക്ഷണം നൽകിയത്: <b id="statTotalFoodStudents" class="text-amber-400">0</b></span> <span class="text-slate-400 font-normal">(+ <b id="statTotalFoodManagers" class="text-white">0</b> മുഅല്ലിം)</span></div>
+    <div><span>ഭക്ഷണം നൽകിയത്: <b id="statTotalFoodStudents" class="text-amber-400">0</b></span> <span class="text-slate-400 font-normal">(+ <b id="statTotalFoodManagers" class="text-white">0</b> മാനേജർ)</span></div>
   </div>
 
   <!-- SIDEBAR DRAWER -->
@@ -107,12 +108,7 @@
         <div class="w-14 h-14 mx-auto bg-white rounded-2xl p-1 shadow-md border-2 border-amber-400 flex items-center justify-center">
           <svg viewBox="0 0 500 560" class="w-full h-full">
             <circle cx="250" cy="95" r="45" fill="#3ea1db"/>
-            <path d="M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z" fill="#00a843"/>
-            <rect x="135" y="170" width="50" height="110" rx="25" fill="#ba232b"/>
-            <rect x="315" y="170" width="50" height="110" rx="25" fill="#ba232b"/>
-            <text x="250" y="390" text-anchor="middle" font-family="'Cairo', sans-serif" font-weight="900" font-size="64" fill="#050505">مسابقة</text>
-            <text x="250" y="475" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="52" letter-spacing="4" fill="#111111">KRJM</text>
-          </svg>
+            <path d="M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family="'Cairo', sans-serif" font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>
         </div>
         <p class="text-xs font-black text-rose-300 mt-2 tracking-wider">KRJM MUSBQ 2026</p>
         <p class="text-[10px] text-emerald-300">17 മദ്റസകൾ • 4 വേദികൾ</p>
@@ -132,7 +128,7 @@
   <!-- ================= MAIN VIEWPORTS ================= -->
   <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL & COMPACT LIGHT-DARK BOXES -->
+    <!-- 1. PUBLIC PORTAL & STUDENT VERIFICATION -->
     <section id="portalPublic" class="space-y-3">
       
       <!-- Stage Live Running Events Card -->
@@ -290,7 +286,7 @@
             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-blue-200 shadow-xs">
               <div id="tmMadrasaQrBox"></div>
               <div class="text-center">
-                <p class="text-[10px] font-black text-blue-950" id="tmQrBoxLabel"></p>
+                <p class="text-[11px] font-black text-blue-950" id="tmQrBoxLabel"></p>
                 <p class="text-[9px] text-slate-500 font-bold" id="tmQrBoxRegLabel"></p>
                 <button onclick="downloadTmQrCode()" class="mt-1 text-[10px] bg-blue-600 text-white font-bold px-2 py-1 rounded flex items-center gap-1 mx-auto">
                   <i class="fa-solid fa-download"></i> QR ഡൗൺലോഡ്
@@ -419,7 +415,7 @@
           </div>
         </div>
 
-        <!-- Add Missing Student Section -->
+        <!-- Add Missing Student Form Section -->
         <div id="deskAddMissingStudentForm" class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2">
           <span class="text-xs font-bold text-emerald-950"><i class="fa-solid fa-user-plus"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക:</span>
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
@@ -788,7 +784,7 @@
   <!-- PRINTABLE AREA (A4 EXACT 12 BADGES PER PAGE: 3 COLS x 4 ROWS) -->
   <div id="printableArea" class="hidden"></div>
 
-  <!-- UNIVERSAL LOGIN MODAL (CANCEL ON LEFT, LOGIN ON RIGHT - AUTO CLOSES UPON SUCCESS) -->
+  <!-- UNIVERSAL LOGIN MODAL (AUTO-CLOSES ON LOGIN) -->
   <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
     <div class="bg-white rounded-2xl p-5 w-full max-w-sm space-y-3 shadow-2xl border border-slate-200">
       <div class="text-center">
@@ -946,6 +942,13 @@
         if(abSnap.exists()) aboutAppContent = abSnap.data().text;
         document.getElementById("dispAboutText").innerText = aboutAppContent;
 
+        const cvSnap = await getDoc(doc(db, "config", "contactVisibility"));
+        if(cvSnap.exists()) {
+          isContactPublicVisible = cvSnap.data().visible;
+          const tog = document.getElementById("admContactVisibilityToggle");
+          if(tog) tog.checked = isContactPublicVisible;
+        }
+
         const ctSnap = await getDoc(doc(db, "config", "contacts"));
         if(ctSnap.exists()) contactList = ctSnap.data().list;
         renderContactsList();
@@ -1092,15 +1095,16 @@
         localStorage.setItem("krjm_active_role", role);
       }
 
+      // Close login modal explicitly to guarantee it hides
+      closeLoginModal();
+
       document.getElementById("liveStatusBar").classList.remove("hidden");
       buildSidebarMenuForRole(role);
 
-      // Header button becomes red Logout button
       const authBtn = document.getElementById("headerAuthBtn");
       authBtn.className = "text-xs bg-red-600 hover:bg-red-700 text-white font-black px-3.5 py-1.5 rounded-xl shadow border border-red-500 transition";
       document.getElementById("topRoleText").innerText = "Logout";
 
-      // Super Admin vs Co-Admin controls
       const clearAllBtn = document.getElementById("btnSuperAdminClearAll");
       if(clearAllBtn) {
         clearAllBtn.style.display = (role === 'admin') ? "inline-block" : "none";
@@ -1179,7 +1183,6 @@
         const el = document.getElementById("deskAddMissingStudentForm");
         if(el) el.scrollIntoView({ behavior: 'smooth' });
       } else if (action === 'entryUstad') {
-        // Open dedicated Ustad entry modal
         const sel = document.getElementById("mualModalMadrasaSelect");
         if(sel) {
           sel.innerHTML = madrasasData.map(m => `<option value="${m.regNo}">${m.regNo} - ${m.name}</option>`).join("");
@@ -1370,6 +1373,13 @@
         alert("ദയവായി മദ്റസ Reg No ഉം ഫോൺ നമ്പറും നൽകുക!"); 
         return; 
       }
+
+      try {
+        const mSnap = await getDoc(doc(db, "config", "madrasas"));
+        if(mSnap.exists() && mSnap.data().list) {
+          madrasasData = mSnap.data().list;
+        }
+      } catch(e) {}
 
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
@@ -2082,7 +2092,7 @@
         <div class="bg-white p-3 rounded-xl border shadow-xs space-y-2 text-xs">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-1.5">
-              <input type="text" id="mReg_${idx}" value="${m.regNo || ('M'+(idx+1))}" class="w-16 border p-1 rounded text-center font-bold bg-slate-50 uppercase">
+              <input type="text" id="mReg_${idx}" value="${m.regNo || ''}" class="w-16 border p-1 rounded text-center font-bold bg-slate-50 uppercase">
               <input type="text" id="mName_${idx}" value="${m.name}" class="w-48 sm:w-64 border p-1 rounded font-bold">
             </div>
             <div class="flex items-center gap-1">
@@ -2325,10 +2335,8 @@
 
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      const liveBoxes = document.getElementById("publicLiveStageBoxes");
-      if(!container || !liveBoxes) return;
+      if(!container) return;
       container.innerHTML = "";
-      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
@@ -2402,14 +2410,7 @@
       alert("ലൈവ് അനൗൺസ്‌മെന്റ് അപ്‌ഡേറ്റ് ചെയ്തു!");
     };
 
-    // ================= ABOUT & CONTACTS VISIBILITY MANAGEMENT =================
-    window.toggleContactVisibility = async function() {
-      isContactPublicVisible = document.getElementById("admContactVisibilityToggle").checked;
-      await setDoc(doc(db, "config", "contactVisibility"), { visible: isContactPublicVisible });
-      renderContactsList();
-      alert(`കോൺടാക്റ്റ് നമ്പറുകളുടെ പബ്ലിക് വിസിബിലിറ്റി: ${isContactPublicVisible ? 'ഓൺ (Visible)' : 'ഓഫ് (Hidden)'}`);
-    };
-
+    // ================= ABOUT & CONTACTS MANAGEMENT =================
     window.saveAboutAppContent = async function() {
       const t = document.getElementById("admAboutTextInp").value.trim();
       if(!t) return;
@@ -2437,11 +2438,6 @@
     function renderContactsList() {
       const c = document.getElementById("dispContactsList");
       if(!c) return;
-
-      if(!isContactPublicVisible && currentUserRole !== 'admin') {
-        c.innerHTML = '<p class="text-xs text-amber-800 font-bold bg-amber-50 p-2.5 rounded-xl border border-amber-200">ഔദ്യോഗിക നമ്പറുകൾ ലഭ്യമാക്കിയിട്ടില്ല.</p>';
-        return;
-      }
 
       if(contactList.length === 0) {
         c.innerHTML = '<p class="text-xs text-slate-400">നമ്പറുകൾ ചേർത്തിട്ടില്ല.</p>';
