@@ -838,7 +838,7 @@
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
-        // 1. Fetch Students first
+        // 1. Fetch Students
         await loadAllStudentsCache();
 
         // 2. Strict Madrasa Synchronization
@@ -1200,7 +1200,7 @@
       document.getElementById("stdCheckRegPassword").value = "";
     };
 
-    // ================= TEAM MANAGER AUTHENTICATION (RELIABLE MATCHING) =================
+    // ================= TEAM MANAGER AUTHENTICATION & FULL DATA RENDERING (FIXED) =================
     window.authenticateTeamManager = async function() {
       const regInput = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phoneInput = cleanPhone(document.getElementById("tmPhoneInput").value);
@@ -1217,7 +1217,6 @@
         }
       } catch(e) {}
 
-      // Flexible matching for both RegNo and phone
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
         cleanPhone(m.managerPhone) === phoneInput
@@ -1228,14 +1227,14 @@
         navRoute('portalTeamManager');
         document.getElementById("tmRegBadge").innerText = "Reg No: " + found.regNo;
         document.getElementById("tmCurrentMadrasa").innerText = found.name;
-        document.getElementById("tmCurrentManager").innerText = `മാനേജർ: ${found.managerName || ''} (${found.managerPhone})`;
+        document.getElementById("tmCurrentManager").innerText = `മാനേജർ: ${found.managerName || 'മാനേജർ'} (${found.managerPhone})`;
 
         document.getElementById("tmQrBoxLabel").innerText = found.name;
         document.getElementById("tmQrBoxRegLabel").innerText = "Reg: " + found.regNo;
 
         const qrBox = document.getElementById("tmMadrasaQrBox");
         qrBox.innerHTML = "";
-        new QRCode(qrBox, { text: `MADRASA:${found.name}|REG:${found.regNo}`, width: 90, height: 90, correctLevel: QRCode.CorrectLevel.L });
+        new QRCode(qrBox, { text: `MADRASA:${found.name}|REG:${found.regNo}`, width: 100, height: 100, correctLevel: QRCode.CorrectLevel.L });
 
         renderTeamManagerStudents();
       } else { 
@@ -1245,15 +1244,13 @@
 
     function renderTeamManagerStudents() {
       if (!currentLoggedInMadrasa) return;
-      
-      // Match students by Madrasa Name, Reg No, or trimmed uppercase variants
+      const mNameNorm = currentLoggedInMadrasa.name.trim().toUpperCase();
+      const mRegNorm = currentLoggedInMadrasa.regNo.trim().toUpperCase();
+
       const teamStudents = allStudentsCache.filter(s => {
-        if (!s.madrasa && !s.madrasaReg) return false;
-        const sName = String(s.madrasa).trim().toUpperCase();
-        const mName = String(currentLoggedInMadrasa.name).trim().toUpperCase();
-        const sReg = String(s.madrasaReg || "").trim().toUpperCase();
-        const mReg = String(currentLoggedInMadrasa.regNo).trim().toUpperCase();
-        return sName === mName || sReg === mReg || sName.includes(mName) || mName.includes(sName);
+        const sMad = (s.madrasa || "").trim().toUpperCase();
+        const sReg = (s.madrasaReg || "").trim().toUpperCase();
+        return sMad === mNameNorm || sReg === mRegNorm || sMad.includes(mNameNorm) || mNameNorm.includes(sMad);
       });
 
       const tbody = document.getElementById("tmStudentsTable");
