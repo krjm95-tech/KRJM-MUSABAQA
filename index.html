@@ -42,6 +42,7 @@
   <!-- TOP HEADER -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
+      
       <div class="flex items-center gap-2">
         <button onclick="toggleSidebar()" class="p-2 text-rose-200 hover:bg-white/10 rounded-xl">
           <i class="fa-solid fa-bars text-xl"></i>
@@ -79,7 +80,17 @@
     </div>
   </header>
 
-  <!-- LIVE METRICS BAR -->
+  <!-- LIVE ROTATING TICKER -->
+  <div class="bg-gradient-to-r from-rose-900 via-purple-950 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex items-center shadow-xs no-print overflow-hidden">
+    <span class="bg-amber-400 text-slate-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md mr-2 shrink-0 border border-amber-300 flex items-center gap-1">
+      <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
+    </span>
+    <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
+      KRJM റേഞ്ച് തല മുസാബഖ 2026 കടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. ഫലങ്ങൾ തത്സമയം ലഭ്യമാണ്.
+    </marquee>
+  </div>
+
+  <!-- PROTECTED METRICS -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ കുട്ടികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -1200,7 +1211,7 @@
       document.getElementById("stdCheckRegPassword").value = "";
     };
 
-    // ================= TEAM MANAGER AUTHENTICATION & FULL DATA RENDERING (FIXED) =================
+    // ================= TEAM MANAGER AUTHENTICATION & DASHBOARD (ROBUST FIX) =================
     window.authenticateTeamManager = async function() {
       const regInput = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phoneInput = cleanPhone(document.getElementById("tmPhoneInput").value);
