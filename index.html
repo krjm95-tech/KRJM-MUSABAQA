@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KRJM MUSBQ 2026</title>
   
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#831843">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="KRJM MUSBQ">
 
+  <!-- Official Vector SVG Logo Embedded as Data-URI -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 560'><rect width='100%' height='100%' fill='%23ffffff'/><circle cx='250' cy='95' r='45' fill='%233ea1db'/><path d='M 120 120 C 175 120 220 145 235 200 L 235 270 C 235 285 242 290 250 290 C 258 290 265 285 265 270 L 265 200 C 280 145 325 120 380 120 C 400 120 405 135 390 148 C 345 185 315 220 315 285 L 315 295 C 315 310 300 318 280 318 L 220 318 C 200 318 185 310 185 295 L 185 285 C 185 220 155 185 110 148 C 95 135 100 120 120 120 Z' fill='%2300a843'/><rect x='135' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><rect x='315' y='170' width='50' height='110' rx='25' fill='%23ba232b'/><text x='250' y='390' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='64' fill='%23050505'>مسابقة</text><text x='250' y='475' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='52' letter-spacing='4' fill='%23111111'>KRJM</text></svg>">
 
@@ -42,7 +43,7 @@
 </head>
 <body class="bg-gradient-to-br from-rose-50/70 via-slate-50 to-amber-50/40 text-slate-800 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
+  <!-- ================= TOP HEADER ================= -->
   <header class="bg-gradient-to-r from-rose-950 via-slate-900 to-emerald-950 text-white sticky top-0 z-30 shadow-md border-b-2 border-amber-500/30 no-print">
     <div class="max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
       
@@ -133,9 +134,10 @@
   <!-- ================= MAIN VIEWPORTS ================= -->
   <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL & STUDENT VERIFICATION -->
+    <!-- 1. PUBLIC PORTAL & COMPACT LIGHT-DARK BOXES -->
     <section id="portalPublic" class="space-y-3">
       
+      <!-- Stage Live Status -->
       <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-emerald-950 text-white p-3 rounded-xl shadow-sm space-y-1.5 border border-rose-800/40">
         <h3 class="text-[11px] font-black uppercase text-amber-300 flex items-center gap-1.5">
           <i class="fa-solid fa-satellite-dish text-red-400 animate-pulse"></i> വേദികളിൽ ഇപ്പോൾ നടക്കുന്നത് (Live Stage Status)
@@ -148,6 +150,7 @@
         </div>
       </div>
 
+      <!-- TWO-COLUMN COMPACT VIEW -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
         
         <!-- Student Verification Form -->
@@ -210,7 +213,7 @@
               <i class="fa-solid fa-user-tie text-xs"></i>
             </div>
             <div>
-              <h4 class="text-xs sm:text-sm font-black text-blue-100 uppercase tracking-wide leading-none">ടീം മാനേജർ ലോഗിൻ</h4>
+              <h4 class="text-xs font-black text-blue-100 uppercase tracking-wide leading-none">ടീം മാനേജർ ലോഗിൻ</h4>
               <p class="text-[9px] text-blue-300 leading-none mt-0.5">മദ്റസ പരിശോധന & QR കോഡ്</p>
             </div>
           </div>
@@ -533,7 +536,6 @@
           <div id="prizeStudentCard" class="hidden bg-white border border-amber-200 rounded-xl p-3 space-y-2"></div>
         </div>
 
-        <!-- Add/Edit Program With Exact Point Logic & Without Grade Option -->
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
           <div class="flex justify-between items-center">
             <span class="text-xs font-bold text-slate-800"><i class="fa-solid fa-trophy"></i> പുതിയ മത്സരം / വിജയികളെ രേഖപ്പെടുത്തുക:</span>
@@ -678,7 +680,7 @@
               <button id="btnSuperAdminClearAll" onclick="clearAllStudentsDataPrompt()" class="bg-red-600 text-white text-[10px] px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-trash"></i> മുഴുവൻ കുട്ടികളെയും ഡിലീറ്റ് ചെയ്യുക</button>
             </div>
           </div>
-          <!-- 17 Madrasas list populated directly -->
+          <!-- 17 Madrasas list populated directly with real numbers and names -->
           <div id="admin16MadrasasList" class="space-y-2.5"></div>
         </div>
 
@@ -733,7 +735,7 @@
           </div>
         </div>
 
-        <!-- TAB 5: Staff Passwords -->
+        <!-- TAB 5: Staff Passwords (Fixed Persistence) -->
         <div id="admTabRoles" class="hidden space-y-3">
           <h3 class="text-xs font-bold text-slate-800 uppercase">സ്റ്റാഫ് പാസ്‌വേഡുകൾ മാറ്റുക</h3>
           <div id="adminRolesList" class="space-y-2"></div>
@@ -778,7 +780,7 @@
 
       <div class="space-y-1">
         <label class="text-xs font-bold text-slate-600">Password</label>
-        <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center font-bold">
+        <input type="password" id="loginPasswordInput" placeholder="Enter Password" class="w-full border rounded-xl p-2 text-xs text-center">
       </div>
 
       <div class="flex gap-2 pt-2">
@@ -867,7 +869,7 @@
       return cleaned.slice(-10);
     }
 
-    // Step-by-Step Back Navigation
+    // Step-by-Step Back Navigation Support
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) {
         navRoute(e.state.page, false);
@@ -884,18 +886,17 @@
         // 1. Fetch Students from Firestore
         await loadAllStudentsCache();
 
-        // 2. Fetch or Sync Madrasas from Firestore
+        // 2. Load Real 17 Madrasas directly and sync
         const mSnap = await getDoc(doc(db, "config", "madrasas"));
         if(mSnap.exists() && mSnap.data().list && mSnap.data().list.length > 0) {
-          madrasasData = mSnap.data().list;
-          
-          // Auto-Discovery: If students have madrasas not present in list, append them safely
-          allStudentsCache.forEach(s => {
-            if(s.madrasa && !madrasasData.some(m => m.name === s.madrasa)) {
-              const newReg = String(madrasasData.length + 100);
-              madrasasData.push({ regNo: newReg, name: s.madrasa, points: 0, managerName: "", managerPhone: "" });
-            }
-          });
+          // If stored list has old M01 demo entries, force update to genuine 17 Madrasas list
+          const firstEntry = mSnap.data().list[0];
+          if(firstEntry && firstEntry.regNo && firstEntry.regNo.startsWith("M0")) {
+            madrasasData = [...DEFAULT_17_MADRASAS];
+            await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+          } else {
+            madrasasData = mSnap.data().list;
+          }
         } else {
           madrasasData = [...DEFAULT_17_MADRASAS];
           await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
@@ -923,6 +924,7 @@
         renderSavedProgramsList();
         render16MadrasasAdmin();
         populateDeskFilter();
+        renderAdminRoles();
 
         restorePersistentSession();
       } catch (e) { console.error(e); }
@@ -1112,7 +1114,6 @@
           <button onclick="openSidebarDeskAction('madrasaQr')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-qrcode text-purple-700"></i> മദ്റസ QR കോഡുകൾ</button>
           <button onclick="openSidebarDeskAction('printBadges')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-print text-slate-800"></i> ബാഡ്ജുകൾ പ്രിന്റ്</button>
           <button onclick="openSidebarDeskAction('addStudent')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-user-plus text-emerald-700"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക</button>
-          <button onclick="openSidebarDeskAction('entryUstad')" class="w-full text-left p-2.5 hover:bg-slate-100 rounded-xl flex items-center gap-3"><i class="fa-solid fa-user-tie text-blue-700"></i> ഉസ്താദുമാരെ എൻട്രി ചെയ്യുക</button>
         `;
       }
 
@@ -1138,13 +1139,6 @@
       } else if (action === 'addStudent') {
         const el = document.getElementById("deskAddMissingStudentForm");
         if(el) el.scrollIntoView({ behavior: 'smooth' });
-      } else if (action === 'entryUstad') {
-        const reg = prompt("ഉസ്താദിന്റെ മദ്റസ Reg No നൽകുക (ഉദാ: 698):");
-        const name = prompt("ഉസ്താദിന്റെ പേര് നൽകുക:");
-        if (reg && name) {
-          markManagerFoodRedeemed();
-          alert(`${name} ഉസ്താദിന്റെ എൻട്രിയും ഭക്ഷണവും വിജയകരമായി രേഖപ്പെടുത്തി!`);
-        }
       }
     };
 
@@ -1270,6 +1264,13 @@
         return; 
       }
 
+      try {
+        const mSnap = await getDoc(doc(db, "config", "madrasas"));
+        if(mSnap.exists() && mSnap.data().list) {
+          madrasasData = mSnap.data().list;
+        }
+      } catch(e) {}
+
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
         cleanPhone(m.managerPhone) === phoneInput
@@ -1291,7 +1292,7 @@
 
         renderTeamManagerStudents();
       } else { 
-        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്."); 
+        alert("ലോഗിൻ പരാജയപ്പെട്ടു! നൽകിയ Reg No അല്ലെങ്കിൽ മൊബൈൽ നമ്പർ തെറ്റാണ്. അഡ്മിൻ പാനലിൽ ഈ മദ്റസയ്ക്ക് മാനേജറുടെ നമ്പർ നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക."); 
       }
     };
 
@@ -2224,10 +2225,8 @@
 
     function renderScheduleTimetable() {
       const container = document.getElementById("stageScheduleContainer");
-      const liveBoxes = document.getElementById("publicLiveStageBoxes");
-      if(!container || !liveBoxes) return;
+      if(!container) return;
       container.innerHTML = "";
-      liveBoxes.innerHTML = "";
 
       const grouped = {};
       scheduleData.forEach(item => {
@@ -2274,7 +2273,6 @@
       `).join("");
     }
 
-    // ================= STAFF PASSWORDS FIX =================
     function renderAdminRoles() {
       const container = document.getElementById("adminRolesList");
       if(!container) return;
@@ -2290,12 +2288,9 @@
     }
 
     window.saveAdminRoleConfig = async function(k) {
-      const inp = document.getElementById(`admPass_${k}`);
-      if(inp) {
-        rolesConfig[k].pass = inp.value.trim();
-        await setDoc(doc(db, "config", "roles"), rolesConfig);
-        alert(rolesConfig[k].title + " പാസ്‌വേഡ് സേവ് ചെയ്തു!");
-      }
+      rolesConfig[k].pass = document.getElementById(`admPass_${k}`).value.trim();
+      await setDoc(doc(db, "config", "roles"), rolesConfig);
+      alert(rolesConfig[k].title + " പാസ്‌വേഡ് സേവ് ചെയ്തു!");
     };
 
     window.updateLiveNoticeTicker = async function() {
@@ -2334,6 +2329,11 @@
     function renderContactsList() {
       const c = document.getElementById("dispContactsList");
       if(!c) return;
+
+      if(!isContactPublicVisible && currentUserRole !== 'admin') {
+        c.innerHTML = '<p class="text-xs text-amber-800 font-bold bg-amber-50 p-2.5 rounded-xl border border-amber-200">ഔദ്യോഗിക നമ്പറുകൾ ലഭ്യമാക്കിയിട്ടില്ല.</p>';
+        return;
+      }
 
       if(contactList.length === 0) {
         c.innerHTML = '<p class="text-xs text-slate-400">നമ്പറുകൾ ചേർത്തിട്ടില്ല.</p>';
