@@ -80,17 +80,7 @@
     </div>
   </header>
 
-  <!-- LIVE ROTATING TICKER -->
-  <div class="bg-gradient-to-r from-rose-900 via-purple-950 to-emerald-950 text-white px-3 py-1.5 text-xs font-bold flex items-center shadow-xs no-print overflow-hidden">
-    <span class="bg-amber-400 text-slate-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-md mr-2 shrink-0 border border-amber-300 flex items-center gap-1">
-      <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
-    </span>
-    <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
-      KRJM റേഞ്ച് തല മുസാബഖ 2026 കടിയങ്ങാട് വേദിയിൽ ആരംഭിച്ചു. ഫലങ്ങൾ തത്സമയം ലഭ്യമാണ്.
-    </marquee>
-  </div>
-
-  <!-- PROTECTED METRICS -->
+  <!-- LIVE METRICS BAR -->
   <div id="liveStatusBar" class="hidden bg-slate-900 text-slate-200 px-3 py-1.5 text-xs font-bold flex flex-wrap justify-between items-center no-print border-b border-slate-700 shadow-inner">
     <div><span>ആകെ കുട്ടികൾ: <b id="statTotalStudentsCount" class="text-sky-400">0</b></span></div>
     <div><span>എൻട്രി ചെയ്തവർ: <b id="statTotalCheckedIn" class="text-emerald-400">0</b></span></div>
@@ -641,6 +631,7 @@
           <span class="text-xs bg-rose-100 text-rose-950 font-bold px-2 py-0.5 rounded-full" id="adminBadgeTitle">Admin Panel</span>
         </div>
 
+        <!-- Announcement Creator -->
         <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
           <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
           <div class="flex gap-2">
@@ -649,6 +640,7 @@
           </div>
         </div>
 
+        <!-- Navigation Tabs inside Admin -->
         <div class="flex flex-wrap gap-1.5 border-b pb-2 text-xs font-bold">
           <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">17 മദ്റസകൾ & CSV</button>
           <button onclick="switchAdminTab('admTabScheduleCsv')" class="px-3 py-1.5 bg-amber-600 text-white rounded-lg">ഷെഡ്യൂൾ CSV അപ്‌ലോഡ്</button>
@@ -665,7 +657,6 @@
               <button id="btnSuperAdminClearAll" onclick="clearAllStudentsDataPrompt()" class="bg-red-600 text-white text-[10px] px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-trash"></i> മുഴുവൻ കുട്ടികളെയും ഡിലീറ്റ് ചെയ്യുക</button>
             </div>
           </div>
-          <!-- 17 Madrasas list populated directly with real numbers and names -->
           <div id="admin16MadrasasList" class="space-y-2.5"></div>
         </div>
 
@@ -783,8 +774,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const SUPER_ADMIN_PASS = "K95rjm";
-
     let rolesConfig = {
       desk:    { title: "Spot Registration Desk", pass: "desk123", canEntry: true },
       food:    { title: "Food Counter", pass: "food123" },
@@ -793,7 +782,6 @@
       coadmin: { title: "Co-Admin", pass: "co123", canEntry: true, canPrize: true }
     };
 
-    // EXACT 17 MADRASAS WITH OFFICIAL REGISTER NUMBERS
     const OFFICIAL_17_MADRASAS = [
       { regNo: "698", name: "MADRASATHUL MUHAMMADIYYA", points: 0, managerName: "", managerPhone: "" },
       { regNo: "1592", name: "NOORUL ISLAM MADRASA", points: 0, managerName: "", managerPhone: "" },
@@ -822,9 +810,6 @@
     let isContactPublicVisible = true;
 
     let currentUserRole = null;
-    let html5QrScanner = null;
-    let deskQrScanner = null;
-    let prizeQrScanner = null;
     let allStudentsCache = [];
     let foodScanMode = 'individual';
     let currentSelectedStage = "Stage 1";
@@ -836,7 +821,6 @@
       return cleaned.slice(-10);
     }
 
-    // Step-by-Step Back Navigation Support
     window.addEventListener('popstate', (e) => {
       if (e.state && e.state.page) {
         navRoute(e.state.page, false);
@@ -850,12 +834,19 @@
         const rSnap = await getDoc(doc(db, "config", "roles"));
         if(rSnap.exists()) rolesConfig = rSnap.data();
 
-        // 1. Fetch Students
         await loadAllStudentsCache();
 
-        // 2. Strict Madrasa Synchronization (FORCIBLY Overwrites any old M01 demo list with genuine 17 Madrasas)
-        madrasasData = [...OFFICIAL_17_MADRASAS];
-        await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+        const mSnap = await getDoc(doc(db, "config", "madrasas"));
+        if(mSnap.exists() && mSnap.data().list) {
+          const dbList = mSnap.data().list;
+          // Merge manager phone/name into official 17 madrasas if already saved
+          madrasasData = OFFICIAL_17_MADRASAS.map(om => {
+            const found = dbList.find(d => d.regNo === om.regNo || d.name === om.name);
+            return found ? { ...om, managerName: found.managerName || "", managerPhone: found.managerPhone || "", points: found.points || 0 } : om;
+          });
+        } else {
+          await setDoc(doc(db, "config", "madrasas"), { list: madrasasData });
+        }
 
         const pSnap = await getDoc(doc(db, "config", "programs"));
         if(pSnap.exists()) programsList = pSnap.data().list;
@@ -930,7 +921,6 @@
       document.getElementById("statTotalStudentsCount").innerText = allStudentsCache.length;
     }
 
-    // ================= NAVIGATION =================
     window.toggleSidebar = function() {
       const menu = document.getElementById("sidebar");
       const overlay = document.getElementById("sideOverlay");
@@ -980,7 +970,6 @@
       return "Desk";
     }
 
-    // ================= AUTHENTICATION =================
     window.openLoginModal = function() {
       document.getElementById("loginPasswordInput").value = "";
       document.getElementById("loginModal").classList.remove("hidden");
@@ -993,7 +982,9 @@
       const role = document.getElementById("loginRoleSelect").value;
       const pass = document.getElementById("loginPasswordInput").value.trim();
 
-      if (pass === SUPER_ADMIN_PASS) {
+      const SUPER_PASS = rolesConfig.admin?.pass || "K95rjm";
+
+      if (pass === SUPER_PASS || pass === SUPER_ADMIN_PASS) {
         closeLoginModal();
         applyRoleSession(role);
         return;
@@ -1114,94 +1105,8 @@
       document.getElementById("btnReturnToMyDesk").classList.add("hidden");
       document.getElementById("liveStatusBar").classList.add("hidden");
       
-      stopFoodQRScanner();
-      stopDeskQRScanner();
-      stopPrizeQRScanner();
       buildSidebarMenuForRole(null);
       navRoute('portalPublic');
-    };
-
-    // ================= STUDENT VERIFICATION =================
-    window.verifyAndShowStudentDetails = function() {
-      const q = document.getElementById("stdCheckIdInput").value.trim().toLowerCase();
-      const regPass = document.getElementById("stdCheckRegPassword").value.trim().toUpperCase();
-      const err = document.getElementById("pubError");
-      const card = document.getElementById("publicResultCard");
-      err.classList.add("hidden"); card.classList.add("hidden");
-
-      if(!q || !regPass) {
-        err.innerText = "വിവരങ്ങളും മദ്റസ രജിസ്ട്രേഷൻ നമ്പറും നൽകുക!";
-        err.classList.remove("hidden");
-        return;
-      }
-
-      const madrasaObj = madrasasData.find(m => m.regNo === regPass);
-      if(!madrasaObj) {
-        err.innerText = "തെറ്റായ മദ്റസ രജിസ്ട്രേഷൻ നമ്പർ (Password)!";
-        err.classList.remove("hidden");
-        return;
-      }
-
-      const student = allStudentsCache.find(s => 
-        (s.id.toLowerCase() === q || (s.name && s.name.toLowerCase().includes(q))) &&
-        (s.madrasa === madrasaObj.name || s.madrasaReg === madrasaObj.regNo)
-      );
-
-      if(student) {
-        document.getElementById("pubName").innerText = student.name;
-        document.getElementById("pubMadrasa").innerText = "മദ്റസ: " + student.madrasa;
-        document.getElementById("pubTokenBadge").innerText = "Token: " + (student.tokenNo || '-');
-        document.getElementById("pubChestBadge").innerText = "Chest: " + student.id;
-
-        const awards = [];
-        programsList.forEach(p => {
-          if (p.results) {
-            p.results.forEach(r => {
-              if (r.chestNo === student.id) {
-                awards.push({ item: p.name, place: r.place, status: r.received ? "സ്വീകരിച്ചു ✓" : "സമ്മാനം റെഡി!" });
-              }
-            });
-          }
-        });
-
-        const przAlert = document.getElementById("pubPrizeStatusAlert");
-        if(awards.length > 0) {
-          przAlert.classList.remove("hidden");
-          przAlert.innerHTML = awards.map(a => `
-            <div class="p-1 rounded border ${a.status.includes('സ്വീകരിച്ചു') ? 'bg-emerald-100 text-emerald-900 border-emerald-300' : 'bg-amber-100 text-amber-900 border-amber-300 animate-pulse'}">
-              🏆 ${a.item} — <b>${a.place}</b> (${a.status})
-            </div>
-          `).join("");
-        } else {
-          przAlert.classList.add("hidden");
-        }
-
-        const eEl = document.getElementById("pubEntryStatus");
-        eEl.className = "p-1 rounded border " + (student.entryRegistered ? 'bg-emerald-50 text-emerald-800 border-emerald-300' : 'bg-red-50 text-red-800 border-red-300');
-        eEl.innerText = student.entryRegistered ? "എൻട്രി: പൂർത്തിയായി ✓" : "എൻട്രി: ചെയ്തിട്ടില്ല ✕";
-
-        const fEl = document.getElementById("pubFoodStatus");
-        fEl.className = "p-1 rounded border " + (student.foodGiven ? 'bg-blue-50 text-blue-800 border-blue-300' : 'bg-slate-100 text-slate-600 border-slate-300');
-        fEl.innerText = student.foodGiven ? "ഭക്ഷണം: നൽകി ✓" : "ഭക്ഷണം: ലഭ്യമായിട്ടില്ല";
-
-        document.getElementById("pubQrTitleName").innerText = student.name;
-        document.getElementById("pubQrMetaLine").innerText = `ചെസ്റ്റ്: ${student.id} • ടോക്കൺ: ${student.tokenNo || '-'}`;
-
-        const qrBox = document.getElementById("pubQrcode");
-        qrBox.innerHTML = "";
-        new QRCode(qrBox, { text: student.id, width: 110, height: 110, correctLevel: QRCode.CorrectLevel.L });
-
-        card.classList.remove("hidden");
-      } else {
-        err.innerText = "നൽകിയ വിവരങ്ങളിലുള്ള വിദ്യാർത്ഥിയെ ഈ മദ്റസയിൽ കണ്ടെത്താനായില്ല!";
-        err.classList.remove("hidden");
-      }
-    };
-
-    window.closePublicSearchResult = function() {
-      document.getElementById("publicResultCard").classList.add("hidden");
-      document.getElementById("stdCheckIdInput").value = "";
-      document.getElementById("stdCheckRegPassword").value = "";
     };
 
     // ================= TEAM MANAGER AUTHENTICATION (FIXED) =================
@@ -1247,7 +1152,11 @@
     };
 
     function renderTeamManagerStudents() {
-      const teamStudents = allStudentsCache.filter(s => s.madrasa === currentLoggedInMadrasa.name || s.madrasaReg === currentLoggedInMadrasa.regNo);
+      const teamStudents = allStudentsCache.filter(s => 
+        s.madrasa === currentLoggedInMadrasa.name || 
+        s.madrasaReg === currentLoggedInMadrasa.regNo ||
+        (s.madrasa && s.madrasa.trim().toUpperCase() === currentLoggedInMadrasa.name.trim().toUpperCase())
+      );
       const tbody = document.getElementById("tmStudentsTable");
       
       tbody.innerHTML = teamStudents.map((s, idx) => {
@@ -1403,6 +1312,14 @@
       }
       alert(`${count} കുട്ടികൾക്ക് ഭക്ഷണം നൽകി!`);
       document.getElementById("foodBulkMadrasaBox").classList.add("hidden");
+      refreshCounters();
+    };
+
+    window.markManagerFoodRedeemed = async function() {
+      const snap = await getDoc(doc(db, "config", "managerFood"));
+      const cur = snap.exists() ? (snap.data().count || 0) : 0;
+      await setDoc(doc(db, "config", "managerFood"), { count: cur + 1 });
+      alert("മാനേജർ ഫുഡ് രേഖപ്പെടുത്തി!");
       refreshCounters();
     };
 
@@ -1886,7 +1803,7 @@
     };
 
     window.deleteStageEvent = async function(idx) {
-      if(confirm("ഈ ഇനം ഒഴിവാക്കണോ?")) {
+      if(confirm("ഈ മത്സരം ഡിലീറ്റ് ചെയ്യണമെന്നുറപ്പാണോ?")) {
         const match = scheduleData.filter(st => st.stage === currentSelectedStage)[idx];
         scheduleData = scheduleData.filter(x => x !== match);
         await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
