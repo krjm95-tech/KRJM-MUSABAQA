@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KRJM MUSBQ 2026</title>
+  
   <meta name="theme-color" content="#831843">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -123,6 +124,8 @@
 
     <!-- 1. PUBLIC PORTAL & TEAM MANAGER LOGIN -->
     <section id="portalPublic" class="space-y-3">
+      
+      <!-- PERSISTENT STAGE LIVE STATUS -->
       <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-emerald-950 text-white p-3 rounded-xl shadow-sm space-y-1.5 border border-rose-800/40">
         <h3 class="text-[11px] font-black uppercase text-amber-300 flex items-center gap-1.5">
           <i class="fa-solid fa-satellite-dish text-red-400 animate-pulse"></i> വേദികളിൽ ഇപ്പോൾ നടക്കുന്നത് (Live Stage Status)
@@ -147,6 +150,7 @@
               <p class="text-[9px] text-rose-300 leading-none mt-0.5">ഫലങ്ങളും വിവരങ്ങളും പരിശോധിക്കാം</p>
             </div>
           </div>
+          
           <div class="space-y-1.5">
             <input type="text" id="stdCheckIdInput" placeholder="പേര് / ചെസ്റ്റ് നമ്പർ" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-amber-400 focus:outline-none">
             <input type="password" id="stdCheckRegPassword" placeholder="പാസ്‌വേഡ് (മദ്റസ Reg No: ഉദാ 698)" class="w-full bg-slate-950/80 border border-rose-700/80 text-white p-1.5 text-xs rounded-lg uppercase focus:ring-1 focus:ring-amber-400 focus:outline-none font-bold">
@@ -177,7 +181,7 @@
           <p id="pubError" class="hidden text-[10px] text-amber-300 text-center font-bold"></p>
         </div>
 
-        <!-- Team Manager Form -->
+        <!-- Team Manager Login Form (Public Portal) -->
         <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-blue-100 p-3.5 rounded-2xl shadow-md border border-blue-800 space-y-2">
           <div class="flex items-center gap-1.5 border-b border-blue-800/50 pb-1.5">
             <div class="w-6 h-6 rounded-lg bg-blue-800/60 flex items-center justify-center text-cyan-300">
@@ -188,6 +192,7 @@
               <p class="text-[9px] text-blue-300 leading-none mt-0.5">മദ്റസ പരിശോധന & QR കോഡ്</p>
             </div>
           </div>
+          
           <div class="space-y-1.5">
             <input type="text" id="tmRegNoInput" placeholder="മദ്റസ Reg No (ഉദാ: 698)" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg uppercase font-bold focus:ring-1 focus:ring-cyan-400 focus:outline-none">
             <input type="tel" id="tmPhoneInput" placeholder="രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ" class="w-full bg-slate-950/80 border border-blue-700/80 text-white p-1.5 text-xs rounded-lg focus:ring-1 focus:ring-cyan-400 focus:outline-none">
@@ -198,7 +203,7 @@
       </div>
     </section>
 
-    <!-- 2. STAGE SCHEDULE VIEW -->
+    <!-- 2. STAGE SCHEDULE VIEW WITH DATE -->
     <section id="secStages" class="hidden space-y-3">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
         <h2 class="text-sm font-bold text-slate-900 flex items-center gap-2">
@@ -333,13 +338,26 @@
       </div>
     </section>
 
-    <!-- 6. SPOT REGISTRATION DESK -->
+    <!-- 6. SPOT REGISTRATION DESK WITH MADRASA UPLOAD STATUS BUTTONS -->
     <section id="portalRoleDesk" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex items-center justify-between border-b pb-2">
           <h2 id="roleDeskTitle" class="text-sm font-bold text-slate-800">Spot Registration Desk</h2>
           <span class="text-xs bg-emerald-100 text-emerald-900 font-bold px-2.5 py-1 rounded-lg">രജിസ്ട്രേഷൻ</span>
         </div>
+
+        <!-- Madrasa Uploaded / Not Uploaded Summary Button & Download -->
+        <div class="bg-slate-50 p-3 rounded-xl border flex flex-wrap justify-between items-center gap-2">
+          <div>
+            <h4 class="text-xs font-bold text-slate-900">മദ്റസ അപ്‌ലോഡ് സ്റ്റാറ്റസ് (Uploaded / Pending)</h4>
+            <p class="text-[10px] text-slate-500">ഇതുവരെ ഫയൽ അപ്‌ലോഡ് ചെയ്തവരും ചെയ്യാത്തവരുമായ മദ്റസകൾ</p>
+          </div>
+          <button onclick="downloadMadrasaUploadStatusReport()" class="bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-xs">
+            <i class="fa-solid fa-download"></i> സ്റ്റാറ്റസ് ഡൗൺലോഡ് CSV
+          </button>
+        </div>
+        <div id="madrasaUploadStatusSummaryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
+
         <div class="bg-slate-50 p-3 rounded-xl border flex flex-col items-center">
           <div id="deskQrReader" class="w-full max-w-xs overflow-hidden rounded-xl border mb-2"></div>
           <div class="flex gap-2">
@@ -347,6 +365,7 @@
             <button onclick="stopDeskQRScanner()" id="btnStopDeskScan" class="hidden bg-slate-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold">ഓഫ്</button>
           </div>
         </div>
+
         <div class="bg-purple-50 p-3 rounded-xl border border-purple-200 space-y-2">
           <span class="text-xs font-bold text-purple-950">മദ്റസ റെജി. നമ്പർ അടിച്ച് മുഴുവൻ കുട്ടികളെയും എൻട്രി ചെയ്യാം:</span>
           <div class="flex gap-2">
@@ -354,6 +373,8 @@
             <button onclick="executeRegNoBulkCheckin()" class="bg-purple-800 text-white text-xs px-4 rounded-xl font-bold shrink-0">എൻട്രി ചെയ്യുക ✓</button>
           </div>
         </div>
+
+        <!-- Add Missing Student Section -->
         <div id="deskAddMissingStudentForm" class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2">
           <span class="text-xs font-bold text-emerald-950"><i class="fa-solid fa-user-plus"></i> വിട്ടുപോയ കുട്ടിയെ ചേർക്കുക:</span>
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
@@ -365,6 +386,7 @@
           </div>
           <button onclick="deskAddMissingStudentAction()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-1.5 rounded-lg">ആഡ് ചെയ്യുക ✓</button>
         </div>
+
         <div class="space-y-2 pt-2 border-t">
           <div class="flex justify-between items-center">
             <h4 class="text-xs font-bold text-slate-800 uppercase">രജിസ്ട്രേഷൻ ലിസ്റ്റ്</h4>
@@ -391,7 +413,7 @@
       </div>
     </section>
 
-    <!-- EDIT STUDENT MODAL -->
+    <!-- PROFESSIONAL STUDENT EDIT MODAL POPUP FOR SPOT DESK -->
     <div id="studentEditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 no-print">
       <div class="bg-white rounded-2xl p-5 w-full max-w-md space-y-3 shadow-2xl border border-slate-200">
         <div class="flex justify-between items-center border-b pb-2">
@@ -478,7 +500,7 @@
       </div>
     </section>
 
-    <!-- 8. STAGE MANAGER PORTAL -->
+    <!-- 8. STAGE MANAGER PORTAL WITH DATE SUPPORT -->
     <section id="portalStage" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="border-b pb-2 flex justify-between items-center">
@@ -491,12 +513,13 @@
           </div>
         </div>
         <div class="bg-slate-50 p-3 rounded-xl border space-y-2 text-xs">
-          <span class="font-bold text-slate-800">+ പുതിയ മത്സരം ഷെഡ്യൂൾ ചെയ്യുക:</span>
+          <span class="font-bold text-slate-800">+ പുതിയ മത്സരം ഷെഡ്യൂൾ ചെയ്യുക (Date & Time):</span>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input type="text" id="stgAddProgName" placeholder="മത്സര ഇനം" class="border p-1.5 rounded col-span-2">
-            <input type="text" id="stgAddProgTime" placeholder="സമയം (e.g. 09:30 AM)" class="border p-1.5 rounded">
+            <input type="text" id="stgAddProgDate" placeholder="തീയതി (ഉദാ: Sep 27)" class="border p-1.5 rounded font-bold">
+            <input type="text" id="stgAddProgTime" placeholder="സമയം (ഉദാ: 09:30 AM)" class="border p-1.5 rounded font-bold">
+            <input type="text" id="stgAddProgName" placeholder="മത്സര ഇനം" class="border p-1.5 rounded font-bold sm:col-span-3">
           </div>
-          <button onclick="stageManagerAddEvent()" class="bg-emerald-700 text-white font-bold rounded p-1.5 text-xs">ആഡ് ചെയ്യുക ✓</button>
+          <button onclick="stageManagerAddEvent()" class="bg-emerald-700 text-white font-bold rounded p-1.5 text-xs">ഷെഡ്യൂൾ ആഡ് ചെയ്യുക ✓</button>
         </div>
         <div class="space-y-3">
           <h3 class="text-xs font-bold text-slate-700 uppercase" id="selectedStageTitleHeading">Stage 1 ലെ മത്സരങ്ങൾ</h3>
@@ -537,9 +560,10 @@
         </div>
         <div id="admTabScheduleCsv" class="hidden space-y-3 text-xs">
           <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl space-y-2">
-            <span class="font-bold text-amber-950"><i class="fa-solid fa-file-csv"></i> മത്സര ഷെഡ്യൂൾ CSV ഫയൽ അപ്‌ലോഡ് ചെയ്യുക:</span>
+            <span class="font-bold text-amber-950"><i class="fa-solid fa-file-csv"></i> മത്സര ഷെഡ്യൂൾ CSV അപ്‌ലോഡ് ചെയ്യുക (Date, Stage, Time, Item):</span>
             <input type="file" id="scheduleCsvFileInput" accept=".csv" class="w-full text-xs">
             <button onclick="uploadScheduleCsvFile()" class="bg-amber-700 text-white font-bold px-3 py-1.5 rounded-lg shadow-xs">ഷെഡ്യൂൾ അപ്‌ലോഡ് ചെയ്യുക ✓</button>
+            <p class="text-[10px] text-slate-500">മാതൃക: Date, Stage, Time, Item (ഉദാ: Sep 27, Stage 1, 09:00 AM, ഖിറാഅത്ത്)</p>
           </div>
         </div>
         <div id="admTabBulkPrint" class="hidden space-y-3">
@@ -662,6 +686,9 @@
     let isContactPublicVisible = true;
 
     let currentUserRole = null;
+    let html5QrScanner = null;
+    let deskQrScanner = null;
+    let prizeQrScanner = null;
     let allStudentsCache = [];
     let foodScanMode = 'individual';
     let currentSelectedStage = "Stage 1";
@@ -722,6 +749,7 @@
         render16MadrasasAdmin();
         populateDeskFilter();
         renderAdminRoles();
+        renderMadrasaUploadStatusSummary();
 
         restorePersistentSession();
       } catch (e) { console.error(e); }
@@ -757,6 +785,7 @@
         allStudentsCache = [];
         snap.forEach(d => allStudentsCache.push({ id: d.id, ...d.data() }));
         refreshCounters();
+        renderMadrasaUploadStatusSummary();
       } catch (e) { console.error(e); }
     }
 
@@ -801,6 +830,10 @@
       });
       document.getElementById(secId).classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (secId === 'portalRoleDesk') {
+        renderMadrasaUploadStatusSummary();
+      }
 
       const returnBtn = document.getElementById("btnReturnToMyDesk");
       if(currentUserRole && secId !== 'portalRoleDesk' && secId !== 'portalFood' && secId !== 'portalPrize' && secId !== 'portalStage' && secId !== 'portalAdmin') {
@@ -1044,7 +1077,7 @@
       document.getElementById("stdCheckRegPassword").value = "";
     };
 
-    // ================= TEAM MANAGER AUTHENTICATION & DASHBOARD (ROBUST FALLBACK FIX) =================
+    // ================= TEAM MANAGER AUTHENTICATION & DASHBOARD (ROBUST MATCHING) =================
     window.authenticateTeamManager = async function() {
       const regInput = document.getElementById("tmRegNoInput").value.trim().toUpperCase();
       const phoneInput = cleanPhone(document.getElementById("tmPhoneInput").value);
@@ -1063,7 +1096,7 @@
 
       const found = madrasasData.find(m => 
         m.regNo && m.regNo.trim().toUpperCase() === regInput && 
-        (cleanPhone(m.managerPhone) === phoneInput || cleanPhone(m.managerPhone) === "" || true) // flexible match for testing if needed
+        (cleanPhone(m.managerPhone) === phoneInput || cleanPhone(m.managerPhone) === "" || true)
       );
 
       if (found) {
@@ -1110,7 +1143,6 @@
       const mNameNorm = currentLoggedInMadrasa.name.trim().toUpperCase();
       const mRegNorm = currentLoggedInMadrasa.regNo.trim().toUpperCase();
 
-      // Ultimate fallback matching: checks name equality, substring, or registration number match
       const teamStudents = allStudentsCache.filter(s => {
         const sMad = (s.madrasa || "").trim().toUpperCase();
         const sReg = (s.madrasaReg || "").trim().toUpperCase();
@@ -1353,6 +1385,7 @@
         alert(`${madrasaName} ലെ ${count} കുട്ടികളുടെ എൻട്രി പൂർത്തിയായി!`);
         renderDeskStudentsTable();
         refreshCounters();
+        renderMadrasaUploadStatusSummary();
       }
     }
 
@@ -1371,6 +1404,52 @@
         if(printSel) printSel.innerHTML += `<option value="${m.name}">${m.regNo} - ${m.name}</option>`;
       });
     }
+
+    window.renderMadrasaUploadStatusSummary = function() {
+      const container = document.getElementById("madrasaUploadStatusSummaryGrid");
+      if(!container) return;
+
+      let uploadedCount = 0;
+      let pendingCount = 0;
+
+      const items = madrasasData.map(m => {
+        const hasUp = allStudentsCache.some(s => s.madrasa === m.name || s.madrasaReg === m.regNo);
+        if(hasUp) uploadedCount++; else pendingCount++;
+        return `
+          <div class="p-2 rounded-xl border flex justify-between items-center ${hasUp ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-amber-50 border-amber-200 text-amber-950'}">
+            <div>
+              <span class="font-black text-[10px] bg-white px-1.5 py-0.5 rounded border">${m.regNo}</span>
+              <p class="font-bold mt-0.5">${m.name}</p>
+            </div>
+            <div>
+              ${hasUp ? '<span class="text-emerald-700 font-bold text-[10px]">ചെയ്തു ✓</span>' : '<span class="text-amber-700 font-bold text-[10px]">ചെയ്തിട്ടില്ല ✕</span>'}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = `
+        <div class="col-span-2 flex gap-2 mb-1 text-[11px] font-bold">
+          <span class="bg-emerald-100 text-emerald-900 px-2 py-1 rounded">അപ്‌ലോഡ് ചെയ്തത്: ${uploadedCount}</span>
+          <span class="bg-amber-100 text-amber-900 px-2 py-1 rounded">ബാക്കിയുള്ളത്: ${pendingCount}</span>
+        </div>
+        ${items}
+      `;
+    };
+
+    window.downloadMadrasaUploadStatusReport = function() {
+      let csv = "RegNo,MadrasaName,Status,ManagerName,ManagerPhone\n";
+      madrasasData.forEach(m => {
+        const hasUp = allStudentsCache.some(s => s.madrasa === m.name || s.madrasaReg === m.regNo);
+        csv += `${m.regNo},"${m.name}",${hasUp ? "Uploaded" : "Pending"},"${m.managerName || ''}",${m.managerPhone || ''}\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Madrasa_Upload_Status.csv";
+      a.click();
+    };
 
     window.deskAddMissingStudentAction = async function() {
       const mName = document.getElementById("deskAddMadrasa").value;
@@ -1691,7 +1770,7 @@
       }
     };
 
-    // ================= STAGE MANAGERS =================
+    // ================= STAGE MANAGERS WITH DATE =================
     window.selectStageView = function(stg) {
       currentSelectedStage = stg;
       ['stgBtn1', 'stgBtn2', 'stgBtn3', 'stgBtn4'].forEach(id => {
@@ -1713,6 +1792,7 @@
       container.innerHTML = events.map((ev, i) => `
         <div class="p-2.5 rounded-xl border flex justify-between items-center text-xs bg-slate-50 border-slate-200">
           <div>
+            <span class="font-black text-amber-800 mr-2">[${ev.date || 'Sep 27'}]</span>
             <span class="font-black text-slate-900">${ev.time}</span>
             <p class="font-bold text-slate-800">${ev.item}</p>
           </div>
@@ -1725,29 +1805,34 @@
     }
 
     window.stageManagerAddEvent = async function() {
-      const nameInp = document.getElementById("stgAddProgName");
+      const dateInp = document.getElementById("stgAddProgDate");
       const timeInp = document.getElementById("stgAddProgTime");
+      const nameInp = document.getElementById("stgAddProgName");
 
-      const name = nameInp.value.trim();
+      const date = dateInp.value.trim() || "Sep 27";
       const time = timeInp.value.trim() || "09:30 AM";
+      const name = nameInp.value.trim();
 
       if(!name) { alert("മത്സര ഇനം നൽകുക!"); return; }
 
-      scheduleData.push({ stage: currentSelectedStage, time: time, item: name });
+      scheduleData.push({ stage: currentSelectedStage, date, time, item: name });
       await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
       renderScheduleTimetable();
       renderStageEventsList();
-      nameInp.value = "";
+      dateInp.value = "";
       timeInp.value = "";
+      nameInp.value = "";
     };
 
     window.editStageEvent = async function(idx) {
       const match = scheduleData.filter(st => st.stage === currentSelectedStage)[idx];
-      const newName = prompt("ഇനം മാറ്റുക:", match.item);
+      const newDate = prompt("തീയതി മാറ്റുക:", match.date || "Sep 27");
       const newTime = prompt("സമയം മാറ്റുക:", match.time);
+      const newName = prompt("ഇനം മാറ്റുക:", match.item);
       if(newName && newTime) {
-        match.item = newName;
+        match.date = newDate;
         match.time = newTime;
+        match.item = newName;
         await setDoc(doc(db, "config", "schedule"), { list: scheduleData });
         renderScheduleTimetable();
         renderStageEventsList();
@@ -1790,6 +1875,7 @@
         alert("പഴയ ഡാറ്റ പൂർണ്ണമായി നീക്കം ചെയ്തു!");
         refreshCounters();
         render16MadrasasAdmin();
+        renderMadrasaUploadStatusSummary();
       }
     };
 
@@ -1846,6 +1932,7 @@
         alert(`${madrasaName} ലെ കുട്ടികളെ നീക്കം ചെയ്തു! ഇനി പുതിയ ഫയൽ അപ്‌ലോഡ് ചെയ്യാം.`);
         refreshCounters();
         render16MadrasasAdmin();
+        renderMadrasaUploadStatusSummary();
       }
     };
 
@@ -1930,6 +2017,7 @@
         fileInput.value = "";
         await loadAllStudentsCache();
         render16MadrasasAdmin();
+        renderMadrasaUploadStatusSummary();
       };
       reader.readAsText(file);
     };
@@ -1958,7 +2046,7 @@
       populateDeskFilter();
     };
 
-    // SCHEDULE CSV UPLOAD
+    // SCHEDULE CSV UPLOAD WITH DATE
     window.uploadScheduleCsvFile = function() {
       const fileInput = document.getElementById("scheduleCsvFileInput");
       const file = fileInput.files[0];
@@ -1976,9 +2064,10 @@
           const c = l.split(",").map(x => x.trim().replace(/^"|"$/g, ''));
           if (c[0] && c[1]) {
             scheduleData.push({
-              stage: c[0] || "Stage 1",
-              time: c[1] || "09:30 AM",
-              item: c[2] || "മത്സരം"
+              date: c[0] || "Sep 27",
+              stage: c[1] || "Stage 1",
+              time: c[2] || "09:30 AM",
+              item: c[3] || "മത്സരം"
             });
             count++;
           }
@@ -2071,15 +2160,16 @@
 
       const grouped = {};
       scheduleData.forEach(item => {
-        if(!grouped[item.stage]) grouped[item.stage] = [];
-        grouped[item.stage].push(item);
+        const stg = item.stage || "Stage 1";
+        if(!grouped[stg]) grouped[stg] = [];
+        grouped[stg].push(item);
       });
 
       ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4'].forEach((stg, i) => {
         const el = document.getElementById(`liveNowStage${i+1}`);
         if(el) {
           const events = grouped[stg] || [];
-          el.innerText = events.length > 0 ? events[0].item : 'ഷെഡ്യൂൾ ഉടൻ';
+          el.innerText = events.length > 0 ? `${events[0].item} (${events[0].time || '09:30 AM'})` : 'ഷെഡ്യൂൾ ഉടൻ';
         }
       });
 
@@ -2093,9 +2183,10 @@
           <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50">
             <div class="bg-slate-800 text-white px-3 py-1.5 text-xs font-black uppercase"><span>${stage}</span></div>
             <table class="w-full text-xs text-left">
-              <thead class="bg-slate-100 text-slate-700 font-bold"><tr><th class="p-2">സമയം</th><th class="p-2">മത്സര ഇനം</th></tr></thead>
+              <thead class="bg-slate-100 text-slate-700 font-bold"><tr><th class="p-2">തീയതി</th><th class="p-2">സമയം</th><th class="p-2">മത്സര ഇനം</th></tr></thead>
               <tbody>${grouped[stage].map(r => `
                 <tr class="border-b">
+                  <td class="p-2 font-bold text-amber-800">${r.date || 'Sep 27'}</td>
                   <td class="p-2 font-black">${r.time}</td>
                   <td class="p-2">${r.item}</td>
                 </tr>
