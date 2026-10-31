@@ -83,7 +83,7 @@
       <i class="fa-solid fa-bullhorn text-rose-800 animate-pulse"></i> അറിയിപ്പ്
     </span>
     <marquee id="announcementBar" scrollamount="5" class="w-full text-rose-100 font-semibold">
-      KZJM സോണൽ മുസാബഖ 2026 (November 8). തത്സമയ ഫലങ്ങൾ ലഭ്യമാണ്.
+      KZJM സോണൽ മുസാബഖ 2026 (November 08). തത്സമയ ഫലങ്ങൾ ലഭ്യമാണ്.
     </marquee>
   </div>
 
@@ -127,7 +127,7 @@
   <!-- ================= MAIN VIEWPORTS ================= -->
   <main class="flex-grow max-w-5xl mx-auto w-full p-2.5 sm:p-4 space-y-3 sm:space-y-4 no-print">
 
-    <!-- 1. PUBLIC PORTAL & COLORFUL LOGIN CARDS -->
+    <!-- 1. PUBLIC PORTAL -->
     <section id="portalPublic" class="space-y-3">
       
       <!-- Notice Board with Overall Winners Preview -->
@@ -144,7 +144,7 @@
         </div>
       </div>
 
-      <!-- Wonderful Colored Portal Access Cards -->
+      <!-- Colorful Portal Access Cards -->
       <div class="space-y-2">
         <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider px-1">പോർട്ടൽ ലോഗിൻ (PORTAL ACCESS)</h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -301,7 +301,7 @@
       </div>
     </section>
 
-    <!-- 6. SPOT REGISTRATION & QR SCANNER DESK -->
+    <!-- 6. SPOT REGISTRATION DESK -->
     <section id="portalRoleDesk" class="hidden space-y-4">
       <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
         <div class="flex items-center justify-between border-b pb-2">
@@ -322,7 +322,6 @@
           </div>
         </div>
 
-        <!-- Scanned Student Result Details Card -->
         <div id="scannedStudentProfileCard" class="hidden bg-slate-900 text-white p-4 rounded-2xl space-y-2 shadow-lg border border-purple-500">
           <div class="flex justify-between items-center border-b border-purple-800 pb-1">
             <h4 class="text-sm font-black text-amber-300" id="scanProfName"></h4>
@@ -490,7 +489,7 @@
       </div>
     </section>
 
-    <!-- 9. SUPER ADMIN & CO-ADMIN MASTER CONTROL (WITH TOTAL MARKS & BULK UPLOAD) -->
+    <!-- 9. SUPER ADMIN & CO-ADMIN MASTER CONTROL -->
     <section id="portalAdmin" class="hidden space-y-4">
       <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200 space-y-5">
         <div class="flex items-center justify-between border-b pb-2">
@@ -506,21 +505,6 @@
           </div>
         </div>
 
-        <!-- Bulk CSV Upload For All Ranges at once -->
-        <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-xl space-y-2 text-xs">
-          <span class="font-bold text-indigo-950"><i class="fa-solid fa-file-csv"></i> എല്ലാ റേഞ്ചുകളുടെയും ഡാറ്റ ഒരുമിച്ച് ബൾക്കായി അപ്‌ലോഡ് ചെയ്യുക (Bulk CSV):</span>
-          <input type="file" id="bulkAllCsvFileInput" accept=".csv" class="w-full text-xs">
-          <button onclick="uploadBulkAllRangesCsv()" class="bg-indigo-700 text-white font-bold px-4 py-1.5 rounded-lg shadow-xs">ബൾക്ക് CSV അപ്‌ലോഡ് ചെയ്യുക ✓</button>
-          <p class="text-[10px] text-slate-500">മാതൃക: SlNo, RangeName, RegNo, Photo, ChestNo, Class, UaeNo, DOB, AdmNo, Category, Items</p>
-        </div>
-
-        <!-- Ustadhu Upload Option -->
-        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2 text-xs">
-          <span class="font-bold text-emerald-950"><i class="fa-solid fa-chalkboard-user"></i> ഉസ്താദുമാരുടെ വിവരങ്ങൾ റേഞ്ച് അടിസ്ഥാനത്തിൽ / ബൾക്കായി അപ്‌ലോഡ് ചെയ്യുക (Ustadhu CSV):</span>
-          <input type="file" id="ustadCsvFileInput" accept=".csv" class="w-full text-xs">
-          <button onclick="uploadUstadhuCsvFile()" class="bg-emerald-700 text-white font-bold px-4 py-1.5 rounded-lg shadow-xs">ഉസ്താദ് CSV അപ്‌ലോഡ് ചെയ്യുക ✓</button>
-        </div>
-
         <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl space-y-1.5 text-xs">
           <span class="font-bold text-rose-950"><i class="fa-solid fa-bullhorn"></i> ആപ്പിലെ ലൈവ് അനൗൺസ്‌മെന്റ് മാറ്റുക:</span>
           <div class="flex gap-2">
@@ -529,7 +513,7 @@
           </div>
         </div>
 
-        <!-- Admin Navigation Tabs -->
+        <!-- Admin Navigation Tabs including Programs Upload & Staff Passwords -->
         <div class="flex flex-wrap gap-1.5 border-b pb-2 text-xs font-bold">
           <button onclick="switchAdminTab('admTabMadrasasFiles')" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg">റേഞ്ചുകൾ & മാർക്ക്</button>
           <button onclick="switchAdminTab('admTabProgramsCsv')" class="px-3 py-1.5 bg-purple-700 text-white rounded-lg">പ്രോഗ്രാം CSV</button>
@@ -547,6 +531,21 @@
               <button id="btnSuperAdminClearAll" onclick="clearAllStudentsDataPrompt()" class="bg-red-600 text-white text-[10px] px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-trash"></i> മുഴുവൻ ഡാറ്റയും ക്ലിയർ ചെയ്യുക</button>
             </div>
           </div>
+
+          <!-- Bulk All Ranges CSV Upload -->
+          <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-xl space-y-2">
+            <span class="font-bold text-indigo-950"><i class="fa-solid fa-file-csv"></i> എല്ലാ റേഞ്ചുകളുടെയും ഡാറ്റ ഒരുമിച്ച് ബൾക്കായി അപ്‌ലോഡ് ചെയ്യുക (Bulk CSV):</span>
+            <input type="file" id="bulkAllCsvFileInput" accept=".csv" class="w-full text-xs">
+            <button onclick="uploadBulkAllRangesCsv()" class="bg-indigo-700 text-white font-bold px-4 py-1.5 rounded-lg shadow-xs">ബൾക്ക് CSV അപ്‌ലോഡ് ചെയ്യുക ✓</button>
+          </div>
+
+          <!-- Ustadhu Upload -->
+          <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl space-y-2">
+            <span class="font-bold text-emerald-950"><i class="fa-solid fa-chalkboard-user"></i> ഉസ്താദുമാരുടെ വിവരങ്ങൾ അപ്‌ലോഡ് ചെയ്യുക (Ustadhu CSV):</span>
+            <input type="file" id="ustadCsvFileInput" accept=".csv" class="w-full text-xs">
+            <button onclick="uploadUstadhuCsvFile()" class="bg-emerald-700 text-white font-bold px-4 py-1.5 rounded-lg shadow-xs">ഉസ്താദ് CSV അപ്‌ലോഡ് ചെയ്യുക ✓</button>
+          </div>
+
           <div id="admin16MadrasasList" class="space-y-2.5"></div>
         </div>
 
@@ -1230,211 +1229,9 @@
       refreshCounters();
     };
 
-    // ================= BULK ALL RANGES CSV UPLOAD =================
-    window.uploadBulkAllRangesCsv = function() {
-      const fileInput = document.getElementById("bulkAllCsvFileInput");
-      const file = fileInput.files[0];
-      if (!file) { alert("ഫയൽ തിരഞ്ഞെടുക്കുക."); return; }
-
-      const reader = new FileReader();
-      reader.onload = async function(e) {
-        const lines = e.target.result.split("\n");
-        if(lines.length === 0) return;
-
-        let count = 0;
-        const batch = writeBatch(db);
-
-        // Expected CSV format:
-        // SlNo, RangeName, RegNo, Photo, ChestNo, Class, UaeNo, DOB, AdmNo, Category, Items
-        for (let i = 1; i < lines.length; i++) {
-          const l = lines[i].trim();
-          if(!l) continue;
-          const c = l.split(",").map(x => x.trim().replace(/^"|"$/g, ''));
-
-          if (c[4] && c[1]) { // ChestNo and RangeName present
-            const rangeName = c[1];
-            const regNo = c[2] || "R01";
-            const photo = c[3] || "";
-            const chestNo = c[4];
-            const studentName = c[5] || "Student";
-            const cls = c[6] || "General";
-            const uaeNo = c[7] || "";
-            const dob = c[8] || "";
-            const admNo = c[9] || "";
-            const category = c[10] || "";
-            const items = c[11] || "";
-
-            const madrasaSl = count + 1;
-            const tokenNo = "S-" + (allStudentsCache.length + count + 1);
-
-            const docRef = doc(db, "students", chestNo);
-            batch.set(docRef, {
-              name: studentName,
-              madrasa: rangeName,
-              madrasaReg: regNo,
-              madrasaSl: madrasaSl,
-              class: cls,
-              uaeNo: uaeNo,
-              dob: dob,
-              admNo: admNo,
-              category: category + " " + items,
-              tokenNo: tokenNo,
-              photo: photo,
-              entryRegistered: false,
-              foodGiven: false
-            }, { merge: true });
-            count++;
-          }
-        }
-
-        await batch.commit();
-        alert(`ബൾക്ക് CSV വഴി ${count} കുട്ടികളുടെ ഡാറ്റ അപ്‌ലോഡ് ചെയ്തു!`);
-        fileInput.value = "";
-        await loadAllStudentsCache();
-        render16MadrasasAdmin();
-      };
-      reader.readAsText(file);
-    };
-
-    // ================= USTADHU CSV UPLOAD =================
-    window.uploadUstadhuCsvFile = function() {
-      const fileInput = document.getElementById("ustadCsvFileInput");
-      const file = fileInput.files[0];
-      if (!file) { alert("ഫയൽ തിരഞ്ഞെടുക്കുക."); return; }
-
-      const reader = new FileReader();
-      reader.onload = async function(e) {
-        const lines = e.target.result.split("\n");
-        let count = 0;
-        const batch = writeBatch(db);
-
-        for (let i = 1; i < lines.length; i++) {
-          const l = lines[i].trim();
-          if(!l) continue;
-          const c = l.split(",").map(x => x.trim().replace(/^"|"$/g, ''));
-          if(c[0] && c[1]) {
-            const docRef = doc(collection(db, "ustadhs"));
-            batch.set(docRef, {
-              rangeName: c[0],
-              name: c[1],
-              phone: c[2] || ""
-            });
-            count++;
-          }
-        }
-        await batch.commit();
-        alert(`${count} ഉസ്താദുമാരുടെ വിവരങ്ങൾ അപ്‌ലോഡ് ചെയ്തു!`);
-        fileInput.value = "";
-      };
-      reader.readAsText(file);
-    };
-
-    // ================= SCHEDULE & LEADERBOARD =================
-    window.updateActiveScheduleDate = function(newDate) {
-      activeScheduleDate = newDate;
-      renderScheduleTimetable();
-    };
-
-    function renderScheduleTimetable() {
-      const container = document.getElementById("stageScheduleContainer");
-      const liveBoxes = document.getElementById("publicLiveStageBoxes");
-      if(!container || !liveBoxes) return;
-      container.innerHTML = "";
-      liveBoxes.innerHTML = "";
-
-      const todayEvents = scheduleData.filter(item => (item.date || "Nov 08").toLowerCase() === activeScheduleDate.toLowerCase());
-      document.getElementById("displayCurrentDateBadge").innerText = activeScheduleDate;
-
-      const grouped = {};
-      todayEvents.forEach(item => {
-        const stg = item.stage || "Stage 1";
-        if(!grouped[stg]) grouped[stg] = [];
-        grouped[stg].push(item);
-      });
-
-      ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4'].forEach((stg, i) => {
-        const boxId = i + 1;
-        const events = grouped[stg] || [];
-        const currentItem = events.length > 0 ? `${events[0].item} (${events[0].time || '09:30 AM'})` : 'ഷെഡ്യൂൾ ഉടൻ';
-        
-        liveBoxes.innerHTML += `
-          <div class="bg-white/10 p-2 rounded-xl border border-white/20 text-center">
-            <span class="font-black text-amber-300 block text-[10px]">വേദി ${boxId}</span>
-            <span class="font-bold truncate block text-xs" id="liveNowStage${boxId}">${currentItem}</span>
-          </div>
-        `;
-      });
-
-      if(todayEvents.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">${activeScheduleDate} തീയതിയിൽ മത്സരങ്ങൾ ഷെഡ്യൂൾ ചെയ്തിട്ടില്ല.</p>`;
-        return;
-      }
-
-      for(let stage in grouped) {
-        container.innerHTML += `
-          <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50">
-            <div class="bg-slate-800 text-white px-3 py-1.5 text-xs font-black uppercase"><span>${stage}</span></div>
-            <table class="w-full text-xs text-left">
-              <thead class="bg-slate-100 text-slate-700 font-bold"><tr><th class="p-2">തീയതി</th><th class="p-2">സമയം</th><th class="p-2">മത്സര ഇനം</th></tr></thead>
-              <tbody>${grouped[stage].map(r => `
-                <tr class="border-b">
-                  <td class="p-2 font-bold text-amber-800">${r.date || 'Nov 08'}</td>
-                  <td class="p-2 font-black">${r.time}</td>
-                  <td class="p-2">${r.item}</td>
-                </tr>
-              `).join("")}</tbody>
-            </table>
-          </div>
-        `;
-      }
-    }
-
-    function renderAdminRoles() {
-      const container = document.getElementById("adminRolesList");
-      if(!container) return;
-      container.innerHTML = Object.keys(rolesConfig).map(k => `
-        <div class="bg-white p-2.5 rounded-xl border flex items-center justify-between text-xs">
-          <span class="font-bold">${rolesConfig[k].title} (${k})</span>
-          <div class="flex items-center gap-1">
-            <input type="text" id="admPass_${k}" value="${rolesConfig[k].pass}" class="border p-1.5 rounded-xl w-32 text-center font-bold">
-            <button onclick="saveAdminRoleConfig('${k}')" class="bg-slate-800 text-white px-3 py-1.5 rounded-xl font-bold">Save</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    window.saveAdminRoleConfig = async function(k) {
-      const newPass = document.getElementById(`admPass_${k}`).value.trim();
-      if(!newPass) { alert("പാസ്‌വേഡ് നൽകുക!"); return; }
-      rolesConfig[k].pass = newPass;
-      await setDoc(doc(db, "config", "roles"), rolesConfig);
-      alert(rolesConfig[k].title + " പാസ്‌വേഡ് സേവ് ചെയ്തു!");
-    };
-
-    window.updateLiveNoticeTicker = async function() {
-      const t = document.getElementById("admNoticeTextInp").value.trim();
-      if(!t) return;
-      await setDoc(doc(db, "config", "notice"), { text: t });
-      document.getElementById("announcementBar").innerText = t;
-      alert("അറിയിപ്പ് അപ്‌ഡേറ്റ് ചെയ്തു!");
-    };
-
-    function renderContactsList() {
-      const c = document.getElementById("dispContactsList");
-      if(!c) return;
-      c.innerHTML = contactList.map(x => `
-        <div class="p-2 border rounded-lg bg-slate-50 flex justify-between items-center">
-          <div><b>${x.role}:</b> ${x.name || ''}</div>
-          <a href="tel:${x.phone}" class="bg-slate-800 text-white font-bold px-2.5 py-1 rounded text-[11px]"><i class="fa-solid fa-phone"></i> വിളിക്കുക</a>
-        </div>
-      `).join("") || '<p class="text-xs text-slate-400">നമ്പറുകൾ ചേർത്തിട്ടില്ല.</p>';
-    }
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7fSk7').catch(() => {});
-      });
-    }
-  </script>
-</body>
-</html>
+    // ================= SPOT STATUS REPORT MODAL =================
+    window.openSpotStatusModal = function() {
+      const listEl = document.getElementById("spotStatusModalList");
+      listEl.innerHTML = madrasasData.map(m => {
+        const hasUp = allStudentsCache.some(s => s.madrasa === m.name || s.madrasaReg === m.regNo);
+        const
